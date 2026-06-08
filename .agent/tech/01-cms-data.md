@@ -2,14 +2,14 @@
 
 ## New components and modules
 
-- `src/cms/types.ts`
-- `src/cms/client.ts`
-- `src/cms/normalize.ts`
-- `src/cms/imageUrl.ts`
-- `src/cms/useCmsData.ts`
-- `src/cms/sample-content.json`
-- `src/cms/tagIndex.ts`
-- `src/cms/imageManifest.ts`
+- `src/pages/cms/types.ts`
+- `src/pages/cms/client.ts`
+- `src/pages/cms/normalize.ts`
+- `src/pages/cms/imageUrl.ts`
+- `src/pages/cms/useCmsData.ts`
+- `src/pages/cms/sample-content.json`
+- `src/pages/cms/tagIndex.ts`
+- `src/pages/cms/imageManifest.ts`
 
 ## Reused components
 
@@ -22,9 +22,9 @@
 - CMS JSON URL: configured as `VITE_CMS_JSON_URL`.
 - OneDrive image base URL: configured as `VITE_ONEDRIVE_IMAGE_BASE_URL`.
 - The app does not hard-code a production OneDrive URL in source code.
-- Example development URL: `/cms/sample-content.json`.
+- Example development URL: `/pages/cms/sample-content.json`.
 - Public users have read-only access to the OneDrive JSON and images.
-- Write access is reserved for authenticated admins through `/admin/cms`.
+- Write access is reserved for authenticated admins through `/pages/admin/cms`.
 
 ## Data shape
 
@@ -34,8 +34,6 @@ type LocalizedText = { fr: string; en?: string };
 type CharacteristicKey = 'dimension' | 'color' | 'weight' | 'material';
 
 type CmsContent = {
-  version: number;
-  updatedAt: string;
   settings: {
     artistEmail: string;
     adminEmails: string[];
@@ -55,14 +53,12 @@ type CategoryView = {
   id: string;
   name: LocalizedText;
   description?: LocalizedText;
-  imageId?: string;
   tags: string[];
   children?: CategoryView[];
 };
 
 type Item = {
   id: string;
-  imageId: string;
   title: LocalizedText;
   description?: LocalizedText;
   price: number;
@@ -79,9 +75,10 @@ type Item = {
 - Do not refetch the CMS JSON independently in child components.
 - Images are stored in the same OneDrive repository as the JSON file.
 - Image storage is flat: no nested image folders.
-- Image names are derived from `imageId`.
-- Thumbnail file format: `imageId_thumbnail`.
-- Carousel image file format: `imageId_0-xxx`, where `xxx` is the image extension or configured suffix.
+- Image names are derived from the owning category or item `id`.
+- Category thumbnail file format: `${category.id}_thumbnail.png`.
+- Item thumbnail file format: `${item.id}_thumbnail.png`.
+- Item carousel image file format: `${item.id}_xxx.png`, where `xxx` is the carousel image index.
 - Resolve thumbnails and carousel images with `imageUrl.ts`.
 - Categories are front-end views over tags, not item-owned category data.
 - Categories use `id`, not `slug`, in CMS data and URLs.

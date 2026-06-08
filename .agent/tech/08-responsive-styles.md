@@ -93,14 +93,14 @@
 
 - No visual-only translation keys.
 - Accessibility labels reused from feature specs:
-  - `nav.openMenu`
-  - `nav.closeMenu`
-  - `cart.open`
-  - `cart.close`
-  - `catalog.filters.open`
-  - `catalog.filters.close`
-  - `itemDetail.gallery.previous`
-  - `itemDetail.gallery.next`
+  - `header.openMenu`
+  - `header.closeMenu`
+  - `pages.cart.open`
+  - `pages.cart.close`
+  - `pages.catalog.filters.open`
+  - `pages.catalog.filters.close`
+  - `pages.item.gallery.previous`
+  - `pages.item.gallery.next`
 
 ## Implementation details
 

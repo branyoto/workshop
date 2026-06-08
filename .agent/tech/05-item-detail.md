@@ -2,11 +2,11 @@
 
 ## New components
 
-- `src/pages/ItemDetailPage.tsx`
-- `src/components/item/ItemGallery.tsx`
-- `src/components/item/ItemInfo.tsx`
-- `src/components/item/CharacteristicList.tsx`
-- `src/components/item/TagChips.tsx`
+- `src/pages/item/ItemDetailPage.tsx`
+- `src/pages/item/ItemGallery.tsx`
+- `src/pages/item/ItemInfo.tsx`
+- `src/pages/item/CharacteristicList.tsx`
+- `src/pages/item/TagChips.tsx`
 
 ## Reused components
 
@@ -30,27 +30,27 @@
 
 ## Translation keys
 
-- `itemDetail.meta.title`
-- `itemDetail.notFound.title`
-- `itemDetail.notFound.description`
-- `itemDetail.backToCatalog`
-- `itemDetail.gallery.previous`
-- `itemDetail.gallery.next`
-- `itemDetail.gallery.goToImage`
-- `itemDetail.description`
-- `itemDetail.characteristics`
-- `itemDetail.tags`
-- `itemDetail.categories`
-- `itemDetail.addToCart`
-- `itemDetail.addedToCart`
-- `itemDetail.alreadyInCart`
-- `itemDetail.soldOutAction`
-- `availability.inStock`
-- `availability.soldOut`
-- `characteristics.dimension`
-- `characteristics.color`
-- `characteristics.weight`
-- `characteristics.material`
+- `pages.item.meta.title`
+- `pages.item.notFound.title`
+- `pages.item.notFound.description`
+- `pages.item.backToCatalog`
+- `pages.item.gallery.previous`
+- `pages.item.gallery.next`
+- `pages.item.gallery.goToImage`
+- `pages.item.description`
+- `pages.item.characteristics`
+- `pages.item.tags`
+- `pages.item.categories`
+- `pages.item.addToCart`
+- `pages.item.addedToCart`
+- `pages.item.alreadyInCart`
+- `pages.item.soldOutAction`
+- `pages.item.characteristics.dimension`
+- `pages.item.characteristics.color`
+- `pages.item.characteristics.weight`
+- `pages.item.characteristics.material`
+- `common.availability.inStock`
+- `common.availability.soldOut`
 
 ## CSS classes
 
@@ -80,7 +80,7 @@
 
 - Resolve item by `id` from CMS `items`.
 - Render optional description and characteristics only when present.
-- Build gallery images from `imageId_thumbnail` for thumbnails and `imageId_0-xxx` for carousel images.
+- Build gallery images from the item `id`: `${item.id}_thumbnail.png` for thumbnails and `${item.id}_xxx.png` for carousel images.
 - Characteristic labels are translated in front-end from the stable keys `dimension`, `color`, `weight`, and `material`.
 - Disable add-to-cart when the item is sold out or already in the cart.
 - Do not implement reviews, ratings, or quantities.

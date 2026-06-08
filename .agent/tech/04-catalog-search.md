@@ -43,6 +43,7 @@
 - Navigating to `/catalog/:categoryId` is equivalent to opening `/catalog` with the configured category tag filter applied.
 - Category route segments resolve from CMS category `id` values.
 - Category IDs are stable IDs, not slugs.
+- Category images are resolved from category IDs.
 - Breadcrumb labels use localized category names, never raw IDs.
 - Parent category pages apply their configured tags and configured descendant category tags.
 - Available filter tags are parsed from the CMS JSON during normalization and exposed as `tagList`.
@@ -72,8 +73,8 @@
 - `pages.catalog.empty.clearFilters`
 - `pages.catalog.loadMore`
 - `pages.catalog.loadingMore`
-- `pages.itemCard.addToCart`
-- `pages.itemCard.viewDetails`
+- `pages.item.addToCart`
+- `pages.item.viewDetails`
 - `common.availability.inStock`
 - `common.availability.soldOut`
 

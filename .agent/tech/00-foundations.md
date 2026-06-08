@@ -57,8 +57,17 @@
   - `adminCmsUrl(): '/admin/cms'`
 - Unknown URLs render a shared not-found page inside `AppShell`.
 - `/admin/cms` is protected by `RequireAdmin` and redirects unauthenticated users to `/login`.
+- Route-level page components must live under `src/pages/<domain>/`.
+- Reusable non-page components must live under `src/<domain>/`, `src/common/`, or `src/layout/`.
 
 ## Translation keys
+
+Translation keys are scoped by domain:
+
+- `pages.*` for page-specific strings.
+- `common.*` for reusable labels, states, and shared component strings.
+- `header.*` for header/navigation strings.
+- `footer.*` for footer strings.
 
 - `app.brand`
 - `header.openMenu`

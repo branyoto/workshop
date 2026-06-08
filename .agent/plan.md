@@ -26,6 +26,11 @@ Recommended approach:
     - `/item/:id`.
     - `/checkout`.
     - `/contact`.
+    - `/login`.
+    - `/admin/cms`.
+- Use React Router for routing.
+- Keep route-level page components in `src/pages/<domain>/`.
+- Keep reusable non-page components in `src/<domain>/`, `src/common/`, or `src/layout/`.
 - Use a shared application shell containing:
     - Header/navigation.
     - Left category drawer.
@@ -39,7 +44,13 @@ Recommended approach:
 - Create a JSON CMS source loaded from a OneDrive repository.
 - Store item images in the same OneDrive repository as the CMS JSON.
 - Keep OneDrive image storage flat, without nested folders.
-- Treat image references as file names or stable OneDrive URLs that can be resolved by the front-end data loader.
+- Resolve image file names from the owning category or item ID.
+- Category thumbnail file format: `${category.id}_thumbnail.png`.
+- Item thumbnail file format: `${item.id}_thumbnail.png`.
+- Item carousel image file format: `${item.id}_xxx.png`.
+- The CMS JSON is publicly readable from OneDrive, but writes are reserved for authenticated admins.
+- Admin CMS editing is available only through protected `/admin/cms` after login.
+- `CmsContent` does not need `version` or `updatedAt`.
 - Categories are a pure front-end catalog view over tags.
 - A category page is equivalent to the global catalog/search page with the corresponding category tag filter already applied.
 - Parent categories should apply the tag filters configured for that category and any desired child category tags.
@@ -48,8 +59,6 @@ Recommended approach:
     - localized `title`.
     - optional localized `description`.
     - `price`.
-    - `images`.
-    - `thumbnail`.
     - `tags`.
     - `available` boolean.
     - optional characteristics using the predefined keys `dimension`, `color`, `weight`, and `material`.
@@ -66,8 +75,10 @@ Recommended approach:
 
 - Default language: French.
 - Supported languages: `fr`, `en`.
+- Use i18next and react-i18next.
 - Store language preference in localStorage.
 - All UI labels, navigation, form labels, placeholders, validation messages, badges, and CTAs must use translation keys.
+- Scope translation keys by domain, such as `page.*`, `common.*`, `header.*`, `footer.*`, and `cms.*`.
 - Item/category/contact content must support per-language fields.
 - Missing English content falls back to French.
 
@@ -392,7 +403,7 @@ Implementation details:
 - Add language switcher:
     - in the left drawer bottom, per user story.
 - Translate every user-facing string
-- Use a simple key-based translation system with support for interpolation if needed.
+- Use i18next/react-i18next with support for interpolation if needed.
 - Localized content:
     - item titles and descriptions.
     - category names/descriptions.

@@ -27,5 +27,10 @@
 - Shared styles should be defined once in `src/index.css` and reused through tokens/classes.
 - Routing uses `react-router`.
 - i18n uses `i18next` and `react-i18next`.
+- Translation keys are scoped by domain: `page.*`, `common.*`, `header.*`, and `footer.*`
+- Route-level pages live in `src/pages/<domain>/`.
+- Reusable non-page components live in `src/domain>/`, `src/common/`, or `src/layout/`.
+- CMS modules live in `src/pages/`.
+- `CategoryView` and `Item` do not include `imageId`; image paths are derived from their stable IDs.
 - CSS class names use BEM-style kebab-case blocks, `__` elements, and `--` modifiers.
 - TypeScript/TSX uses semicolons and is formatted with Prettier plus ESLint.

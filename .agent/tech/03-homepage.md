@@ -75,6 +75,7 @@
 - Featured categories come from CMS `featuredCategoryIds`.
 - Featured items come from CMS `featuredItemIds`.
 - Do not read any `featured` field from item records.
+- Category images are resolved from the category `id`.
 - Use `ItemCard` for featured item cards so pricing, availability, and add-to-cart behavior remain consistent.
 - Carousel controls must be keyboard accessible and respect reduced motion.
 - Use React Router `Link` components for all internal navigation.

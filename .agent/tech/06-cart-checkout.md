@@ -2,19 +2,19 @@
 
 ## New components and modules
 
-- `src/cart/types.ts`
-- `src/cart/cartStorage.ts`
-- `src/cart/useCart.ts`
-- `src/order/orderNumber.ts`
-- `src/order/orderSubmission.ts`
-- `src/pages/CheckoutPage.tsx`
-- `src/components/cart/CartIconButton.tsx`
-- `src/components/cart/CartItemRow.tsx`
-- `src/components/cart/CartSummary.tsx`
-- `src/components/checkout/CheckoutForm.tsx`
-- `src/components/checkout/AddressField.tsx`
-- `src/components/checkout/OrderSummary.tsx`
-- `src/components/checkout/OrderConfirmation.tsx`
+- `src/pages/cart/utils/types.ts`
+- `src/pages/cart/utils/cartStorage.ts`
+- `src/pages/cart/utils/useCart.ts`
+- `src/pages/cart/CartIconButton.tsx`
+- `src/pages/cart/CartItemRow.tsx`
+- `src/pages/cart/CartSummary.tsx`
+- `src/pages/order/orderNumber.ts`
+- `src/pages/order/orderSubmission.ts`
+- `src/pages/checkout/CheckoutPage.tsx`
+- `src/pages/checkout/CheckoutForm.tsx`
+- `src/pages/checkout/AddressField.tsx`
+- `src/pages/checkout/OrderSummary.tsx`
+- `src/pages/checkout/OrderConfirmation.tsx`
 
 ## Reused components
 
@@ -51,43 +51,43 @@
 
 ## Translation keys
 
-- `cart.title`
-- `cart.open`
-- `cart.close`
-- `cart.count`
-- `cart.empty.title`
-- `cart.empty.description`
-- `cart.remove`
-- `cart.clear`
-- `cart.total`
-- `cart.proceedToCheckout`
-- `cart.added`
-- `cart.alreadyInCart`
-- `cart.unavailable`
-- `checkout.meta.title`
-- `checkout.title`
-- `checkout.empty.title`
-- `checkout.empty.description`
-- `checkout.backToCatalog`
-- `checkout.form.name`
-- `checkout.form.email`
-- `checkout.form.phone`
-- `checkout.form.address`
-- `checkout.form.notes`
-- `checkout.form.submit`
-- `checkout.form.submitting`
-- `checkout.validation.nameRequired`
-- `checkout.validation.addressRequired`
-- `checkout.validation.contactRequired`
-- `checkout.validation.emailInvalid`
-- `checkout.validation.phoneInvalid`
-- `checkout.summary.title`
-- `checkout.summary.deliveryNotice`
-- `checkout.confirmation.title`
-- `checkout.confirmation.description`
-- `checkout.confirmation.orderNumber`
-- `checkout.error.title`
-- `checkout.error.retry`
+- `pages.cart.title`
+- `pages.cart.open`
+- `pages.cart.close`
+- `pages.cart.count`
+- `pages.cart.empty.title`
+- `pages.cart.empty.description`
+- `pages.cart.remove`
+- `pages.cart.clear`
+- `pages.cart.total`
+- `pages.cart.proceedToCheckout`
+- `pages.cart.added`
+- `pages.cart.alreadyInCart`
+- `pages.cart.unavailable`
+- `pages.checkout.meta.title`
+- `pages.checkout.title`
+- `pages.checkout.empty.title`
+- `pages.checkout.empty.description`
+- `pages.checkout.backToCatalog`
+- `pages.checkout.form.name`
+- `pages.checkout.form.email`
+- `pages.checkout.form.phone`
+- `pages.checkout.form.address`
+- `pages.checkout.form.notes`
+- `pages.checkout.form.submit`
+- `pages.checkout.form.submitting`
+- `pages.checkout.validation.nameRequired`
+- `pages.checkout.validation.addressRequired`
+- `pages.checkout.validation.contactRequired`
+- `pages.checkout.validation.emailInvalid`
+- `pages.checkout.validation.phoneInvalid`
+- `pages.checkout.summary.title`
+- `pages.checkout.summary.deliveryNotice`
+- `pages.checkout.confirmation.title`
+- `pages.checkout.confirmation.description`
+- `pages.checkout.confirmation.orderNumber`
+- `pages.checkout.error.title`
+- `pages.checkout.error.retry`
 
 ## CSS classes
 

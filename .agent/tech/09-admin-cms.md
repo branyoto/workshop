@@ -9,7 +9,7 @@
 - `src/pages/admin/AdminToolbar.tsx`
 - `src/auth/adminAuth.ts`
 - `src/auth/useAdminSession.ts`
-- `src/cms/cmsWriteClient.ts`
+- `src/pages/cms/cmsWriteClient.ts`
 - `src/routes/RequireAdmin.tsx`
 
 ## Reused components
@@ -44,27 +44,27 @@
 
 ## Translation keys
 
-- `admin.login.meta.title`
-- `admin.login.title`
-- `admin.login.email`
-- `admin.login.password`
-- `admin.login.submit`
-- `admin.login.submitting`
-- `admin.login.error.invalid`
-- `admin.login.error.generic`
-- `admin.cms.meta.title`
-- `admin.cms.title`
-- `admin.cms.loading`
-- `admin.cms.editorLabel`
-- `admin.cms.preview`
-- `admin.cms.validate`
-- `admin.cms.save`
-- `admin.cms.saving`
-- `admin.cms.saved`
-- `admin.cms.error.invalidJson`
-- `admin.cms.error.validation`
-- `admin.cms.error.saveFailed`
-- `admin.cms.logout`
+- `pages.admin.login.meta.title`
+- `pages.admin.login.title`
+- `pages.admin.login.email`
+- `pages.admin.login.password`
+- `pages.admin.login.submit`
+- `pages.admin.login.submitting`
+- `pages.admin.login.error.invalid`
+- `pages.admin.login.error.generic`
+- `pages.admin.cms.meta.title`
+- `pages.admin.cms.title`
+- `pages.admin.cms.loading`
+- `pages.admin.cms.editorLabel`
+- `pages.admin.cms.preview`
+- `pages.admin.cms.validate`
+- `pages.admin.cms.save`
+- `pages.admin.cms.saving`
+- `pages.admin.cms.saved`
+- `pages.admin.cms.error.invalidJson`
+- `pages.admin.cms.error.validation`
+- `pages.admin.cms.error.saveFailed`
+- `pages.admin.cms.logout`
 
 ## CSS classes
 
@@ -90,4 +90,3 @@
 - Reuse CMS normalization before save so admin edits are checked against the same rules as public rendering.
 - Keep admin write code separate from public read code.
 - Use semicolons, Prettier, and ESLint.
-

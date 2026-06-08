@@ -2,12 +2,12 @@
 
 ## New components
 
-- `src/pages/ContactPage.tsx`
-- `src/components/contact/ArtistBio.tsx`
-- `src/components/contact/MarketDates.tsx`
-- `src/components/contact/SocialLinks.tsx`
-- `src/components/contact/ContactMap.tsx`
-- `src/components/contact/ContactForm.tsx`
+- `src/pages/contact/ContactPage.tsx`
+- `src/pages/contact/ArtistBio.tsx`
+- `src/pages/contact/MarketDates.tsx`
+- `src/pages/contact/SocialLinks.tsx`
+- `src/pages/contact/ContactMap.tsx`
+- `src/pages/contact/ContactForm.tsx`
 
 ## Reused components
 
@@ -27,28 +27,28 @@
 
 ## Translation keys
 
-- `contact.meta.title`
-- `contact.title`
-- `contact.bio.title`
-- `contact.categories.title`
-- `contact.markets.title`
-- `contact.markets.empty.title`
-- `contact.markets.empty.description`
-- `contact.social.title`
-- `contact.email.title`
-- `contact.map.title`
-- `contact.form.title`
-- `contact.form.name`
-- `contact.form.email`
-- `contact.form.message`
-- `contact.form.submit`
-- `contact.form.submitting`
-- `contact.form.success`
-- `contact.form.error`
-- `contact.validation.nameRequired`
-- `contact.validation.emailRequired`
-- `contact.validation.emailInvalid`
-- `contact.validation.messageRequired`
+- `pages.contact.meta.title`
+- `pages.contact.title`
+- `pages.contact.bio.title`
+- `pages.contact.categories.title`
+- `pages.contact.markets.title`
+- `pages.contact.markets.empty.title`
+- `pages.contact.markets.empty.description`
+- `pages.contact.social.title`
+- `pages.contact.email.title`
+- `pages.contact.map.title`
+- `pages.contact.form.title`
+- `pages.contact.form.name`
+- `pages.contact.form.email`
+- `pages.contact.form.message`
+- `pages.contact.form.submit`
+- `pages.contact.form.submitting`
+- `pages.contact.form.success`
+- `pages.contact.form.error`
+- `pages.contact.validation.nameRequired`
+- `pages.contact.validation.emailRequired`
+- `pages.contact.validation.emailInvalid`
+- `pages.contact.validation.messageRequired`
 
 ## CSS classes
 
@@ -74,4 +74,3 @@
 - Render an empty state when no future market dates exist.
 - Do not expose a precise private studio location unless `mapUrl` or `address` is explicitly configured.
 - Contact form produces an email-ready message for the artist.
-
