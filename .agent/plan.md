@@ -4,7 +4,7 @@
 
 Build a responsive bilingual showcase and ordering website for a solo artisan. Visitors must be able to discover featured handmade creations, browse an extensible catalog, inspect item details, manage a local cart, submit an order without payment, view contact and market information, and switch between French and English.
 
-The implementation should use the project source documents `.agent/CONCEPT.md`, `.agent/specs/user-story.md`, and `.agent/colors.css` as the source of truth. The palette from `.agent/colors.css` must be copied into `index.css` as application tokens, not imported from `.agent/colors.css`.
+The implementation should use the project source documents `.agent/CONCEPT.md`, `.agent/specs/user-story.md`, and `.agent/colors.css` as the source of truth. The palette from `.agent/colors.css` must be copied into `index.css` as Tailwind v4 `@theme` tokens, not imported from `.agent/colors.css`.
 
 Recommended approach:
 
@@ -12,6 +12,112 @@ Recommended approach:
 2. Build shared foundations: routing, layout shell, responsive navigation, i18n, design tokens, reusable item/category/cart components.
 3. Implement user stories page-by-page and feature-by-feature, keeping localStorage cart and language state isolated behind small services/hooks.
 4. Validate responsive behavior, stock/cart constraints, translation fallback, and order submission flow before considering v1 complete.
+
+## Technology decisions
+
+### Hosting and deployment
+
+- Host on **Vercel**. Deployments trigger automatically on push to `main`.
+- Environment variables (`VITE_CMS_URL`, `VITE_EMAILJS_*`, `VITE_GOOGLE_MAPS_API_KEY`) are managed in the Vercel dashboard.
+
+### CMS and content delivery
+
+- The single source of truth for content is the **GitHub repository** (`branyoto/workshop`), not OneDrive.
+- The CMS JSON (`public/cms.json`) and all item/category images (`public/images/`) live in the repo.
+- Content is served via **jsDelivr CDN** (`cdn.jsdelivr.net/gh/branyoto/workshop@main/…`), which is free and built on GitHub.
+- A **GitHub Action** runs on every push to `main`:
+  1. Validates `cms.json` against a JSON Schema.
+  2. Checks that every image referenced by naming convention exists in `public/images/`.
+  3. Calls the jsDelivr purge API (`https://purge.jsdelivr.net/gh/branyoto/workshop@main/public/cms.json`) so changes are live within minutes. The purge API is free with a limit of 50 requests/hour — well within the usage of a solo artisan.
+- The artisan edits content directly via the GitHub UI. A plain-language guide documents the workflow.
+
+### CMS data model
+
+- A single `public/cms.json` file holds all content: categories, items, featured lists, contact, and translations.
+- Images are referenced by **naming convention** (not stored URLs) to keep the JSON simple:
+  - Category thumbnail: `${category.id}_thumbnail.png`
+  - Item thumbnail: `${item.id}_thumbnail.png`
+  - Item carousel images: `${item.id}_01.png`, `${item.id}_02.png`, etc.
+- The base image URL is set in `VITE_CMS_IMAGE_BASE_URL` (pointing to jsDelivr).
+- `CmsContent` does not need `version` or `updatedAt`.
+
+### Admin CMS
+
+- `/login` and `/admin/cms` routes are **out of scope for v1** and are not included in the router.
+- `adminEmails` is out of scope for v1. The order and contact emails are sent to `artistEmail` only.
+
+### Styling
+
+- Use **Tailwind CSS v4**.
+- The palette tokens are declared in `index.css` via `@theme` (not CSS custom properties directly):
+  - `--color-primary: #F7C7DB`
+  - `--color-secondary: #C5EBC3`
+  - `--color-accent: #5CBBEC`
+  - `--color-neutral: #D7C0D0`
+- This makes `bg-primary`, `text-accent`, `border-neutral`, etc. available as native Tailwind utilities.
+- Shared UI primitives (`<Button>`, `<Badge>`, `<Card>`, etc.) encapsulate Tailwind class lists to keep page JSX readable.
+- Use `clsx` for conditional class composition.
+
+### Carousels
+
+- Use **Swiper.js** for all carousels: featured category carousel on the homepage and the image gallery on the item detail page.
+
+### Forms
+
+- Use **TanStack Form + Zod** for the checkout and contact forms.
+- Zod schemas define validation and TypeScript types for form data and order payloads.
+
+### Cart state
+
+- Use **React Context + useReducer** for cart state.
+- A `useCart()` hook exposes actions (add, remove, clear) and derives count and total.
+- Persistence to localStorage is handled inside the reducer/hook — state and storage are always in sync.
+- Cart is hydrated from localStorage on mount.
+
+### Data fetching
+
+- Use **TanStack Query** to fetch and cache `cms.json`.
+- If the fetch fails, show a localized full-page error state with a retry button.
+- The CMS JSON is fetched once and cached for the session; no background refetching needed.
+
+### Order submission
+
+- Use **EmailJS** (client-side, free plan: 200 emails/month) as the v1 submission adapter.
+- EmailJS credentials (`VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`) are stored in environment variables.
+- The adapter is isolated behind an `OrderAdapter` interface so it can be swapped for a Vercel Function + Resend in v2 without touching the checkout form.
+- Orders are sent to `artistEmail` from the CMS. Multiple recipients (`adminEmails`) are out of scope for v1.
+
+### Google Maps
+
+- Google Maps Places Autocomplete is used for address input on the checkout form.
+- The API key (`VITE_GOOGLE_MAPS_API_KEY`) must be restricted to the production domain in the Google Cloud Console.
+- The address component gracefully falls back to a plain `<textarea>` when the API key is absent or the Maps SDK fails to load.
+- Maps autocomplete is a convenience feature — it never blocks order submission.
+- Autocomplete is restricted to France (`componentRestrictions: { country: 'fr' }`).
+- The guide documents the procedure for creating, restricting, and rotating the API key.
+
+### Routing and URL structure
+
+- Use **React Router**.
+- Category is encoded in the path segment; user-applied filters (price, color, availability, tags) are encoded in URL query params.
+- Category tag filters are derived silently from the matched route — they are not repeated in the query params.
+- Filter state resets (cursor back to page 0) on every route or filter change.
+
+### Catalog pagination
+
+- The full `cms.json` is loaded once. Pagination is client-side.
+- Initial page size: **12 items** (3 columns × 4 rows on desktop, 2 × 6 on mobile).
+- More items are revealed as the IntersectionObserver sentinel enters the viewport.
+- Pagination cursor resets to 0 on every filter or category route change.
+
+### Testing
+
+- Use **Playwright** for end-to-end tests.
+- Priority test journeys:
+  1. Home → Catalogue → Item detail → Add to cart → Checkout → Confirmation.
+  2. Language switch (FR ↔ EN) without losing cart contents or current route.
+  3. Catalogue filters + infinite scroll.
+  4. Contact form submission.
 
 ## Shared foundations
 
@@ -26,8 +132,7 @@ Recommended approach:
     - `/item/:id`.
     - `/checkout`.
     - `/contact`.
-    - `/login`.
-    - `/admin/cms`.
+- `/login` and `/admin/cms` are out of scope for v1 and must not be added to the router.
 - Use React Router for routing.
 - Keep route-level page components in `src/pages/<domain>/`.
 - Keep reusable non-page components in `src/<domain>/`, `src/common/`, or `src/layout/`.
@@ -41,18 +146,16 @@ Recommended approach:
 
 ### Content and catalog model
 
-- Create a JSON CMS source loaded from a OneDrive repository.
-- Store item images in the same OneDrive repository as the CMS JSON.
-- Keep OneDrive image storage flat, without nested folders.
-- Resolve image file names from the owning category or item ID.
+- The CMS JSON source is `public/cms.json`, served via jsDelivr CDN. See the **Technology decisions** section for the full CMS and CDN setup.
+- Keep image storage flat in `public/images/`, without nested folders.
+- Resolve image file names from the owning category or item ID by naming convention.
 - Category thumbnail file format: `${category.id}_thumbnail.png`.
 - Item thumbnail file format: `${item.id}_thumbnail.png`.
-- Item carousel image file format: `${item.id}_xxx.png`.
-- The CMS JSON is publicly readable from OneDrive, but writes are reserved for authenticated admins.
-- Admin CMS editing is available only through protected `/admin/cms` after login.
+- Item carousel image file format: `${item.id}_01.png`, `${item.id}_02.png`, etc.
 - `CmsContent` does not need `version` or `updatedAt`.
 - Categories are a pure front-end catalog view over tags.
 - A category page is equivalent to the global catalog/search page with the corresponding category tag filter already applied.
+- Category tag filters are derived silently from the matched route — not repeated in URL query params.
 - Parent categories should apply the tag filters configured for that category and any desired child category tags.
 - Model items with:
     - `id`.
@@ -68,7 +171,7 @@ Recommended approach:
 - Model contact content:
     - localized artist bio.
     - social links.
-    - artist email.
+    - artist email (`artistEmail`).
     - optional studio/market map address.
 
 ### Internationalisation
@@ -84,47 +187,38 @@ Recommended approach:
 
 ### Design system
 
-- Copy the palette from `.agent/colors.css` into `index.css`; do not import `.agent/colors.css` at runtime:
-    - `--primary: #F7C7DB`.
-    - `--secondary: #C5EBC3`.
-    - `--accent: #5CBBEC`.
-    - `--neutral: #D7C0D0`.
+- Copy the palette from `.agent/colors.css` into `index.css` as Tailwind v4 `@theme` tokens; do not import `.agent/colors.css` at runtime:
+    - `--color-primary: #F7C7DB`.
+    - `--color-secondary: #C5EBC3`.
+    - `--color-accent: #5CBBEC`.
+    - `--color-neutral: #D7C0D0`.
+- These tokens become native Tailwind utilities: `bg-primary`, `text-accent`, `border-neutral`, etc.
 - Define semantic tokens from those colors:
     - primary background/accent surfaces.
     - secondary soft surfaces.
     - accent links/buttons/focus.
     - neutral borders/backgrounds.
     - readable foreground colors with sufficient contrast.
-- Establish shared styles for:
-    - buttons.
-    - badges.
-    - cards.
-    - drawers.
-    - form fields.
-    - carousel/swiper controls.
-    - focus states.
-- Define each reusable style once and favor shared tokens/utilities over page-specific styling.
+- Establish shared primitive components (`<Button>`, `<Badge>`, `<Card>`, `<Drawer>`) that encapsulate Tailwind class lists.
+- Use `clsx` for conditional class composition.
 - Avoid over-specialized styles; when designs conflict, compromise toward the available tokens and shared component styles.
 - Use a clean, personal, handmade aesthetic with subtle transitions only where they clarify interaction.
 
 ### Cart service
 
+- Manage cart state with **React Context + useReducer**.
+- Expose cart via a `useCart()` hook that provides actions (add, remove, clear) and derived values (count, total).
 - Store cart in localStorage under a namespaced key such as `artisan_cart`.
-- The cart should never be out of sync with localStorage. All updates must go through a service or hook that updates both state and localStorage together.
+- The cart should never be out of sync with localStorage. All updates must go through the reducer, which synchronises localStorage atomically.
+- Hydrate from localStorage on mount.
 - Cart item shape:
     - item ID.
-    - localized or language-independent title snapshot.
-    - title snapshot.
+    - language-independent title snapshot.
     - price snapshot.
     - thumbnail URL.
 - No quantities in v1. Each item is unique and stock is 1.
 - Prevent adding the same item twice.
 - Derive cart count and total from stored items.
-- Provide actions:
-    - add item.
-    - remove item.
-    - clear cart.
-    - hydrate from localStorage.
 
 ### Order service
 
@@ -133,9 +227,9 @@ Recommended approach:
   - `YYYYMMDD` is the current date.
   - `XXXX` is a random 4-digit number.
 - Submission strategy:
-    - start with a `mailto:` implementation or clearly isolated adapter.
-    - keep the adapter swappable for a future lightweight serverless email endpoint.
-    - the mail can be sent to multiple recipients: the artist's email and the other admins.
+    - use **EmailJS** (client-side, free plan: 200 emails/month) as the v1 adapter.
+    - isolate behind an `OrderAdapter` interface so it can be swapped without touching the checkout form.
+    - send to `artistEmail` from the CMS only. Multiple recipients (`adminEmails`) are out of scope for v1.
 - Email/order payload must include:
     - order number.
     - item list with prices.
@@ -146,7 +240,7 @@ Recommended approach:
 - Clear cart only after successful order submission handoff.
 - Snackbar if the order submission fails, with retry option.
 - Show confirmation with the generated order number.
-- Store the submitted order number with previous ones in localStorage to allow users to see the list of their past orders on a futur page.
+- Store the submitted order number with previous ones in localStorage to allow users to see the list of their past orders on a future page.
 
 ## User Story implementation details
 
@@ -167,6 +261,7 @@ Implementation details:
     - CTA links to `/catalog` or the featured catalog area.
 - Featured category carousel:
     - driven by admin-editable tag grouping.
+    - implemented with **Swiper.js**.
     - each slide/card shows localized category name, image if available, and link to category route.
     - works with mouse, touch, keyboard, and reduced motion preferences.
     - bellow the category routes, show the item grid filtered to the featured categories.
@@ -210,7 +305,7 @@ Implementation details:
     - color filter.
     - availability checkbox.
     - tags multi-select.
-    - filter state reflected in URL query params where practical, so filtered views are shareable and back-button friendly.
+    - filter state reflected in URL query params (category in path, user filters in params), so filtered views are shareable and back-button friendly.
     - filters are clearable one by one or all at once.
 - Item grid:
     - thumbnail.
@@ -221,10 +316,11 @@ Implementation details:
     - hover-only add-to-cart button on desktop for available items.
     - non-hover accessible add-to-cart path for keyboard/touch users.
 - Infinite scroll:
-    - load initial page of items.
-    - append more as the sentinel enters viewport.
+    - load initial page of 12 items.
+    - append more as the IntersectionObserver sentinel enters the viewport.
     - include a non-JavaScript/accessibility-friendly fallback button such as "Load more" if needed.
     - keep current filters applied while loading more.
+    - reset pagination cursor to 0 on every filter or category route change.
 - Empty state:
     - localized message.
     - clear filters action.
@@ -246,7 +342,7 @@ Implementation details:
 - Resolve item by ID from editable item content.
 - Show a not-found state for missing IDs.
 - Gallery:
-    - desktop carousel with thumbnails or controls.
+    - desktop carousel with thumbnails or controls, implemented with **Swiper.js**.
     - mobile swiper-style interaction.
     - all images include descriptive alt text, falling back to item title.
 - Main item information:
@@ -322,16 +418,19 @@ Implementation details:
     - name.
     - email.
     - phone number.
-    - address with Google Maps integration and request api/config from admin with detailed journey.
+    - address with Google Maps Places Autocomplete (restricted to France). Falls back to a plain textarea if `VITE_GOOGLE_MAPS_API_KEY` is absent or the SDK fails to load. The address field is always manually editable — Maps is a convenience only.
     - special instructions textarea.
+- Use **TanStack Form + Zod** for form state, validation, and type inference.
 - Align validation with concept requirements:
     - require name and postal address.
     - require at least one contact method: email, phone.
     - validate email format and number when provided.
 - Google Maps integration:
-    - isolate behind a component/adaptor.
-    - gracefully show a normal address textarea/input if Maps API configuration is absent.
+    - isolate behind a `<AddressInput>` component that wraps the Maps autocomplete.
+    - gracefully show a normal address textarea if `VITE_GOOGLE_MAPS_API_KEY` is absent or the SDK fails.
+    - restrict autocomplete to France (`componentRestrictions: { country: 'fr' }`).
     - do not block order submission solely because Maps autocomplete is unavailable.
+    - document the procedure for creating, restricting, and rotating the API key in the deployment guide.
 - Order summary:
     - thumbnail.
     - localized title snapshot.
@@ -381,8 +480,9 @@ Implementation details:
     - name.
     - email.
     - message.
+    - use **TanStack Form + Zod** for validation.
     - validation for required fields and email format.
-    - sends email to artist through the same mail adapter pattern as orders, or a separate contact adapter.
+    - sends email to artist via the same **EmailJS** adapter as orders.
     - shows localized success/error status.
 
 Acceptance criteria:
@@ -491,37 +591,42 @@ Implementation details:
     - semantic headings.
     - form labels and error messages.
 - Styling discipline:
-    - define shared component styles once.
-    - reuse semantic tokens and common primitives instead of creating one-off page styles.
+    - define shared primitive components (`<Button>`, `<Badge>`, `<Card>`) that encapsulate Tailwind class lists.
+    - reuse `@theme` tokens (`bg-primary`, `text-accent`, etc.) instead of creating one-off styles.
     - compromise between exact visual intent and available tokens when a design would require overly specific styling.
 
 Acceptance criteria:
 
-- Shared components use common tokens rather than one-off styling.
-- `index.css` owns the copied palette and global tokens.
+- Shared components use `@theme` tokens rather than one-off styling.
+- `index.css` owns the Tailwind v4 `@theme` palette tokens.
 - Visual treatment is consistent across home, catalog, item detail, cart, checkout, and contact pages.
 - Design supports the handmade/personal brand without reducing usability.
 
 ## Implementation todos
 
-1. Set up application foundations: routes, shared shell, copied `index.css` design tokens, responsive base styles, and reusable UI primitives.
-2. Create OneDrive JSON CMS/data layer for categories as tag views, items, flat image references, featured item ID lists, artist bio, markets, and translations.
-3. Implement i18n provider, translation fallback, language switcher, and localStorage persistence.
-4. Implement catalog/search category tag filtering, breadcrumbs, filters, item grid, and infinite scroll.
-5. Implement item detail page with responsive gallery, predefined front-end-translated characteristics, tag/category chips, and add-to-cart behavior.
-6. Implement cart service, header badge, cart drawer, remove/clear actions, localStorage persistence, and checkout navigation.
-7. Implement checkout page, order number generation, validation, order summary, submission adapter, confirmation, and cart clearing.
-8. Implement contact page with bio, market dates, social/email links, map/address section, and contact form.
-9. Implement homepage hero, featured category carousel, featured item grid, artist teaser, and footer links.
-10. Complete responsive behavior across mobile and desktop for navigation, grids, detail pages, filters, cart drawer, and forms.
-11. Polish visual design using the copied `index.css` palette, shared tokens, typography, imagery treatment, subtle interactions, and accessibility states while avoiding one-off styles.
-12. Validate the end-to-end journey: home → catalog → item detail → cart → checkout → confirmation, plus contact and language switching.
+1. Set up application foundations: routes (no `/login` or `/admin/cms`), shared shell, Tailwind v4 with `@theme` palette tokens in `index.css`, responsive base styles, and reusable UI primitives.
+2. Set up GitHub Actions workflow: JSON Schema validation of `cms.json`, image naming convention check, and jsDelivr cache purge on push to `main`.
+3. Create `public/cms.json` CMS data layer: categories as tag views, items, flat image naming convention, featured item ID lists, artist bio, markets, and translations. Configure `VITE_CMS_IMAGE_BASE_URL` pointing to jsDelivr.
+4. Implement TanStack Query CMS fetch with global error/retry state.
+5. Implement i18n provider, translation fallback, language switcher, and localStorage persistence.
+6. Implement catalog/search: category tag filtering from route (silent), URL query param filters (price, color, availability, tags), breadcrumbs, item grid, and infinite scroll (12 items/page, reset on filter change).
+7. Implement item detail page with Swiper.js gallery, predefined front-end-translated characteristics, tag/category chips, and add-to-cart behavior.
+8. Implement cart: Context + useReducer, `useCart()` hook, localStorage persistence, header badge, cart drawer, remove/clear actions, and checkout navigation.
+9. Implement checkout page: TanStack Form + Zod validation, Google Maps `<AddressInput>` with plain textarea fallback, order number generation, EmailJS adapter, order summary, confirmation, and cart clearing.
+10. Implement contact page: bio, market dates, social/email links, map/address section, and TanStack Form + Zod contact form via EmailJS.
+11. Implement homepage: hero, Swiper.js featured category carousel, featured item grid, artist teaser, and footer links.
+12. Complete responsive behavior across mobile and desktop for navigation, grids, detail pages, filters, cart drawer, and forms.
+13. Polish visual design: Tailwind tokens, shared primitives, typography, imagery treatment, subtle interactions, and accessibility states.
+14. Write Playwright E2E tests: full order journey, language switch, catalogue filters + infinite scroll, contact form.
+15. Validate the end-to-end journey: home → catalog → item detail → cart → checkout → confirmation, plus contact and language switching.
 
 ## Dependencies and sequencing
 
-- Foundations must come first because every page depends on routing, layout, styles, and shared components.
-- OneDrive JSON CMS/data modeling should be completed before catalog, homepage, item detail, and contact pages.
-- i18n should be established early so components are built with translation keys from the start.
+- Foundations (step 1) must come first because every page depends on routing, layout, Tailwind tokens, and shared components.
+- GitHub Action (step 2) should be set up early to protect the CMS from invalid pushes.
+- CMS data modelling (step 3) and TanStack Query fetch (step 4) must be completed before catalog, homepage, item detail, and contact pages.
+- i18n (step 5) should be established early so components are built with translation keys from the start.
 - Catalog and item detail should precede cart integration because add-to-cart actions originate there.
 - Cart must precede checkout because checkout summarizes and submits cart contents.
 - Responsive and visual polish should happen throughout, with a final pass after all user-facing surfaces exist.
+- Playwright tests are written progressively as each journey is completed.
