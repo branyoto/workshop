@@ -14,14 +14,8 @@ export function AppRoutes() {
         <Route index element={<HomePage />} />
         <Route path="catalog" element={<CatalogPage />} />
         <Route path="catalog/:categoryId" element={<CatalogPage />} />
-        <Route
-          path="catalog/:categoryId/:subcategoryId"
-          element={<CatalogPage />}
-        />
-        <Route
-          path="catalog/:categoryId/:subcategoryId/:subId"
-          element={<CatalogPage />}
-        />
+        <Route path="catalog/:categoryId/:subcategoryId" element={<CatalogPage />} />
+        <Route path="catalog/:categoryId/:subcategoryId/:subId" element={<CatalogPage />} />
         <Route path="item/:id" element={<ItemPage />} />
         <Route path="checkout" element={<CheckoutPage />} />
         <Route path="contact" element={<ContactPage />} />

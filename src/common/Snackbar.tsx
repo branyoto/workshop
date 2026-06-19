@@ -10,13 +10,7 @@ export interface SnackbarProps {
   className?: string;
 }
 
-export function Snackbar({
-  open,
-  message,
-  onClose,
-  action,
-  className,
-}: SnackbarProps) {
+export function Snackbar({ open, message, onClose, action, className }: SnackbarProps) {
   if (!open) {
     return null;
   }
@@ -32,12 +26,7 @@ export function Snackbar({
     >
       <span className="flex-1">{message}</span>
       {action}
-      <Button
-        variant="ghost"
-        className="px-2 py-1 text-white hover:bg-white/10"
-        onClick={onClose}
-        aria-label="Close notification"
-      >
+      <Button variant="ghost" className="px-2 py-1 text-white hover:bg-white/10" onClick={onClose} aria-label="Close notification">
         ✕
       </Button>
     </div>

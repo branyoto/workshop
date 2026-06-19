@@ -11,18 +11,12 @@ export function AppShell() {
 
   return (
     <div className="flex min-h-svh flex-col bg-white">
-      <SiteHeader
-        onOpenCategoryDrawer={() => setCategoryDrawerOpen(true)}
-        onOpenCartDrawer={() => setCartDrawerOpen(true)}
-      />
+      <SiteHeader onOpenCategoryDrawer={() => setCategoryDrawerOpen(true)} onOpenCartDrawer={() => setCartDrawerOpen(true)} />
       <main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
         <Outlet />
       </main>
       <SiteFooter />
-      <CategoryDrawer
-        open={categoryDrawerOpen}
-        onClose={() => setCategoryDrawerOpen(false)}
-      />
+      <CategoryDrawer open={categoryDrawerOpen} onClose={() => setCategoryDrawerOpen(false)} />
       <CartDrawer open={cartDrawerOpen} onClose={() => setCartDrawerOpen(false)} />
     </div>
   );

@@ -39,29 +39,17 @@ function MenuIcon() {
       className="size-5"
       aria-hidden="true"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
     </svg>
   );
 }
 
-export function SiteHeader({
-  onOpenCategoryDrawer,
-  onOpenCartDrawer,
-}: SiteHeaderProps) {
+export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: SiteHeaderProps) {
   return (
     <header className="border-b border-neutral/50 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            className="px-2 py-2 md:hidden"
-            onClick={onOpenCategoryDrawer}
-            aria-label="Open category menu"
-          >
+          <Button variant="ghost" className="px-2 py-2 md:hidden" onClick={onOpenCategoryDrawer} aria-label="Open category menu">
             <MenuIcon />
           </Button>
           <Link
@@ -72,10 +60,7 @@ export function SiteHeader({
           </Link>
         </div>
 
-        <nav
-          className="hidden items-center gap-6 md:flex"
-          aria-label="Main navigation"
-        >
+        <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
           <Link
             to={catalogUrl()}
             className="text-sm font-medium text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
@@ -98,20 +83,10 @@ export function SiteHeader({
 
         <div className="flex items-center gap-2">
           <LanguageSwitcherSlot />
-          <Button
-            variant="ghost"
-            className="hidden px-2 py-2 md:inline-flex"
-            onClick={onOpenCategoryDrawer}
-            aria-label="Open category menu"
-          >
+          <Button variant="ghost" className="hidden px-2 py-2 md:inline-flex" onClick={onOpenCategoryDrawer} aria-label="Open category menu">
             <MenuIcon />
           </Button>
-          <Button
-            variant="ghost"
-            className="px-2 py-2"
-            onClick={onOpenCartDrawer}
-            aria-label="Open cart"
-          >
+          <Button variant="ghost" className="px-2 py-2" onClick={onOpenCartDrawer} aria-label="Open cart">
             <CartIcon />
           </Button>
         </div>

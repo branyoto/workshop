@@ -1,0 +1,8 @@
+{
+  "arrowParens": "avoid",
+  "experimentalTernaries": true,
+  "objectWrap": "collapse",
+  "printWidth": 150,
+  "singleQuote": true,
+  "tabWidth": 2
+}

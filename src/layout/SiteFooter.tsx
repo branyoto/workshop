@@ -17,9 +17,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3">
         <div>
           <p className="text-base font-semibold text-gray-900">Atelier Boutique</p>
-          <p className="mt-2 text-sm text-gray-600">
-            Handmade creations crafted with care.
-          </p>
+          <p className="mt-2 text-sm text-gray-600">Handmade creations crafted with care.</p>
         </div>
 
         <div>
@@ -39,7 +37,7 @@ export function SiteFooter() {
         <div>
           <p className="text-sm font-semibold text-gray-900">Social</p>
           <ul className="mt-2 space-y-1">
-            {socialLinks.map((link) => (
+            {socialLinks.map(link => (
               <li key={link.label}>
                 <a
                   href={link.href}
@@ -59,7 +57,7 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 text-sm text-gray-600 md:flex-row">
           <p>© {new Date().getFullYear()} Atelier Boutique</p>
           <ul className="flex flex-wrap items-center gap-4">
-            {legalLinks.map((link) => (
+            {legalLinks.map(link => (
               <li key={link.label}>
                 <a
                   href={link.href}

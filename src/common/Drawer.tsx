@@ -13,24 +13,14 @@ export interface DrawerProps {
   footer?: ReactNode;
 }
 
-const sideClasses: Record<DrawerSide, string> = {
-  left: 'left-0',
-  right: 'right-0',
-};
+const sideClasses: Record<DrawerSide, string> = { left: 'left-0', right: 'right-0' };
 
 const panelAnimation: Record<DrawerSide, string> = {
   left: 'data-[open=true]:translate-x-0 -translate-x-full',
   right: 'data-[open=true]:translate-x-0 translate-x-full',
 };
 
-export function Drawer({
-  open,
-  onClose,
-  side,
-  title,
-  children,
-  footer,
-}: DrawerProps) {
+export function Drawer({ open, onClose, side, title, children, footer }: DrawerProps) {
   const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -65,12 +55,7 @@ export function Drawer({
 
   return (
     <div className="fixed inset-0 z-40 flex">
-      <button
-        type="button"
-        className="absolute inset-0 bg-black/40"
-        aria-label="Close drawer"
-        onClick={onClose}
-      />
+      <button type="button" className="absolute inset-0 bg-black/40" aria-label="Close drawer" onClick={onClose} />
       <aside
         ref={panelRef}
         role="dialog"
@@ -84,27 +69,19 @@ export function Drawer({
         )}
       >
         <header className="flex items-center justify-between border-b border-neutral/50 px-4 py-3">
-          {title ? (
+          {title ?
             <h2 id={titleId} className="text-base font-semibold text-gray-900">
               {title}
             </h2>
-          ) : (
-            <span />
-          )}
-          <Button
-            ref={closeButtonRef}
-            variant="ghost"
-            className="px-2 py-1"
-            onClick={onClose}
-            aria-label="Close drawer"
-          >
+          : <span />}
+          <Button ref={closeButtonRef} variant="ghost" className="px-2 py-1" onClick={onClose} aria-label="Close drawer">
             ✕
           </Button>
         </header>
         <div className="flex-1 overflow-y-auto px-4 py-4">{children}</div>
-        {footer ? (
+        {footer ?
           <footer className="border-t border-neutral/50 px-4 py-3">{footer}</footer>
-        ) : null}
+        : null}
       </aside>
     </div>
   );
