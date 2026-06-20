@@ -20,10 +20,15 @@ function Field({ label, error, id, required, children }: Readonly<FieldProps>) {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={id} className="text-sm font-medium text-gray-900">
-        {label}{required && <span className="ml-0.5 text-red-500">*</span>}
+        {label}
+        {required && <span className="ml-0.5 text-red-500">*</span>}
       </label>
       {children}
-      {error && <p id={`${id}-error`} className="text-xs text-red-600" role="alert">{error}</p>}
+      {error && (
+        <p id={`${id}-error`} className="text-xs text-red-600" role="alert">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -51,12 +56,17 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
   if (items.length === 0) {
     return (
       <section aria-labelledby="checkout-heading">
-        <h1 id="checkout-heading" className="sr-only">{t('pages.checkout.heading')}</h1>
+        <h1 id="checkout-heading" className="sr-only">
+          {t('pages.checkout.heading')}
+        </h1>
         <EmptyState
           title={t('pages.checkout.emptyCart.title')}
           description={t('pages.checkout.emptyCart.description')}
           action={
-            <Link to={catalogUrl()} className="inline-flex items-center justify-center rounded-lg bg-secondary px-4 py-2 text-sm font-medium text-gray-900 hover:bg-secondary/80">
+            <Link
+              to={catalogUrl()}
+              className="inline-flex items-center justify-center rounded-lg bg-secondary px-4 py-2 text-sm font-medium text-gray-900 hover:bg-secondary/80"
+            >
               {t('pages.cart.empty.browseCatalog')}
             </Link>
           }
@@ -67,18 +77,28 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
 
   return (
     <section aria-labelledby="checkout-heading">
-      <h1 id="checkout-heading" className="text-3xl font-semibold text-gray-900">{t('pages.checkout.heading')}</h1>
+      <h1 id="checkout-heading" className="text-3xl font-semibold text-gray-900">
+        {t('pages.checkout.heading')}
+      </h1>
       <div className="mt-6 flex flex-col gap-8 lg:flex-row">
         {/* Form */}
         <form
           className="flex flex-1 flex-col gap-4"
           data-testid="checkout-form"
-          onSubmit={e => { e.preventDefault(); form.handleSubmit(); }}
+          onSubmit={e => {
+            e.preventDefault();
+            form.handleSubmit();
+          }}
           noValidate
         >
           <form.Field name="name">
             {field => (
-              <Field label={t('pages.checkout.fields.name')} id="name" required error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}>
+              <Field
+                label={t('pages.checkout.fields.name')}
+                id="name"
+                required
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+              >
                 <input
                   id="name"
                   type="text"
@@ -97,7 +117,11 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
 
           <form.Field name="email">
             {field => (
-              <Field label={t('pages.checkout.fields.email')} id="email" error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}>
+              <Field
+                label={t('pages.checkout.fields.email')}
+                id="email"
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+              >
                 <input
                   id="email"
                   type="email"
@@ -115,7 +139,11 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
 
           <form.Field name="phone">
             {field => (
-              <Field label={t('pages.checkout.fields.phone')} id="phone" error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}>
+              <Field
+                label={t('pages.checkout.fields.phone')}
+                id="phone"
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+              >
                 <input
                   id="phone"
                   type="tel"
@@ -133,7 +161,12 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
 
           <form.Field name="address">
             {field => (
-              <Field label={t('pages.checkout.fields.address')} id="address" required error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}>
+              <Field
+                label={t('pages.checkout.fields.address')}
+                id="address"
+                required
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+              >
                 <AddressInput
                   id="address"
                   value={field.state.value}

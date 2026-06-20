@@ -23,7 +23,15 @@ declare global {
   };
 }
 
-export function AddressInput({ value, onChange, onBlur, id, placeholder, required, 'aria-describedby': ariaDescribedBy }: Readonly<AddressInputProps>) {
+export function AddressInput({
+  value,
+  onChange,
+  onBlur,
+  id,
+  placeholder,
+  required,
+  'aria-describedby': ariaDescribedBy,
+}: Readonly<AddressInputProps>) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [mapsAvailable, setMapsAvailable] = useState(false);
 
@@ -75,4 +83,3 @@ export function AddressInput({ value, onChange, onBlur, id, placeholder, require
     />
   );
 }
-

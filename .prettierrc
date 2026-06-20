@@ -1,8 +1,22 @@
 {
-  "arrowParens": "avoid",
-  "experimentalTernaries": true,
-  "objectWrap": "collapse",
   "printWidth": 150,
   "singleQuote": true,
-  "tabWidth": 2
+  "tabWidth": 2,
+  "overrides": [
+    {
+      "files": ["src/assets/locales/**"],
+      "options": {
+        "plugins": ["prettier-plugin-sort-json"],
+        "jsonSortOrder": "{\"/.*/\": \"caseInsensitiveNumeric\"}"
+      }
+    },
+    {
+      "files": ["src/**", "scripts/**"],
+      "options": {
+        "arrowParens": "avoid",
+        "experimentalTernaries": true,
+        "objectWrap": "collapse"
+      }
+    }
+  ]
 }

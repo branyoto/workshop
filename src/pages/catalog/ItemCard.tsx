@@ -18,10 +18,7 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
   const { addItem, items: cartItems } = useCart();
   const title = l(item.title);
   const thumbnailUrl = getThumbnailUrl(item.id);
-  const priceLabel = new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', {
-    style: 'currency',
-    currency: 'EUR',
-  }).format(item.price);
+  const priceLabel = new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(item.price);
 
   const inCart = cartItems.some(ci => ci.id === item.id);
 
@@ -30,7 +27,10 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
   };
 
   return (
-    <article data-testid="item-card" className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md">
+    <article
+      data-testid="item-card"
+      className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md"
+    >
       <Link
         to={itemUrl(item.id)}
         className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
@@ -86,4 +86,3 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
     </article>
   );
 }
-

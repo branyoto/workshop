@@ -10,12 +10,17 @@ export function OrderConfirmation({ orderNumber }: Readonly<OrderConfirmationPro
   const { t } = useTranslation();
   return (
     <section aria-labelledby="confirmation-heading" data-testid="order-confirmation" className="mx-auto max-w-lg py-12 text-center">
-      <div className="mb-4 text-5xl" aria-hidden="true">🎉</div>
+      <div className="mb-4 text-5xl" aria-hidden="true">
+        🎉
+      </div>
       <h1 id="confirmation-heading" className="text-2xl font-semibold text-gray-900">
         {t('pages.checkout.confirmation.title')}
       </h1>
       <p className="mt-2 text-gray-600">{t('pages.checkout.confirmation.description')}</p>
-      <p data-testid="order-number" className="mt-4 rounded-xl border border-neutral/40 bg-primary/10 px-6 py-3 font-mono text-lg font-semibold text-gray-900">
+      <p
+        data-testid="order-number"
+        className="mt-4 rounded-xl border border-neutral/40 bg-primary/10 px-6 py-3 font-mono text-lg font-semibold text-gray-900"
+      >
         {orderNumber}
       </p>
       <p className="mt-2 text-sm text-gray-500">{t('pages.checkout.confirmation.followUp')}</p>
@@ -28,4 +33,3 @@ export function OrderConfirmation({ orderNumber }: Readonly<OrderConfirmationPro
     </section>
   );
 }
-

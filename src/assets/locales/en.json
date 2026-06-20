@@ -1,19 +1,6 @@
 {
-  "common": {
-    "close": "Close",
-    "retry": "Retry",
-    "loading": "Loading…"
-  },
-  "header": {
-    "brand": "Atelier Boutique",
-    "nav": {
-      "catalog": "Catalog",
-      "checkout": "Checkout",
-      "contact": "Contact"
-    },
-    "openCategoryMenu": "Open category menu",
-    "openCart": "Open cart"
-  },
+  "breadcrumb": { "label": "Breadcrumb", "home": "Home" },
+  "common": { "close": "Close", "retry": "Retry", "loading": "Loading…" },
   "footer": {
     "brand": "Atelier Boutique",
     "tagline": "Handmade creations crafted with care.",
@@ -23,9 +10,11 @@
     "cgv": "Terms of Sale (CGV)",
     "cgu": "Terms of Use (CGU)"
   },
-  "breadcrumb": {
-    "label": "Breadcrumb",
-    "home": "Home"
+  "header": {
+    "brand": "Atelier Boutique",
+    "nav": { "catalog": "Catalog", "checkout": "Checkout", "contact": "Contact" },
+    "openCategoryMenu": "Open category menu",
+    "openCart": "Open cart"
   },
   "pages": {
     "home": {
@@ -49,10 +38,7 @@
       "loadMore": "Load more",
       "emptyTitle": "No items found",
       "emptyDescription": "No items match this category at the moment.",
-      "notFound": {
-        "title": "Category not found",
-        "description": "The requested category does not exist or is no longer available."
-      },
+      "notFound": { "title": "Category not found", "description": "The requested category does not exist or is no longer available." },
       "breadcrumb": "Breadcrumb",
       "filters": {
         "title": "Filters",
@@ -71,10 +57,7 @@
       "heading": "Checkout",
       "description": "Review your order and submit it.",
       "submit": "Place order",
-      "emptyCart": {
-        "title": "Your cart is empty",
-        "description": "Add items before placing an order."
-      },
+      "emptyCart": { "title": "Your cart is empty", "description": "Add items before placing an order." },
       "fields": {
         "name": "Full name",
         "email": "Email",
@@ -89,20 +72,14 @@
         "invalidPhone": "Invalid phone number.",
         "emailOrPhone": "Please provide at least an email or a phone number."
       },
-      "summary": {
-        "title": "Order summary",
-        "total": "Total",
-        "deliveryNote": "Delivery fees will be agreed upon after receiving your order."
-      },
+      "summary": { "title": "Order summary", "total": "Total", "deliveryNote": "Delivery fees will be agreed upon after receiving your order." },
       "confirmation": {
         "title": "Order sent!",
         "description": "Your order has been received.",
         "followUp": "You will be contacted shortly to confirm the details and delivery fees.",
         "continueShopping": "Continue shopping"
       },
-      "error": {
-        "message": "An error occurred. Your order was not sent."
-      }
+      "error": { "message": "An error occurred. Your order was not sent." }
     },
     "contact": {
       "heading": "Contact",
@@ -120,11 +97,7 @@
       "submit": "Send",
       "successTitle": "Message sent!",
       "successMessage": "Thank you for your message. We will get back to you shortly.",
-      "fields": {
-        "name": "Name",
-        "email": "Email",
-        "message": "Message"
-      }
+      "fields": { "name": "Name", "email": "Email", "message": "Message" }
     },
     "cms": {
       "loading": "Loading content…",
@@ -140,32 +113,17 @@
       "checkout": "Proceed to checkout",
       "clear": "Clear cart",
       "remove": "Remove {{title}} from cart",
-      "empty": {
-        "title": "Your cart is empty",
-        "description": "Items you add will appear here.",
-        "browseCatalog": "Browse catalog"
-      }
+      "empty": { "title": "Your cart is empty", "description": "Items you add will appear here.", "browseCatalog": "Browse catalog" }
     },
     "categories": {
       "title": "Categories",
-      "empty": {
-        "title": "Categories coming soon",
-        "description": "The category tree will appear here once the CMS data layer is connected."
-      }
+      "empty": { "title": "Categories coming soon", "description": "The category tree will appear here once the CMS data layer is connected." }
     },
     "item": {
-      "notFound": {
-        "title": "Item not found",
-        "description": "The requested item does not exist or is no longer available."
-      },
+      "notFound": { "title": "Item not found", "description": "The requested item does not exist or is no longer available." },
       "characteristics": "Characteristics",
       "soldOut": "This item is no longer available.",
-      "char": {
-        "dimension": "Dimensions",
-        "color": "Color",
-        "weight": "Weight",
-        "material": "Material"
-      }
+      "char": { "dimension": "Dimensions", "color": "Color", "weight": "Weight", "material": "Material" }
     }
   }
 }

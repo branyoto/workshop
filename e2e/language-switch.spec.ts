@@ -4,7 +4,11 @@ import { test, expect } from '@playwright/test';
 async function openCategoryDrawer(page: import('@playwright/test').Page) {
   // Desktop: the menu button is the one with md:inline-flex (right side of header)
   // It's the second button in the header (after mobile hamburger which is hidden on desktop)
-  await page.locator('header').getByRole('button', { name: /category|menu|catégories/i }).first().click();
+  await page
+    .locator('header')
+    .getByRole('button', { name: /category|menu|catégories/i })
+    .first()
+    .click();
   await page.waitForSelector('[data-testid="lang-fr"]');
 }
 
@@ -47,5 +51,3 @@ test('language switch: FR→EN updates strings, cart and route preserved', async
   await openCategoryDrawer(page);
   await expect(page.getByTestId('lang-fr')).toHaveAttribute('aria-pressed', 'true');
 });
-
-

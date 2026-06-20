@@ -23,7 +23,10 @@ test('catalogue filters: availability filter hides sold-out items, clear restore
 
   // Clear all filters
   // The "clear all" button appears when activeCount > 0
-  await page.locator('button', { hasText: /clear|effacer/i }).first().click();
+  await page
+    .locator('button', { hasText: /clear|effacer/i })
+    .first()
+    .click();
 
   // Full unfiltered set restored
   const restoredCount = await page.getByTestId('item-card').count();
@@ -46,4 +49,3 @@ test('catalogue filters: infinite scroll loads more items', async ({ page }) => 
     expect(newCount).toBeGreaterThan(count);
   }
 });
-

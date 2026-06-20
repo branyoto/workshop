@@ -22,13 +22,19 @@ export function SiteFooter() {
           <p className="text-sm font-semibold text-gray-900">{t('footer.contact')}</p>
           <ul className="mt-2 space-y-1">
             <li>
-              <Link to={contactUrl()} className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+              <Link
+                to={contactUrl()}
+                className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              >
                 {t('footer.contactUs')}
               </Link>
             </li>
             {cms?.settings.artistEmail && (
               <li>
-                <a href={`mailto:${cms.settings.artistEmail}`} className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+                <a
+                  href={`mailto:${cms.settings.artistEmail}`}
+                  className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                >
                   {cms.settings.artistEmail}
                 </a>
               </li>
@@ -41,8 +47,13 @@ export function SiteFooter() {
           <ul className="mt-2 space-y-1">
             {socialLinks.map(link => (
               <li key={link.url}>
-                <a href={link.url} target="_blank" rel="noreferrer" aria-label={link.type}
-                  className="text-sm capitalize text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={link.type}
+                  className="text-sm capitalize text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                >
                   {link.type}
                 </a>
               </li>
@@ -53,11 +64,16 @@ export function SiteFooter() {
 
       <div className="border-t border-neutral/50 px-4 py-4">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 text-sm text-gray-600 md:flex-row">
-          <p>© {new Date().getFullYear()} {t('footer.brand')}</p>
+          <p>
+            © {new Date().getFullYear()} {t('footer.brand')}
+          </p>
           <ul className="flex flex-wrap items-center gap-4">
             {legalLinks.map(link => (
               <li key={link.key}>
-                <a href={link.url} className="hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+                <a
+                  href={link.url}
+                  className="hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                >
                   {t(`footer.${link.key}`)}
                 </a>
               </li>

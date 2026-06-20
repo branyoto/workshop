@@ -28,13 +28,7 @@ interface CheckboxRowProps {
 function CheckboxRow({ label, checked, onChange, 'data-testid': testId }: Readonly<CheckboxRowProps>) {
   return (
     <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-700">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        data-testid={testId}
-        className="size-4 rounded border-neutral/60 accent-accent"
-      />
+      <input type="checkbox" checked={checked} onChange={onChange} data-testid={testId} className="size-4 rounded border-neutral/60 accent-accent" />
       {label}
     </label>
   );
@@ -149,12 +143,7 @@ export function FiltersPanel({
         <FilterSection title={t('pages.catalog.filters.colors')}>
           <div className="space-y-1.5">
             {colors.map(color => (
-              <CheckboxRow
-                key={color}
-                label={color}
-                checked={filters.colors.includes(color)}
-                onChange={() => onToggleColor(color)}
-              />
+              <CheckboxRow key={color} label={color} checked={filters.colors.includes(color)} onChange={() => onToggleColor(color)} />
             ))}
           </div>
         </FilterSection>
@@ -174,9 +163,7 @@ export function FiltersPanel({
                   aria-pressed={active}
                   className={clsx(
                     'rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors',
-                    active
-                      ? 'border-accent bg-accent text-white'
-                      : 'border-neutral/60 bg-white text-gray-700 hover:border-accent hover:text-accent',
+                    active ? 'border-accent bg-accent text-white' : 'border-neutral/60 bg-white text-gray-700 hover:border-accent hover:text-accent',
                   )}
                 >
                   {tag}
@@ -189,4 +176,3 @@ export function FiltersPanel({
     </div>
   );
 }
-

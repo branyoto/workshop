@@ -20,9 +20,7 @@ export function LanguageSwitcher({ className }: Readonly<{ className?: string }>
           data-testid={`lang-${lang}`}
           className={clsx(
             'rounded-md px-2 py-1 text-xs font-medium uppercase transition-colors',
-            current === lang
-              ? 'bg-primary/60 text-gray-900'
-              : 'text-gray-600 hover:bg-neutral/20',
+            current === lang ? 'bg-primary/60 text-gray-900' : 'text-gray-600 hover:bg-neutral/20',
           )}
           aria-pressed={current === lang}
         >
@@ -32,5 +30,3 @@ export function LanguageSwitcher({ className }: Readonly<{ className?: string }>
     </div>
   );
 }
-
-

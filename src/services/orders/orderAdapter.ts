@@ -42,4 +42,3 @@ export function getOrderHistory(): string[] {
     return [];
   }
 }
-

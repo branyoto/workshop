@@ -2,9 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('contact form: fill and submit → success message appears', async ({ page }) => {
   // Mock emailjs in case env vars are set
-  await page.route('https://api.emailjs.com/**', route =>
-    route.fulfill({ status: 200, body: 'OK', contentType: 'text/plain' }),
-  );
+  await page.route('https://api.emailjs.com/**', (route) => route.fulfill({ status: 200, body: 'OK', contentType: 'text/plain' }));
 
   await page.goto('/contact');
   await page.waitForSelector('[data-testid="contact-form"]');
@@ -20,4 +18,3 @@ test('contact form: fill and submit → success message appears', async ({ page 
   // Success message appears
   await expect(page.getByTestId('contact-success')).toBeVisible({ timeout: 5000 });
 });
-

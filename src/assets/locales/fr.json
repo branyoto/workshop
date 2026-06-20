@@ -1,19 +1,6 @@
 {
-  "common": {
-    "close": "Fermer",
-    "retry": "Réessayer",
-    "loading": "Chargement…"
-  },
-  "header": {
-    "brand": "Atelier Boutique",
-    "nav": {
-      "catalog": "Catalogue",
-      "checkout": "Commander",
-      "contact": "Contact"
-    },
-    "openCategoryMenu": "Ouvrir le menu des catégories",
-    "openCart": "Ouvrir le panier"
-  },
+  "breadcrumb": { "label": "Fil d'Ariane", "home": "Accueil" },
+  "common": { "close": "Fermer", "retry": "Réessayer", "loading": "Chargement…" },
   "footer": {
     "brand": "Atelier Boutique",
     "tagline": "Créations artisanales faites avec soin.",
@@ -23,9 +10,11 @@
     "cgv": "Conditions de vente (CGV)",
     "cgu": "Conditions d'utilisation (CGU)"
   },
-  "breadcrumb": {
-    "label": "Fil d'Ariane",
-    "home": "Accueil"
+  "header": {
+    "brand": "Atelier Boutique",
+    "nav": { "catalog": "Catalogue", "checkout": "Commander", "contact": "Contact" },
+    "openCategoryMenu": "Ouvrir le menu des catégories",
+    "openCart": "Ouvrir le panier"
   },
   "pages": {
     "home": {
@@ -49,10 +38,7 @@
       "loadMore": "Charger plus",
       "emptyTitle": "Aucun article trouvé",
       "emptyDescription": "Aucun article ne correspond à cette catégorie pour le moment.",
-      "notFound": {
-        "title": "Catégorie introuvable",
-        "description": "La catégorie demandée n'existe pas ou n'est plus disponible."
-      },
+      "notFound": { "title": "Catégorie introuvable", "description": "La catégorie demandée n'existe pas ou n'est plus disponible." },
       "breadcrumb": "Fil d'Ariane",
       "filters": {
         "title": "Filtres",
@@ -71,10 +57,7 @@
       "heading": "Commander",
       "description": "Vérifiez votre commande et soumettez-la.",
       "submit": "Envoyer la commande",
-      "emptyCart": {
-        "title": "Votre panier est vide",
-        "description": "Ajoutez des articles avant de passer commande."
-      },
+      "emptyCart": { "title": "Votre panier est vide", "description": "Ajoutez des articles avant de passer commande." },
       "fields": {
         "name": "Nom complet",
         "email": "Email",
@@ -100,9 +83,7 @@
         "followUp": "Vous serez contacté sous peu pour confirmer les détails et les frais de livraison.",
         "continueShopping": "Continuer les achats"
       },
-      "error": {
-        "message": "Une erreur est survenue. Votre commande n'a pas été envoyée."
-      }
+      "error": { "message": "Une erreur est survenue. Votre commande n'a pas été envoyée." }
     },
     "contact": {
       "heading": "Contact",
@@ -120,11 +101,7 @@
       "submit": "Envoyer",
       "successTitle": "Message envoyé !",
       "successMessage": "Merci pour votre message. Nous vous répondrons sous peu.",
-      "fields": {
-        "name": "Nom",
-        "email": "Email",
-        "message": "Message"
-      }
+      "fields": { "name": "Nom", "email": "Email", "message": "Message" }
     },
     "cms": {
       "loading": "Chargement du contenu…",
@@ -154,18 +131,10 @@
       }
     },
     "item": {
-      "notFound": {
-        "title": "Article introuvable",
-        "description": "L'article demandé n'existe pas ou n'est plus disponible."
-      },
+      "notFound": { "title": "Article introuvable", "description": "L'article demandé n'existe pas ou n'est plus disponible." },
       "characteristics": "Caractéristiques",
       "soldOut": "Cet article n'est plus disponible.",
-      "char": {
-        "dimension": "Dimensions",
-        "color": "Couleur",
-        "weight": "Poids",
-        "material": "Matière"
-      }
+      "char": { "dimension": "Dimensions", "color": "Couleur", "weight": "Poids", "material": "Matière" }
     }
   }
 }

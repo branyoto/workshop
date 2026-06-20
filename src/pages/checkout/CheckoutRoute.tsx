@@ -25,13 +25,7 @@ export function CheckoutRoute() {
     const adapter = createEmailJsAdapter();
 
     try {
-      await adapter.submit({
-        orderNumber,
-        items,
-        total,
-        customer: data,
-        artistEmail: cms.settings.artistEmail,
-      });
+      await adapter.submit({ orderNumber, items, total, customer: data, artistEmail: cms.settings.artistEmail });
       saveOrderToHistory(orderNumber);
       clearCart();
       setConfirmedOrder(orderNumber);

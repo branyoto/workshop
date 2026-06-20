@@ -12,9 +12,7 @@ export function createEmailJsAdapter(): OrderAdapter {
         throw new Error('EmailJS environment variables are not configured');
       }
 
-      const itemLines = payload.items
-        .map(i => `- ${i.titleSnapshot}: ${i.priceSnapshot.toFixed(2)} €`)
-        .join('\n');
+      const itemLines = payload.items.map(i => `- ${i.titleSnapshot}: ${i.priceSnapshot.toFixed(2)} €`).join('\n');
 
       const templateParams = {
         to_email: payload.artistEmail,
@@ -32,4 +30,3 @@ export function createEmailJsAdapter(): OrderAdapter {
     },
   };
 }
-

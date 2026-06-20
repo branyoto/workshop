@@ -2,9 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('full order journey: home → catalogue → item → cart → checkout → confirmation → empty cart', async ({ page }) => {
   // Mock emailjs API (any URL pattern)
-  await page.route('**emailjs.com**', route =>
-    route.fulfill({ status: 200, body: 'OK', contentType: 'text/plain' }),
-  );
+  await page.route('**emailjs.com**', (route) => route.fulfill({ status: 200, body: 'OK', contentType: 'text/plain' }));
 
   // Navigate directly to a known available item
   await page.goto('/item/item-plush-bunny');
@@ -44,5 +42,3 @@ test('full order journey: home → catalogue → item → cart → checkout → 
   await page.getByTestId('header-cart-button').click();
   await expect(page.getByTestId('cart-item')).toHaveCount(0);
 });
-
-

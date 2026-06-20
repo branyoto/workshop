@@ -42,7 +42,9 @@ export function ItemPage() {
   if (!item) {
     return (
       <section aria-labelledby="item-heading">
-        <h1 id="item-heading" className="sr-only">{t('pages.item.notFound.title')}</h1>
+        <h1 id="item-heading" className="sr-only">
+          {t('pages.item.notFound.title')}
+        </h1>
         <EmptyState title={t('pages.item.notFound.title')} description={t('pages.item.notFound.description')} />
       </section>
     );
@@ -55,10 +57,7 @@ export function ItemPage() {
   // Fallback to thumbnail if all gallery images fail
   const displayImages = galleryUrls.length > 0 ? galleryUrls : [thumbnailUrl];
 
-  const priceLabel = new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', {
-    style: 'currency',
-    currency: 'EUR',
-  }).format(item.price);
+  const priceLabel = new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(item.price);
 
   const inCart = cartItems.some(ci => ci.id === item.id);
 
@@ -84,7 +83,9 @@ export function ItemPage() {
 
   return (
     <section aria-labelledby="item-heading">
-      <h1 id="item-heading" className="sr-only">{title}</h1>
+      <h1 id="item-heading" className="sr-only">
+        {title}
+      </h1>
       <div className="flex flex-col gap-8 lg:flex-row">
         {/* Gallery */}
         <div className="min-w-0 lg:w-1/2">
@@ -108,15 +109,8 @@ export function ItemPage() {
             ))}
           </Swiper>
           {displayImages.length > 1 && (
-            <Swiper
-              modules={[Thumbs]}
-              onSwiper={setThumbsSwiper}
-              slidesPerView={4}
-              spaceBetween={8}
-              watchSlidesProgress
-              className="thumbs-swiper"
-            >
-              {displayImages.map((url) => (
+            <Swiper modules={[Thumbs]} onSwiper={setThumbsSwiper} slidesPerView={4} spaceBetween={8} watchSlidesProgress className="thumbs-swiper">
+              {displayImages.map(url => (
                 <SwiperSlide key={url}>
                   <div className="aspect-square cursor-pointer overflow-hidden rounded-md border border-neutral/40 bg-primary/10">
                     <img src={url} alt="" aria-hidden="true" className="h-full w-full object-cover" />
@@ -151,8 +145,12 @@ export function ItemPage() {
                   if (!val) return null;
                   return (
                     <>
-                      <dt key={`dt-${key}`} className="text-gray-500">{t(`pages.item.char.${key}`)}</dt>
-                      <dd key={`dd-${key}`} className="font-medium text-gray-900">{val}</dd>
+                      <dt key={`dt-${key}`} className="text-gray-500">
+                        {t(`pages.item.char.${key}`)}
+                      </dt>
+                      <dd key={`dd-${key}`} className="font-medium text-gray-900">
+                        {val}
+                      </dd>
                     </>
                   );
                 })}
@@ -173,7 +171,10 @@ export function ItemPage() {
                 </Link>
               ))}
               {otherTags.map(tag => (
-                <span key={tag} className="inline-flex items-center rounded-full border border-neutral/40 bg-neutral/20 px-3 py-1 text-xs text-gray-600">
+                <span
+                  key={tag}
+                  className="inline-flex items-center rounded-full border border-neutral/40 bg-neutral/20 px-3 py-1 text-xs text-gray-600"
+                >
                   {tag}
                 </span>
               ))}
@@ -182,7 +183,7 @@ export function ItemPage() {
 
           {/* Add to cart */}
           <div className="mt-auto">
-            {item.available ? (
+            {item.available ?
               <Button
                 variant="primary"
                 className="w-full"
@@ -193,11 +194,7 @@ export function ItemPage() {
               >
                 {inCart ? t('pages.catalog.inCart') : t('pages.catalog.addToCart')}
               </Button>
-            ) : (
-              <div className="rounded-xl border border-neutral/40 p-3 text-center text-sm text-gray-500">
-                {t('pages.item.soldOut')}
-              </div>
-            )}
+            : <div className="rounded-xl border border-neutral/40 p-3 text-center text-sm text-gray-500">{t('pages.item.soldOut')}</div>}
           </div>
         </div>
       </div>

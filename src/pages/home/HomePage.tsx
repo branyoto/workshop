@@ -33,12 +33,7 @@ export function HomePage() {
       {/* Hero */}
       <section aria-labelledby="hero-heading" className="-mx-4 -mt-8 overflow-hidden">
         <div className="relative flex min-h-90 items-center justify-center bg-primary/20">
-          <img
-            src={heroImg}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover opacity-30"
-          />
+          <img src={heroImg} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-30" />
           <div className="relative z-10 flex flex-col items-center gap-4 px-4 py-12 text-center">
             <h1 id="hero-heading" className="text-4xl font-bold text-gray-900">
               {t('pages.home.tagline')}
@@ -110,18 +105,33 @@ export function HomePage() {
               return (
                 <li key={item.id}>
                   <article className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md">
-                    <Link to={itemUrl(item.id)} aria-label={title} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset">
+                    <Link
+                      to={itemUrl(item.id)}
+                      aria-label={title}
+                      className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
+                    >
                       <div className="relative aspect-square overflow-hidden bg-primary/10">
-                        <img src={thumbnailUrl} alt="" aria-hidden="true" className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105" loading="lazy" />
+                        <img
+                          src={thumbnailUrl}
+                          alt=""
+                          aria-hidden="true"
+                          className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
+                          loading="lazy"
+                        />
                         {!item.available && (
                           <div className="absolute inset-0 flex items-center justify-center bg-white/60">
-                            <Badge variant="muted" className="text-xs">{t('pages.catalog.outOfStock')}</Badge>
+                            <Badge variant="muted" className="text-xs">
+                              {t('pages.catalog.outOfStock')}
+                            </Badge>
                           </div>
                         )}
                       </div>
                     </Link>
                     <div className="flex flex-1 flex-col gap-2 p-3">
-                      <Link to={itemUrl(item.id)} className="text-sm font-medium text-gray-900 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1">
+                      <Link
+                        to={itemUrl(item.id)}
+                        className="text-sm font-medium text-gray-900 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1"
+                      >
                         {title}
                       </Link>
                       <div className="mt-auto flex items-center justify-between gap-2">
@@ -149,8 +159,13 @@ export function HomePage() {
       {/* Artist teaser */}
       {cms?.contact.bio && (
         <section aria-labelledby="artist-heading" className="rounded-xl bg-primary/10 px-6 py-8">
-          <h2 id="artist-heading" className="mb-2 text-xl font-semibold text-gray-900">{t('pages.home.artistTeaser')}</h2>
-          <p className="max-w-prose text-gray-700">{l(cms.contact.bio).slice(0, 240)}{l(cms.contact.bio).length > 240 ? '…' : ''}</p>
+          <h2 id="artist-heading" className="mb-2 text-xl font-semibold text-gray-900">
+            {t('pages.home.artistTeaser')}
+          </h2>
+          <p className="max-w-prose text-gray-700">
+            {l(cms.contact.bio).slice(0, 240)}
+            {l(cms.contact.bio).length > 240 ? '…' : ''}
+          </p>
           <Link to="/contact" className="mt-4 inline-flex items-center text-sm font-medium text-accent hover:underline">
             {t('pages.home.learnMore')} →
           </Link>

@@ -15,4 +15,3 @@ export function getItemImageUrl(id: string, index: number): string {
   const normalizedBase = baseUrl.replace(/\/$/, '');
   return `${normalizedBase}/${id}_0${index}.png`;
 }
-

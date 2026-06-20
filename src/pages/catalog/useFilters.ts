@@ -25,10 +25,7 @@ export function applyFilters(items: Item[], filters: Filters): Item[] {
   });
 }
 
-function patch(
-  prev: URLSearchParams,
-  updater: (next: URLSearchParams) => void,
-): URLSearchParams {
+function patch(prev: URLSearchParams, updater: (next: URLSearchParams) => void): URLSearchParams {
   const next = new URLSearchParams(prev);
   next.delete('page');
   updater(next);
@@ -58,17 +55,12 @@ export function useFilters() {
     activeCount,
 
     setMinPrice: (v: number | null) =>
-      setSearchParams(p => patch(p, n => (v === null ? n.delete('minPrice') : n.set('minPrice', String(v)))), {
-        replace: true,
-      }),
+      setSearchParams(p => patch(p, n => (v === null ? n.delete('minPrice') : n.set('minPrice', String(v)))), { replace: true }),
 
     setMaxPrice: (v: number | null) =>
-      setSearchParams(p => patch(p, n => (v === null ? n.delete('maxPrice') : n.set('maxPrice', String(v)))), {
-        replace: true,
-      }),
+      setSearchParams(p => patch(p, n => (v === null ? n.delete('maxPrice') : n.set('maxPrice', String(v)))), { replace: true }),
 
-    setAvailable: (v: boolean) =>
-      setSearchParams(p => patch(p, n => (v ? n.set('available', 'true') : n.delete('available')))),
+    setAvailable: (v: boolean) => setSearchParams(p => patch(p, n => (v ? n.set('available', 'true') : n.delete('available')))),
 
     toggleColor: (color: string) =>
       setSearchParams(p =>
@@ -91,4 +83,3 @@ export function useFilters() {
     clearAll: () => setSearchParams(new URLSearchParams()),
   };
 }
-

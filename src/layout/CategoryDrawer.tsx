@@ -47,14 +47,7 @@ function CategoryItem({ category, href, isActive, locale, depth, activeId, onClo
         {l(category.name)}
       </Link>
       {(category.children?.length ?? 0) > 0 && (
-        <CategoryTree
-          categories={category.children!}
-          locale={locale}
-          activeId={activeId}
-          parentPath={href}
-          depth={depth + 1}
-          onClose={onClose}
-        />
+        <CategoryTree categories={category.children!} locale={locale} activeId={activeId} parentPath={href} depth={depth + 1} onClose={onClose} />
       )}
     </li>
   );
@@ -101,10 +94,7 @@ export function CategoryDrawer({ open, onClose }: Readonly<CategoryDrawerProps>)
   const matchCat = useMatch('/catalog/:categoryId');
   const matchSub = useMatch('/catalog/:categoryId/:subcategoryId');
   const matchSub2 = useMatch('/catalog/:categoryId/:subcategoryId/:subId');
-  const activeId =
-    matchSub2?.params.subId ??
-    matchSub?.params.subcategoryId ??
-    matchCat?.params.categoryId;
+  const activeId = matchSub2?.params.subId ?? matchSub?.params.subcategoryId ?? matchCat?.params.categoryId;
 
   const isRoot = activeId === undefined;
 
@@ -126,16 +116,7 @@ export function CategoryDrawer({ open, onClose }: Readonly<CategoryDrawerProps>)
             </Link>
           </li>
         </ul>
-        {cms && (
-          <CategoryTree
-            categories={cms.categories}
-            locale={locale}
-            activeId={activeId}
-            parentPath="/catalog"
-            depth={0}
-            onClose={onClose}
-          />
-        )}
+        {cms && <CategoryTree categories={cms.categories} locale={locale} activeId={activeId} parentPath="/catalog" depth={0} onClose={onClose} />}
       </nav>
     </Drawer>
   );
