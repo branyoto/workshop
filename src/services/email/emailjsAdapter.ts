@@ -1,5 +1,5 @@
 import emailjs from '@emailjs/browser';
-import type { OrderAdapter, OrderPayload } from './orderAdapter';
+import type { OrderAdapter, OrderPayload } from '../orders/orderAdapter.ts';
 
 export function createEmailJsAdapter(): OrderAdapter {
   return {

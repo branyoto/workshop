@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import en from '../assets/locales/en.json';
-import fr from '../assets/locales/fr.json';
+import en from '../../assets/locales/en.json';
+import fr from '../../assets/locales/fr.json';
 
 const STORAGE_KEY = 'artisan_language';
 const storedLang = globalThis.localStorage?.getItem(STORAGE_KEY);

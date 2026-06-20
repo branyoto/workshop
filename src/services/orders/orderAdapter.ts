@@ -1,5 +1,5 @@
-import type { CartItem } from '../services/providers/cart/CartContext';
-import type { CheckoutFormData } from '../pages/checkout/schema';
+import type { CartItem } from '../providers/cart/CartContext.ts';
+import type { CheckoutFormData } from '../../pages/checkout/schema.ts';
 
 export interface OrderPayload {
   orderNumber: string;

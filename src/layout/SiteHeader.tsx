@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { useCart } from '../services/providers/cart/CartContext';
+import { useCart } from '../services/providers/cart/useCart';
 import { Button } from '../common/Button';
 import { catalogUrl, checkoutUrl, contactUrl, homeUrl } from '../routes/routePaths';
 
