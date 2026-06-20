@@ -2,8 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { Button } from '../common/Button';
 import { catalogUrl, checkoutUrl, contactUrl, homeUrl } from '../routes/routePaths';
-import { LanguageSwitcher } from './LanguageSwitcher';
-import { LanguageSwitcherSlot } from './LanguageSwitcherSlot';
 
 export interface SiteHeaderProps {
   onOpenCategoryDrawer: () => void;
@@ -85,10 +83,12 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
         </nav>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcherSlot>
-            <LanguageSwitcher />
-          </LanguageSwitcherSlot>
-          <Button variant="ghost" className="hidden px-2 py-2 md:inline-flex" onClick={onOpenCategoryDrawer} aria-label={t('header.openCategoryMenu')}>
+          <Button
+            variant="ghost"
+            className="hidden px-2 py-2 md:inline-flex"
+            onClick={onOpenCategoryDrawer}
+            aria-label={t('header.openCategoryMenu')}
+          >
             <MenuIcon />
           </Button>
           <Button variant="ghost" className="px-2 py-2" onClick={onOpenCartDrawer} aria-label={t('header.openCart')}>
