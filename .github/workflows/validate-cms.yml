@@ -24,7 +24,6 @@ jobs:
         with:
           node-version: 24
           cache: yarn
-      - run: corepack enable
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
