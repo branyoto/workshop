@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { useCart } from '../../cart/CartContext';
+import { useCart } from '../../cart/useCart';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
 import { getThumbnailUrl } from '../cms/imageUrl';

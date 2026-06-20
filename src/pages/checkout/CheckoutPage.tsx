@@ -1,7 +1,7 @@
 import { useForm } from '@tanstack/react-form';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { useCart } from '../../cart/CartContext';
+import { useCart } from '../../cart/useCart';
 import { Button } from '../../common/Button';
 import { EmptyState } from '../../common/EmptyState';
 import { catalogUrl } from '../../routes/routePaths';
@@ -41,7 +41,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
     new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(amount);
 
   const form = useForm({
-    defaultValues: { name: '', email: '', phone: '', address: '', instructions: '' } as CheckoutFormData,
+    defaultValues: { name: '', email: '', phone: '', address: '', instructions: '' },
     validators: { onChange: checkoutSchema },
     onSubmit: async ({ value }) => {
       if (onSubmit) await onSubmit(value);

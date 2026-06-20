@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useCart } from '../../cart/CartContext';
+import { useCart } from '../../cart/useCart';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
 import { getThumbnailUrl } from '../cms/imageUrl';
@@ -32,7 +32,7 @@ export function HomePage() {
     <div className="flex flex-col gap-16">
       {/* Hero */}
       <section aria-labelledby="hero-heading" className="-mx-4 -mt-8 overflow-hidden">
-        <div className="relative flex min-h-[360px] items-center justify-center bg-primary/20">
+        <div className="relative flex min-h-90 items-center justify-center bg-primary/20">
           <img
             src={heroImg}
             alt=""

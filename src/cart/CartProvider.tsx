@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useReducer, type ReactNode } from 'react';
-import type { CartItem } from './types';
+import { type ReactNode, useEffect, useMemo, useReducer } from 'react';
+import { CartContext, type CartContextValue, type CartItem } from './CartContext';
 
 const STORAGE_KEY = 'artisan_cart';
 
@@ -41,17 +41,6 @@ function cartReducer(state: CartState, action: CartAction): CartState {
   return next;
 }
 
-interface CartContextValue {
-  items: CartItem[];
-  count: number;
-  total: number;
-  addItem: (item: CartItem) => void;
-  removeItem: (id: string) => void;
-  clearCart: () => void;
-}
-
-const CartContext = createContext<CartContextValue | null>(null);
-
 export function CartProvider({ children }: { readonly children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
 
@@ -67,21 +56,17 @@ export function CartProvider({ children }: { readonly children: ReactNode }) {
     }
   }, []);
 
-  const value: CartContextValue = {
-    items: state.items,
-    count: state.items.length,
-    total: state.items.reduce((sum, i) => sum + i.priceSnapshot, 0),
-    addItem: item => dispatch({ type: 'ADD_ITEM', item }),
-    removeItem: id => dispatch({ type: 'REMOVE_ITEM', id }),
-    clearCart: () => dispatch({ type: 'CLEAR_CART' }),
-  };
+  const value: CartContextValue = useMemo(
+    () => ({
+      items: state.items,
+      count: state.items.length,
+      total: state.items.reduce((sum, i) => sum + i.priceSnapshot, 0),
+      addItem: item => dispatch({ type: 'ADD_ITEM', item }),
+      removeItem: id => dispatch({ type: 'REMOVE_ITEM', id }),
+      clearCart: () => dispatch({ type: 'CLEAR_CART' }),
+    }),
+    [state, dispatch],
+  );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
-
-export function useCart(): CartContextValue {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be used within CartProvider');
-  return ctx;
-}
-

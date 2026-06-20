@@ -1,4 +1,4 @@
-import type { CartItem } from '../cart/types';
+import type { CartItem } from '../cart/CartContext';
 import type { CheckoutFormData } from '../pages/checkout/schema';
 
 export interface OrderPayload {
@@ -16,7 +16,7 @@ export interface OrderAdapter {
 /** Generate a CMD-YYYYMMDD-XXXX order number */
 export function generateOrderNumber(): string {
   const now = new Date();
-  const date = now.toISOString().slice(0, 10).replace(/-/g, '');
+  const date = now.toISOString().slice(0, 10).replaceAll('-', '');
   const suffix = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
   return `CMD-${date}-${suffix}`;
 }

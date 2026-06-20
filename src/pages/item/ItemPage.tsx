@@ -7,7 +7,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { useCart } from '../../cart/CartContext';
+import { useCart } from '../../cart/useCart';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
 import { EmptyState } from '../../common/EmptyState';
