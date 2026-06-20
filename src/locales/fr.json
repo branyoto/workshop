@@ -94,6 +94,20 @@
         "title": "Catégories bientôt disponibles",
         "description": "L'arborescence des catégories apparaîtra ici une fois la couche de données CMS connectée."
       }
+    },
+    "item": {
+      "notFound": {
+        "title": "Article introuvable",
+        "description": "L'article demandé n'existe pas ou n'est plus disponible."
+      },
+      "characteristics": "Caractéristiques",
+      "soldOut": "Cet article n'est plus disponible.",
+      "char": {
+        "dimension": "Dimensions",
+        "color": "Couleur",
+        "weight": "Poids",
+        "material": "Matière"
+      }
     }
   }
 }

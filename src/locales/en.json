@@ -94,6 +94,20 @@
         "title": "Categories coming soon",
         "description": "The category tree will appear here once the CMS data layer is connected."
       }
+    },
+    "item": {
+      "notFound": {
+        "title": "Item not found",
+        "description": "The requested item does not exist or is no longer available."
+      },
+      "characteristics": "Characteristics",
+      "soldOut": "This item is no longer available.",
+      "char": {
+        "dimension": "Dimensions",
+        "color": "Color",
+        "weight": "Weight",
+        "material": "Material"
+      }
     }
   }
 }
