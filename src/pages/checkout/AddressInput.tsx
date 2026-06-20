@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { type RefObject, useEffect, useRef, useState } from 'react';
 
 interface AddressInputProps {
   value: string;
@@ -11,18 +11,16 @@ interface AddressInputProps {
 }
 
 declare global {
-  interface Window {
-    google?: {
-      maps?: {
-        places?: {
-          Autocomplete: new (
-            input: HTMLInputElement,
-            opts: object,
-          ) => { addListener: (event: string, cb: () => void) => void; getPlace: () => { formatted_address?: string } };
-        };
+  var google: {
+    maps?: {
+      places?: {
+        Autocomplete: new (
+          input: HTMLInputElement,
+          opts: object,
+        ) => { addListener: (event: string, cb: () => void) => void; getPlace: () => { formatted_address?: string } };
       };
     };
-  }
+  };
 }
 
 export function AddressInput({ value, onChange, onBlur, id, placeholder, required, 'aria-describedby': ariaDescribedBy }: Readonly<AddressInputProps>) {
@@ -34,15 +32,15 @@ export function AddressInput({ value, onChange, onBlur, id, placeholder, require
     if (!apiKey) return;
 
     // Load Google Maps SDK if not already loaded
-    if (!window.google?.maps?.places) {
+    if (globalThis.google?.maps?.places) {
+      initAutocomplete();
+    } else {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
       script.async = true;
       script.onload = () => initAutocomplete();
       script.onerror = () => setMapsAvailable(false);
       document.head.appendChild(script);
-    } else {
-      initAutocomplete();
     }
 
     function initAutocomplete() {
@@ -64,7 +62,7 @@ export function AddressInput({ value, onChange, onBlur, id, placeholder, require
 
   return (
     <textarea
-      ref={inputRef as unknown as React.RefObject<HTMLTextAreaElement>}
+      ref={inputRef as unknown as RefObject<HTMLTextAreaElement>}
       id={id}
       value={value}
       onChange={e => onChange(e.target.value)}

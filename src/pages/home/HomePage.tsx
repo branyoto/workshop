@@ -26,7 +26,7 @@ export function HomePage() {
   const featuredItems = cms ? cms.featuredItemIds.map(id => cms.items.find(i => i.id === id)).filter(Boolean) : [];
 
   // prefers-reduced-motion
-  const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   return (
     <div className="flex flex-col gap-16">
