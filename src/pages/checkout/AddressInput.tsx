@@ -46,9 +46,9 @@ export function AddressInput({ value, onChange, onBlur, id, placeholder, require
     }
 
     function initAutocomplete() {
-      if (!inputRef.current || !window.google?.maps?.places) return;
+      if (!inputRef.current || !globalThis.google?.maps?.places) return;
       setMapsAvailable(true);
-      const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
+      const autocomplete = new globalThis.google.maps.places.Autocomplete(inputRef.current, {
         componentRestrictions: { country: 'fr' },
         fields: ['formatted_address'],
         types: ['address'],

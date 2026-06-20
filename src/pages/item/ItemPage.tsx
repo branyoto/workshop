@@ -116,7 +116,7 @@ export function ItemPage() {
               watchSlidesProgress
               className="thumbs-swiper"
             >
-              {displayImages.map((url, idx) => (
+              {displayImages.map((url) => (
                 <SwiperSlide key={url}>
                   <div className="aspect-square cursor-pointer overflow-hidden rounded-md border border-neutral/40 bg-primary/10">
                     <img src={url} alt="" aria-hidden="true" className="h-full w-full object-cover" />

@@ -158,7 +158,7 @@ export function CatalogPage() {
     <section aria-labelledby="catalog-heading">
       {/* Breadcrumb */}
       <div className="mb-4">
-        <Breadcrumb categories={cms.categories} categoryId={categoryId} subcategoryId={subcategoryId} subId={subId} />
+        <Breadcrumb categories={cms.categories} />
       </div>
 
       {/* Category banner */}
