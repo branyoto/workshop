@@ -1,0 +1,46 @@
+name: Validate CMS
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-cms:
+    name: Validate CMS content
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate cms.json and image thumbnails
+        run: npm run validate:cms
+
+      - name: Purge jsDelivr cache
+        if: success()
+        run: |
+          set -euo pipefail
+          url="https://purge.jsdelivr.net/gh/branyoto/workshop@main/public/cms.json"
+          response="$(curl --fail-with-body -sS "$url")"
+          echo "$response"
+          echo "$response" | node -e "
+            const input = require('fs').readFileSync(0, 'utf8');
+            const payload = JSON.parse(input);
+            if (payload.status !== 'finished') {
+              console.error('::error::jsDelivr purge did not finish successfully');
+              process.exit(1);
+            }
+          "
