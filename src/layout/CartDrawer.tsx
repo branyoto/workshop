@@ -38,7 +38,7 @@ export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
   ) : undefined;
 
   return (
-    <Drawer open={open} onClose={onClose} side="right" title={t('pages.cart.title')} footer={footer}>
+    <Drawer open={open} onClose={onClose} side="right" title={t('pages.cart.title')} footer={footer} mobileFullScreen>
       {items.length === 0 ? (
         <div className="flex flex-col items-center gap-4 py-8 text-center">
           <EmptyState title={t('pages.cart.empty.title')} description={t('pages.cart.empty.description')} />

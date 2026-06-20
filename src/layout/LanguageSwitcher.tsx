@@ -17,6 +17,7 @@ export function LanguageSwitcher({ className }: Readonly<{ className?: string }>
           key={lang}
           type="button"
           onClick={() => switchLanguage(lang)}
+          data-testid={`lang-${lang}`}
           className={clsx(
             'rounded-md px-2 py-1 text-xs font-medium uppercase transition-colors',
             current === lang

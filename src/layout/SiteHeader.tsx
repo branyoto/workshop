@@ -52,7 +52,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
     <header className="border-b border-neutral/50 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <div className="flex items-center gap-3">
-          <Button variant="ghost" className="px-2 py-2 md:hidden" onClick={onOpenCategoryDrawer} aria-label={t('header.openCategoryMenu')}>
+          <Button variant="ghost" className="min-h-[44px] min-w-[44px] px-2 py-2 md:hidden" onClick={onOpenCategoryDrawer} aria-label={t('header.openCategoryMenu')}>
             <MenuIcon />
           </Button>
           <Link
@@ -87,13 +87,13 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
-            className="hidden px-2 py-2 md:inline-flex"
+            className="hidden min-h-[44px] min-w-[44px] px-2 py-2 md:inline-flex"
             onClick={onOpenCategoryDrawer}
             aria-label={t('header.openCategoryMenu')}
           >
             <MenuIcon />
           </Button>
-          <Button variant="ghost" className="relative px-2 py-2" onClick={onOpenCartDrawer} aria-label={t('header.openCart')}>
+          <Button variant="ghost" className="relative min-h-[44px] min-w-[44px] px-2 py-2" onClick={onOpenCartDrawer} aria-label={t('header.openCart')} data-testid="header-cart-button">
             <CartIcon />
             {count > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white" aria-hidden="true">
