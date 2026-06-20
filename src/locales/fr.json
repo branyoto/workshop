@@ -1,0 +1,67 @@
+{
+  "common": {
+    "close": "Fermer",
+    "retry": "Réessayer",
+    "loading": "Chargement…"
+  },
+  "header": {
+    "brand": "Atelier Boutique",
+    "nav": {
+      "catalog": "Catalogue",
+      "checkout": "Commander",
+      "contact": "Contact"
+    },
+    "openCategoryMenu": "Ouvrir le menu des catégories",
+    "openCart": "Ouvrir le panier"
+  },
+  "footer": {
+    "brand": "Atelier Boutique",
+    "tagline": "Créations artisanales faites avec soin.",
+    "contact": "Contact",
+    "contactUs": "Nous contacter",
+    "social": "Réseaux sociaux",
+    "cgv": "Conditions de vente (CGV)",
+    "cgu": "Conditions d'utilisation (CGU)"
+  },
+  "pages": {
+    "home": {
+      "heading": "Accueil",
+      "welcome": "Bienvenue sur Atelier Boutique."
+    },
+    "catalog": {
+      "heading": "Catalogue",
+      "allItems": "Tous les articles"
+    },
+    "checkout": {
+      "heading": "Commander",
+      "description": "Vérifiez votre commande et soumettez-la."
+    },
+    "contact": {
+      "heading": "Contact",
+      "description": "Contactez-nous pour des commandes, de la vente en gros ou des visites d'atelier."
+    },
+    "cms": {
+      "loading": "Chargement du contenu…",
+      "error": {
+        "title": "Impossible de charger le contenu",
+        "description": "Le catalogue est momentanément indisponible. Vérifiez votre connexion puis réessayez.",
+        "retry": "Réessayer"
+      }
+    },
+    "cart": {
+      "title": "Panier",
+      "empty": {
+        "title": "Votre panier est vide",
+        "description": "Les articles ajoutés apparaîtront ici."
+      }
+    },
+    "categories": {
+      "title": "Catégories",
+      "empty": {
+        "title": "Catégories bientôt disponibles",
+        "description": "L'arborescence des catégories apparaîtra ici une fois la couche de données CMS connectée."
+      }
+    }
+  }
+}
+

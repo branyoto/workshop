@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { Button } from '../common/Button';
 import { catalogUrl, checkoutUrl, contactUrl, homeUrl } from '../routes/routePaths';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { LanguageSwitcherSlot } from './LanguageSwitcherSlot';
 
 export interface SiteHeaderProps {
@@ -45,18 +47,19 @@ function MenuIcon() {
 }
 
 export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<SiteHeaderProps>) {
+  const { t } = useTranslation();
   return (
     <header className="border-b border-neutral/50 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <div className="flex items-center gap-3">
-          <Button variant="ghost" className="px-2 py-2 md:hidden" onClick={onOpenCategoryDrawer} aria-label="Open category menu">
+          <Button variant="ghost" className="px-2 py-2 md:hidden" onClick={onOpenCategoryDrawer} aria-label={t('header.openCategoryMenu')}>
             <MenuIcon />
           </Button>
           <Link
             to={homeUrl()}
             className="text-lg font-semibold text-gray-900 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
-            Atelier Boutique
+            {t('header.brand')}
           </Link>
         </div>
 
@@ -65,28 +68,30 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
             to={catalogUrl()}
             className="text-sm font-medium text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
-            Catalog
+            {t('header.nav.catalog')}
           </Link>
           <Link
             to={checkoutUrl()}
             className="text-sm font-medium text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
-            Checkout
+            {t('header.nav.checkout')}
           </Link>
           <Link
             to={contactUrl()}
             className="text-sm font-medium text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
-            Contact
+            {t('header.nav.contact')}
           </Link>
         </nav>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcherSlot />
-          <Button variant="ghost" className="hidden px-2 py-2 md:inline-flex" onClick={onOpenCategoryDrawer} aria-label="Open category menu">
+          <LanguageSwitcherSlot>
+            <LanguageSwitcher />
+          </LanguageSwitcherSlot>
+          <Button variant="ghost" className="hidden px-2 py-2 md:inline-flex" onClick={onOpenCategoryDrawer} aria-label={t('header.openCategoryMenu')}>
             <MenuIcon />
           </Button>
-          <Button variant="ghost" className="px-2 py-2" onClick={onOpenCartDrawer} aria-label="Open cart">
+          <Button variant="ghost" className="px-2 py-2" onClick={onOpenCartDrawer} aria-label={t('header.openCart')}>
             <CartIcon />
           </Button>
         </div>

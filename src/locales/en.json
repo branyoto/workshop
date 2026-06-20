@@ -1,0 +1,67 @@
+{
+  "common": {
+    "close": "Close",
+    "retry": "Retry",
+    "loading": "Loading…"
+  },
+  "header": {
+    "brand": "Atelier Boutique",
+    "nav": {
+      "catalog": "Catalog",
+      "checkout": "Checkout",
+      "contact": "Contact"
+    },
+    "openCategoryMenu": "Open category menu",
+    "openCart": "Open cart"
+  },
+  "footer": {
+    "brand": "Atelier Boutique",
+    "tagline": "Handmade creations crafted with care.",
+    "contact": "Contact",
+    "contactUs": "Contact us",
+    "social": "Social",
+    "cgv": "Terms of Sale (CGV)",
+    "cgu": "Terms of Use (CGU)"
+  },
+  "pages": {
+    "home": {
+      "heading": "Home",
+      "welcome": "Welcome to Atelier Boutique."
+    },
+    "catalog": {
+      "heading": "Catalog",
+      "allItems": "All items"
+    },
+    "checkout": {
+      "heading": "Checkout",
+      "description": "Review your order and submit it."
+    },
+    "contact": {
+      "heading": "Contact",
+      "description": "Reach out for orders, wholesale, or studio visits."
+    },
+    "cms": {
+      "loading": "Loading content…",
+      "error": {
+        "title": "Unable to load content",
+        "description": "The catalogue is temporarily unavailable. Check your connection and try again.",
+        "retry": "Try again"
+      }
+    },
+    "cart": {
+      "title": "Cart",
+      "empty": {
+        "title": "Your cart is empty",
+        "description": "Items you add will appear here."
+      }
+    },
+    "categories": {
+      "title": "Categories",
+      "empty": {
+        "title": "Categories coming soon",
+        "description": "The category tree will appear here once the CMS data layer is connected."
+      }
+    }
+  }
+}
+
