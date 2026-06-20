@@ -86,6 +86,15 @@
         "title": "Order summary",
         "total": "Total",
         "deliveryNote": "Delivery fees will be agreed upon after receiving your order."
+      },
+      "confirmation": {
+        "title": "Order sent!",
+        "description": "Your order has been received.",
+        "followUp": "You will be contacted shortly to confirm the details and delivery fees.",
+        "continueShopping": "Continue shopping"
+      },
+      "error": {
+        "message": "An error occurred. Your order was not sent."
       }
     },
     "contact": {

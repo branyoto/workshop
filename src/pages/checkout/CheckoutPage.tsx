@@ -30,9 +30,10 @@ function Field({ label, error, id, required, children }: Readonly<FieldProps>) {
 
 interface CheckoutPageProps {
   onSubmit?: (data: CheckoutFormData) => Promise<void>;
+  submitting?: boolean;
 }
 
-export function CheckoutPage({ onSubmit }: Readonly<CheckoutPageProps>) {
+export function CheckoutPage({ onSubmit, submitting = false }: Readonly<CheckoutPageProps>) {
   const { t, i18n } = useTranslation();
   const { items, total } = useCart();
 
@@ -157,8 +158,8 @@ export function CheckoutPage({ onSubmit }: Readonly<CheckoutPageProps>) {
             )}
           </form.Field>
 
-          <Button type="submit" variant="primary" className="mt-2 w-full">
-            {t('pages.checkout.submit')}
+          <Button type="submit" variant="primary" className="mt-2 w-full" disabled={submitting}>
+            {submitting ? t('common.loading') : t('pages.checkout.submit')}
           </Button>
         </form>
 

@@ -86,6 +86,15 @@
         "title": "Récapitulatif",
         "total": "Total",
         "deliveryNote": "Les frais de livraison seront convenus après réception de la commande."
+      },
+      "confirmation": {
+        "title": "Commande envoyée !",
+        "description": "Votre commande a bien été reçue.",
+        "followUp": "Vous serez contacté sous peu pour confirmer les détails et les frais de livraison.",
+        "continueShopping": "Continuer les achats"
+      },
+      "error": {
+        "message": "Une erreur est survenue. Votre commande n'a pas été envoyée."
       }
     },
     "contact": {
