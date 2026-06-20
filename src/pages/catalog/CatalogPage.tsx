@@ -1,75 +1,26 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Badge } from '../../common/Badge';
-import { Button } from '../../common/Button';
-import { Drawer } from '../../common/Drawer';
-import { EmptyState } from '../../common/EmptyState';
-import type { CategoryView, Item } from '../cms/types';
 import { useCms } from '../cms/useCms';
-import { Breadcrumb } from './Breadcrumb';
-import { FiltersList } from './filters/FiltersList';
-import { ItemCard } from './ItemCard';
+import { Breadcrumbs } from './breadcrumbs/Breadcrumbs';
 import { applyFilters, useFilters } from './filters/useFilters';
 import { CategoryHeader } from './CategoryHeader';
+import { LoadMoreSentinel } from './LoadMoreSentinel';
+import { ItemGrid } from './item/ItemGrid';
+import { MobileFilterDrawer } from './mobile/MobileFilterDrawer';
+import { useDisclosure } from '../../utils/useDisclosure';
+import { MobileFilterButton } from './mobile/MobileFilterButton';
+import { DesktopFilterDrawer } from './desktop/DesktopFilterDrawer';
+import { CatalogNotFound } from './CatalogNotFound';
+import { collectTags, resolveCategory } from './utils';
 
 const PAGE_SIZE = 12;
 
-function collectTags(category: CategoryView): string[] {
-  const tags = new Set(category.tags);
-  for (const child of category.children ?? []) {
-    for (const tag of collectTags(child)) {
-      tags.add(tag);
-    }
-  }
-  return [...tags];
-}
-
-type ResolveResult = { category: CategoryView | null; notFound: boolean };
-
-function resolveCategory(
-  categories: CategoryView[],
-  categoryId: string | undefined,
-  subcategoryId: string | undefined,
-  subId: string | undefined,
-): ResolveResult {
-  if (!categoryId) return { category: null, notFound: false };
-  const root = categories.find(c => c.id === categoryId);
-  if (root === undefined) return { category: null, notFound: true };
-  if (subcategoryId === undefined) return { category: root, notFound: false };
-  const child = root.children?.find(c => c.id === subcategoryId);
-  if (child === undefined) return { category: null, notFound: true };
-  if (subId === undefined) return { category: child, notFound: false };
-  const grand = child.children?.find(c => c.id === subId);
-  if (grand === undefined) return { category: null, notFound: true };
-  return { category: grand, notFound: false };
-}
-
-function uniqueColors(items: Item[]): string[] {
-  const seen = new Set<string>();
-  for (const item of items) {
-    const color = item.characteristics?.color;
-    if (color) seen.add(color);
-  }
-  return [...seen].sort();
-}
-
-function uniqueTags(items: Item[]): string[] {
-  const seen = new Set<string>();
-  for (const item of items) {
-    for (const tag of item.tags) seen.add(tag);
-  }
-  return [...seen].sort();
-}
-
 export function CatalogPage() {
-  const { t } = useTranslation();
   const { categoryId, subcategoryId, subId } = useParams();
   const { data: cms } = useCms();
   const filterState = useFilters();
-  const [filtersDrawerOpen, setFiltersDrawerOpen] = useState(false);
+  const [filterDrawerOpened, openFilterDrawer, closeFilterDrawer] = useDisclosure();
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const sentinelRef = useRef<HTMLDivElement>(null);
 
   // Reset pagination on filter/category change
   useEffect(() => {
@@ -86,99 +37,31 @@ export function CatalogPage() {
   const { category: resolvedCategory, notFound } = resolveCategory(cms.categories, categoryId, subcategoryId, subId);
 
   if (notFound) {
-    return (
-      <section aria-labelledby="catalog-heading">
-        <h1 id="catalog-heading" className="sr-only">
-          {t('pages.catalog.heading')}
-        </h1>
-        <EmptyState title={t('pages.catalog.notFound.title')} description={t('pages.catalog.notFound.description')} />
-      </section>
-    );
+    return <CatalogNotFound />;
   }
 
   // Base items: scoped to category (before user filters)
   const activeCategoryTags = resolvedCategory ? collectTags(resolvedCategory) : null;
   const baseItems = activeCategoryTags ? cms.items.filter(item => item.tags.some(tag => activeCategoryTags.includes(tag))) : cms.items;
 
-  // Filter options derived from base items (stable — don't shrink with active filters)
-  const colorOptions = uniqueColors(baseItems);
-  const tagOptions = uniqueTags(baseItems);
-
   // Apply user filters
   const items = applyFilters(baseItems, filterState.filters);
   const visibleItems = items.slice(0, visibleCount);
   const hasMore = visibleCount < items.length;
 
-  // IntersectionObserver sentinel
-  useEffect(() => {
-    if (!sentinelRef.current || !hasMore) return;
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0]?.isIntersecting) loadMore();
-      },
-      { threshold: 0.1 },
-    );
-    observer.observe(sentinelRef.current);
-    return () => observer.disconnect();
-  }, [hasMore, loadMore]);
-
   return (
     <section aria-labelledby="catalog-heading">
-      {/* Breadcrumb */}
-      <div className="mb-4">
-        <Breadcrumb categories={cms.categories} />
-      </div>
+      <Breadcrumbs />
       <CategoryHeader category={resolvedCategory} />
-
       <div className="mt-6 flex gap-6">
-        {/* Desktop sidebar */}
-        <aside className="hidden w-56 shrink-0 lg:block">
-          <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-xl border border-neutral/50 bg-white p-4 shadow-sm">
-            <FiltersList colors={colorOptions} tags={tagOptions} />
-          </div>
-        </aside>
-
-        {/* Main content */}
+        <DesktopFilterDrawer items={baseItems} />
         <div className="min-w-0 flex-1">
-          {/* Mobile filter button */}
-          <div className="mb-4 flex items-center gap-2 lg:hidden">
-            <Button variant="ghost" className="gap-2 border border-neutral/50" onClick={() => setFiltersDrawerOpen(true)}>
-              {t('pages.catalog.filters.openFilters')}
-              {filterState.activeCount > 0 && (
-                <Badge variant="default" className="px-1.5 py-0 text-[10px]">
-                  {filterState.activeCount}
-                </Badge>
-              )}
-            </Button>
-          </div>
-
-          {/* Item grid */}
-          {items.length === 0 ?
-            <EmptyState title={t('pages.catalog.emptyTitle')} description={t('pages.catalog.emptyDescription')} />
-          : <>
-              <ul data-testid="item-grid" className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-                {visibleItems.map(item => (
-                  <li key={item.id}>
-                    <ItemCard item={item} />
-                  </li>
-                ))}
-              </ul>
-              {hasMore && (
-                <div ref={sentinelRef} className="mt-8 flex justify-center">
-                  <Button variant="secondary" data-testid="load-more-button" onClick={loadMore}>
-                    {t('pages.catalog.loadMore')}
-                  </Button>
-                </div>
-              )}
-            </>
-          }
+          <MobileFilterButton onOpen={openFilterDrawer} />
+          <ItemGrid items={visibleItems} />
+          <LoadMoreSentinel hasMore={hasMore} loadMore={loadMore} />
         </div>
       </div>
-
-      {/* Mobile filters drawer */}
-      <Drawer open={filtersDrawerOpen} onClose={() => setFiltersDrawerOpen(false)} side="left" title={t('pages.catalog.filters.title')}>
-        <FiltersList colors={colorOptions} tags={tagOptions} />
-      </Drawer>
+      <MobileFilterDrawer items={baseItems} open={filterDrawerOpened} onClose={closeFilterDrawer} />
     </section>
   );
 }

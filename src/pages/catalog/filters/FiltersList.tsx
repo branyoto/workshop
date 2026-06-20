@@ -4,14 +4,18 @@ import { ColorFilter } from './filter/ColorFilter';
 import { PriceFilter } from './filter/PriceFilter';
 import { AvailabilityFilter } from './filter/AvailabilityFilter';
 import { ClearButton } from './ClearButton';
+import type { Item } from '../../cms/types';
+import { uniqueColors, uniqueTags } from '../utils';
 
 export interface FiltersListProps {
-  colors: string[];
-  tags: string[];
+  items: Item[];
 }
 
-export function FiltersList({ colors, tags }: Readonly<FiltersListProps>) {
+export function FiltersList({ items }: Readonly<FiltersListProps>) {
   const { filters } = useFilters();
+
+  const colors = uniqueColors(items);
+  const tags = uniqueTags(items);
 
   return (
     <div className="space-y-5">

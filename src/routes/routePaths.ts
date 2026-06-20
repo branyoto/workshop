@@ -9,7 +9,7 @@ export function catalogUrl(): string {
 }
 
 export function categoryUrl(...categoryIds: (string | undefined | null)[]): string {
-  return `/catalog/${categoryIds.filter(Boolean).join('/')}`;
+  return `${catalogUrl()}/${categoryIds.filter(Boolean).join('/')}`;
 }
 
 export function itemUrl(id: string): string {

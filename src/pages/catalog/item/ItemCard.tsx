@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { useCart } from '../../services/providers/cart/useCart';
-import { Badge } from '../../common/Badge';
-import { Button } from '../../common/Button';
-import { getThumbnailUrl } from '../cms/imageUrl';
-import { useLocalize } from '../cms/useLocalize';
-import type { Item } from '../cms/types';
-import { itemUrl } from '../../routes/routePaths';
+import { useCart } from '../../../services/providers/cart/useCart';
+import { Badge } from '../../../common/Badge';
+import { Button } from '../../../common/Button';
+import { getThumbnailUrl } from '../../cms/imageUrl';
+import { useLocalize } from '../../cms/useLocalize';
+import type { Item } from '../../cms/types';
+import { itemUrl } from '../../../routes/routePaths';
 
 export interface ItemCardProps {
   item: Item;
