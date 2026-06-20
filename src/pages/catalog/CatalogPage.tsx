@@ -8,10 +8,10 @@ import { EmptyState } from '../../common/EmptyState';
 import type { CategoryView, Item } from '../cms/types';
 import { useCms } from '../cms/useCms';
 import { Breadcrumb } from './Breadcrumb';
-import { FiltersPanel } from './FiltersPanel';
+import { FiltersPanel } from './filter/FiltersPanel';
 import { ItemCard } from './ItemCard';
-import { applyFilters, useFilters } from './useFilters';
-import { CategoryHeader } from './CategoryHeader.tsx';
+import { applyFilters, useFilters } from './filter/useFilters';
+import { CategoryHeader } from './CategoryHeader';
 
 const PAGE_SIZE = 12;
 

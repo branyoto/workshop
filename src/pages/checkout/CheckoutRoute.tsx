@@ -5,7 +5,7 @@ import { Snackbar } from '../../common/Snackbar';
 import { Button } from '../../common/Button';
 import { useCms } from '../cms/useCms';
 import { generateOrderNumber, saveOrderToHistory } from '../../services/orders/orderAdapter';
-import { createEmailJsAdapter } from '../../services/email/emailjsAdapter.ts';
+import { createEmailJsAdapter } from '../../services/email/emailjsAdapter';
 import type { CheckoutFormData } from './schema';
 import { CheckoutPage } from './CheckoutPage';
 import { OrderConfirmation } from './OrderConfirmation';

@@ -13,5 +13,18 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
     },
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts', '**/*.js'],
+              message: 'Import TypeScript files without the file extension.',
+            },
+          ],
+        },
+      ],
+    },
   },
 ]);
