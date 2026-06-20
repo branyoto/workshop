@@ -13,7 +13,7 @@ export interface DrawerProps {
   footer?: ReactNode;
 }
 
-const sideClasses: Record<DrawerSide, string> = { left: 'left-0', right: 'right-0' };
+const sideClasses: Record<DrawerSide, string> = { left: 'justify-start', right: 'justify-end' };
 
 const panelAnimation: Record<DrawerSide, string> = {
   left: 'data-[open=true]:translate-x-0 -translate-x-full',
@@ -54,7 +54,7 @@ export function Drawer({ open, onClose, side, title, children, footer }: Readonl
   }
 
   return (
-    <div className="fixed inset-0 z-40 flex">
+    <div className={clsx('fixed inset-0 z-40 flex', sideClasses[side])}>
       <button type="button" className="absolute inset-0 bg-black/40" aria-label="Close drawer" onClick={onClose} />
       <aside
         ref={panelRef}
@@ -62,7 +62,6 @@ export function Drawer({ open, onClose, side, title, children, footer }: Readonl
         data-open={open}
         className={clsx(
           'relative z-10 flex h-full w-80 max-w-[85vw] flex-col bg-white shadow-xl transition-transform duration-200 ease-out',
-          sideClasses[side],
           panelAnimation[side],
         )}
       >
