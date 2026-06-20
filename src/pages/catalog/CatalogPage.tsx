@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 import { Badge } from '../../common/Badge';
@@ -13,6 +13,8 @@ import { Breadcrumb } from './Breadcrumb';
 import { FiltersPanel } from './FiltersPanel';
 import { ItemCard } from './ItemCard';
 import { applyFilters, useFilters } from './useFilters';
+
+const PAGE_SIZE = 12;
 
 function collectTags(category: CategoryView): string[] {
   const tags = new Set(category.tags);
@@ -83,6 +85,17 @@ export function CatalogPage() {
   const { data: cms } = useCms();
   const filterState = useFilters();
   const [filtersDrawerOpen, setFiltersDrawerOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Reset pagination on filter/category change
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [filterState.filters, categoryId, subcategoryId, subId]);
+
+  const loadMore = useCallback(() => {
+    setVisibleCount(prev => prev + PAGE_SIZE);
+  }, []);
 
   if (!cms) return null;
 
@@ -109,6 +122,21 @@ export function CatalogPage() {
 
   // Apply user filters
   const items = applyFilters(baseItems, filterState.filters);
+  const visibleItems = items.slice(0, visibleCount);
+  const hasMore = visibleCount < items.length;
+
+  // IntersectionObserver sentinel
+  useEffect(() => {
+    if (!sentinelRef.current || !hasMore) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0]?.isIntersecting) loadMore();
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, [hasMore, loadMore]);
 
   const heading = resolvedCategory ? l(resolvedCategory.name) : t('pages.catalog.heading');
   const description = resolvedCategory?.description != null ? l(resolvedCategory.description) : undefined;
@@ -166,13 +194,22 @@ export function CatalogPage() {
           {/* Item grid */}
           {items.length === 0 ?
             <EmptyState title={t('pages.catalog.emptyTitle')} description={t('pages.catalog.emptyDescription')} />
-          : <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-              {items.map(item => (
-                <li key={item.id}>
-                  <ItemCard item={item} />
-                </li>
-              ))}
-            </ul>
+          : <>
+              <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+                {visibleItems.map(item => (
+                  <li key={item.id}>
+                    <ItemCard item={item} />
+                  </li>
+                ))}
+              </ul>
+              {hasMore && (
+                <div ref={sentinelRef} className="mt-8 flex justify-center">
+                  <Button variant="secondary" onClick={loadMore}>
+                    {t('pages.catalog.loadMore')}
+                  </Button>
+                </div>
+              )}
+            </>
           }
         </div>
       </div>

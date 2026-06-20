@@ -38,6 +38,7 @@
       "inStock": "En stock",
       "outOfStock": "Épuisé",
       "addToCart": "Ajouter au panier",
+      "loadMore": "Charger plus",
       "emptyTitle": "Aucun article trouvé",
       "emptyDescription": "Aucun article ne correspond à cette catégorie pour le moment.",
       "notFound": {

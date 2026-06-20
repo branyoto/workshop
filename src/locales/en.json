@@ -38,6 +38,7 @@
       "inStock": "In stock",
       "outOfStock": "Out of stock",
       "addToCart": "Add to cart",
+      "loadMore": "Load more",
       "emptyTitle": "No items found",
       "emptyDescription": "No items match this category at the moment.",
       "notFound": {
