@@ -62,7 +62,31 @@
     },
     "checkout": {
       "heading": "Commander",
-      "description": "Vérifiez votre commande et soumettez-la."
+      "description": "Vérifiez votre commande et soumettez-la.",
+      "submit": "Envoyer la commande",
+      "emptyCart": {
+        "title": "Votre panier est vide",
+        "description": "Ajoutez des articles avant de passer commande."
+      },
+      "fields": {
+        "name": "Nom complet",
+        "email": "Email",
+        "phone": "Téléphone",
+        "address": "Adresse",
+        "addressPlaceholder": "Votre adresse complète",
+        "instructions": "Instructions particulières"
+      },
+      "errors": {
+        "required": "Ce champ est obligatoire.",
+        "invalidEmail": "Adresse email invalide.",
+        "invalidPhone": "Numéro de téléphone invalide.",
+        "emailOrPhone": "Veuillez renseigner au moins un email ou un téléphone."
+      },
+      "summary": {
+        "title": "Récapitulatif",
+        "total": "Total",
+        "deliveryNote": "Les frais de livraison seront convenus après réception de la commande."
+      }
     },
     "contact": {
       "heading": "Contact",

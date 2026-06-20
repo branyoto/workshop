@@ -62,7 +62,31 @@
     },
     "checkout": {
       "heading": "Checkout",
-      "description": "Review your order and submit it."
+      "description": "Review your order and submit it.",
+      "submit": "Place order",
+      "emptyCart": {
+        "title": "Your cart is empty",
+        "description": "Add items before placing an order."
+      },
+      "fields": {
+        "name": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "address": "Address",
+        "addressPlaceholder": "Your full postal address",
+        "instructions": "Special instructions"
+      },
+      "errors": {
+        "required": "This field is required.",
+        "invalidEmail": "Invalid email address.",
+        "invalidPhone": "Invalid phone number.",
+        "emailOrPhone": "Please provide at least an email or a phone number."
+      },
+      "summary": {
+        "title": "Order summary",
+        "total": "Total",
+        "deliveryNote": "Delivery fees will be agreed upon after receiving your order."
+      }
     },
     "contact": {
       "heading": "Contact",
