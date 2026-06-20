@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Navigation, A11y } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useCart } from '../../cart/useCart';
+import { useCart } from '../../services/providers/cart/useCart';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
 import { getThumbnailUrl } from '../cms/imageUrl';

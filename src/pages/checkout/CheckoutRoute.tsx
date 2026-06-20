@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useCart } from '../../cart/useCart';
+import { useCart } from '../../services/providers/cart/useCart';
 import { Snackbar } from '../../common/Snackbar';
 import { Button } from '../../common/Button';
 import { useCms } from '../cms/useCms';

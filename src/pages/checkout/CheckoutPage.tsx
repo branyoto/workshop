@@ -1,7 +1,7 @@
 import { useForm } from '@tanstack/react-form';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { useCart } from '../../cart/useCart';
+import { useCart } from '../../services/providers/cart/useCart';
 import { Button } from '../../common/Button';
 import { EmptyState } from '../../common/EmptyState';
 import { catalogUrl } from '../../routes/routePaths';

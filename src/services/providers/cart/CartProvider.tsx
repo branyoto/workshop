@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useReducer } from 'react';
-import { CartContext, type CartContextValue, type CartItem } from './CartContext';
+import { CartContext, type CartContextValue, type CartItem } from './CartContext.ts';
 
 const STORAGE_KEY = 'artisan_cart';
 

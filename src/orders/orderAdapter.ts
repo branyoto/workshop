@@ -1,4 +1,4 @@
-import type { CartItem } from '../cart/CartContext';
+import type { CartItem } from '../services/providers/cart/CartContext';
 import type { CheckoutFormData } from '../pages/checkout/schema';
 
 export interface OrderPayload {
