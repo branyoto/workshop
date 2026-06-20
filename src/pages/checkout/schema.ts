@@ -6,7 +6,7 @@ export const checkoutSchema = z
     email: z.string().email('invalidEmail').or(z.literal('')),
     phone: z
       .string()
-      .regex(/^[+\d\s()\-]{7,}$/, 'invalidPhone')
+      .regex(/^[+\d\s()-]{7,}$/, 'invalidPhone')
       .or(z.literal('')),
     address: z.string().min(1, 'required'),
     instructions: z.string(),

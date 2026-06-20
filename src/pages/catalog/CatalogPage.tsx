@@ -8,9 +8,9 @@ import { EmptyState } from '../../common/EmptyState';
 import type { CategoryView, Item } from '../cms/types';
 import { useCms } from '../cms/useCms';
 import { Breadcrumb } from './Breadcrumb';
-import { FiltersPanel } from './filter/FiltersPanel';
+import { FiltersList } from './filters/FiltersList';
 import { ItemCard } from './ItemCard';
-import { applyFilters, useFilters } from './filter/useFilters';
+import { applyFilters, useFilters } from './filters/useFilters';
 import { CategoryHeader } from './CategoryHeader';
 
 const PAGE_SIZE = 12;
@@ -122,19 +122,6 @@ export function CatalogPage() {
     return () => observer.disconnect();
   }, [hasMore, loadMore]);
 
-  const filtersPanelProps = {
-    filters: filterState.filters,
-    activeCount: filterState.activeCount,
-    colors: colorOptions,
-    tags: tagOptions,
-    onSetMinPrice: filterState.setMinPrice,
-    onSetMaxPrice: filterState.setMaxPrice,
-    onSetAvailable: filterState.setAvailable,
-    onToggleColor: filterState.toggleColor,
-    onToggleTag: filterState.toggleTag,
-    onClearAll: filterState.clearAll,
-  };
-
   return (
     <section aria-labelledby="catalog-heading">
       {/* Breadcrumb */}
@@ -147,7 +134,7 @@ export function CatalogPage() {
         {/* Desktop sidebar */}
         <aside className="hidden w-56 shrink-0 lg:block">
           <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto rounded-xl border border-neutral/50 bg-white p-4 shadow-sm">
-            <FiltersPanel {...filtersPanelProps} />
+            <FiltersList colors={colorOptions} tags={tagOptions} />
           </div>
         </aside>
 
@@ -190,7 +177,7 @@ export function CatalogPage() {
 
       {/* Mobile filters drawer */}
       <Drawer open={filtersDrawerOpen} onClose={() => setFiltersDrawerOpen(false)} side="left" title={t('pages.catalog.filters.title')}>
-        <FiltersPanel {...filtersPanelProps} />
+        <FiltersList colors={colorOptions} tags={tagOptions} />
       </Drawer>
     </section>
   );
