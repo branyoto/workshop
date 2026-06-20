@@ -30,7 +30,16 @@
     },
     "catalog": {
       "heading": "Catalogue",
-      "allItems": "Tous les articles"
+      "allItems": "Tous les articles",
+      "inStock": "En stock",
+      "outOfStock": "Épuisé",
+      "addToCart": "Ajouter au panier",
+      "emptyTitle": "Aucun article trouvé",
+      "emptyDescription": "Aucun article ne correspond à cette catégorie pour le moment.",
+      "notFound": {
+        "title": "Catégorie introuvable",
+        "description": "La catégorie demandée n'existe pas ou n'est plus disponible."
+      }
     },
     "checkout": {
       "heading": "Commander",
@@ -64,4 +73,3 @@
     }
   }
 }
-

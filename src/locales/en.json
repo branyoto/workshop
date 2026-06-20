@@ -30,7 +30,16 @@
     },
     "catalog": {
       "heading": "Catalog",
-      "allItems": "All items"
+      "allItems": "All items",
+      "inStock": "In stock",
+      "outOfStock": "Out of stock",
+      "addToCart": "Add to cart",
+      "emptyTitle": "No items found",
+      "emptyDescription": "No items match this category at the moment.",
+      "notFound": {
+        "title": "Category not found",
+        "description": "The requested category does not exist or is no longer available."
+      }
     },
     "checkout": {
       "heading": "Checkout",
@@ -64,4 +73,3 @@
     }
   }
 }
-
