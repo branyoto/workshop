@@ -5,14 +5,13 @@ import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
 import { Drawer } from '../../common/Drawer';
 import { EmptyState } from '../../common/EmptyState';
-import { getThumbnailUrl } from '../cms/imageUrl';
-import { useLocalize } from '../cms/useLocalize';
 import type { CategoryView, Item } from '../cms/types';
 import { useCms } from '../cms/useCms';
 import { Breadcrumb } from './Breadcrumb';
 import { FiltersPanel } from './FiltersPanel';
 import { ItemCard } from './ItemCard';
 import { applyFilters, useFilters } from './useFilters';
+import { CategoryHeader } from './CategoryHeader.tsx';
 
 const PAGE_SIZE = 12;
 
@@ -63,24 +62,8 @@ function uniqueTags(items: Item[]): string[] {
   return [...seen].sort();
 }
 
-interface CategoryBannerProps {
-  categoryId: string;
-  alt: string;
-}
-
-function CategoryBanner({ categoryId, alt }: Readonly<CategoryBannerProps>) {
-  const [hidden, setHidden] = useState(false);
-  if (hidden) return null;
-  return (
-    <div className="mb-4 overflow-hidden rounded-xl bg-primary/10">
-      <img src={getThumbnailUrl(categoryId)} alt={alt} onError={() => setHidden(true)} className="h-40 w-full object-cover" />
-    </div>
-  );
-}
-
 export function CatalogPage() {
   const { t } = useTranslation();
-  const l = useLocalize();
   const { categoryId, subcategoryId, subId } = useParams();
   const { data: cms } = useCms();
   const filterState = useFilters();
@@ -90,6 +73,7 @@ export function CatalogPage() {
 
   // Reset pagination on filter/category change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- resync url change with state
     setVisibleCount(PAGE_SIZE);
   }, [filterState.filters, categoryId, subcategoryId, subId]);
 
@@ -138,9 +122,6 @@ export function CatalogPage() {
     return () => observer.disconnect();
   }, [hasMore, loadMore]);
 
-  const heading = resolvedCategory ? l(resolvedCategory.name) : t('pages.catalog.heading');
-  const description = resolvedCategory?.description != null ? l(resolvedCategory.description) : undefined;
-
   const filtersPanelProps = {
     filters: filterState.filters,
     activeCount: filterState.activeCount,
@@ -160,14 +141,7 @@ export function CatalogPage() {
       <div className="mb-4">
         <Breadcrumb categories={cms.categories} />
       </div>
-
-      {/* Category banner */}
-      {resolvedCategory && <CategoryBanner categoryId={resolvedCategory.id} alt={heading} />}
-
-      <h1 id="catalog-heading" className="text-3xl font-semibold text-gray-900">
-        {heading}
-      </h1>
-      {description && <p className="mt-1 text-sm text-gray-600">{description}</p>}
+      <CategoryHeader category={resolvedCategory} />
 
       <div className="mt-6 flex gap-6">
         {/* Desktop sidebar */}
