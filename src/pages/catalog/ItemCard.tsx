@@ -30,7 +30,7 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
   };
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md">
+    <article data-testid="item-card" className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md">
       <Link
         to={itemUrl(item.id)}
         className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
@@ -74,6 +74,7 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
               variant={inCart ? 'ghost' : 'secondary'}
               className="px-2 py-1 text-xs"
               aria-label={`${t('pages.catalog.addToCart')} — ${title}`}
+              data-testid="add-to-cart-button"
               onClick={handleAddToCart}
               disabled={inCart}
             >

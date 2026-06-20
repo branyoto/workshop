@@ -13,6 +13,7 @@ export interface DrawerProps {
   footer?: ReactNode;
   /** When true the drawer expands to full-screen on mobile (<sm) */
   mobileFullScreen?: boolean;
+  'data-testid'?: string;
 }
 
 const sideClasses: Record<DrawerSide, string> = { left: 'justify-start', right: 'justify-end' };
@@ -22,7 +23,7 @@ const panelAnimation: Record<DrawerSide, string> = {
   right: 'data-[open=true]:translate-x-0 translate-x-full',
 };
 
-export function Drawer({ open, onClose, side, title, children, footer, mobileFullScreen = false }: Readonly<DrawerProps>) {
+export function Drawer({ open, onClose, side, title, children, footer, mobileFullScreen = false, 'data-testid': testId }: Readonly<DrawerProps>) {
   const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -62,6 +63,7 @@ export function Drawer({ open, onClose, side, title, children, footer, mobileFul
         ref={panelRef}
         aria-labelledby={title ? titleId : undefined}
         data-open={open}
+        data-testid={testId}
         className={clsx(
           'relative z-10 flex h-full flex-col bg-white shadow-xl transition-transform duration-200 ease-out',
           mobileFullScreen ? 'w-full sm:w-80 sm:max-w-[85vw]' : 'w-80 max-w-[85vw]',

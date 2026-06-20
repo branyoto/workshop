@@ -72,6 +72,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
         {/* Form */}
         <form
           className="flex flex-1 flex-col gap-4"
+          data-testid="checkout-form"
           onSubmit={e => { e.preventDefault(); form.handleSubmit(); }}
           noValidate
         >
@@ -86,6 +87,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   onBlur={field.handleBlur}
                   required
                   autoComplete="name"
+                  data-testid="checkout-name"
                   aria-describedby={field.state.meta.errors[0] ? 'name-error' : undefined}
                   className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 />
@@ -103,6 +105,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   onChange={e => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
                   autoComplete="email"
+                  data-testid="checkout-email"
                   aria-describedby={field.state.meta.errors[0] ? 'email-error' : undefined}
                   className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 />
@@ -120,6 +123,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   onChange={e => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
                   autoComplete="tel"
+                  data-testid="checkout-phone"
                   aria-describedby={field.state.meta.errors[0] ? 'phone-error' : undefined}
                   className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 />
@@ -158,7 +162,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
             )}
           </form.Field>
 
-          <Button type="submit" variant="primary" className="mt-2 w-full" disabled={submitting}>
+          <Button type="submit" variant="primary" className="mt-2 w-full" data-testid="checkout-submit" disabled={submitting}>
             {submitting ? t('common.loading') : t('pages.checkout.submit')}
           </Button>
         </form>

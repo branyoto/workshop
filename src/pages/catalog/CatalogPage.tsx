@@ -195,7 +195,7 @@ export function CatalogPage() {
           {items.length === 0 ?
             <EmptyState title={t('pages.catalog.emptyTitle')} description={t('pages.catalog.emptyDescription')} />
           : <>
-              <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+              <ul data-testid="item-grid" className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
                 {visibleItems.map(item => (
                   <li key={item.id}>
                     <ItemCard item={item} />
@@ -204,7 +204,7 @@ export function CatalogPage() {
               </ul>
               {hasMore && (
                 <div ref={sentinelRef} className="mt-8 flex justify-center">
-                  <Button variant="secondary" onClick={loadMore}>
+                  <Button variant="secondary" data-testid="load-more-button" onClick={loadMore}>
                     {t('pages.catalog.loadMore')}
                   </Button>
                 </div>

@@ -22,15 +22,17 @@ interface CheckboxRowProps {
   label: string;
   checked: boolean;
   onChange: () => void;
+  'data-testid'?: string;
 }
 
-function CheckboxRow({ label, checked, onChange }: Readonly<CheckboxRowProps>) {
+function CheckboxRow({ label, checked, onChange, 'data-testid': testId }: Readonly<CheckboxRowProps>) {
   return (
     <label className="flex cursor-pointer items-center gap-2 text-sm text-gray-700">
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
+        data-testid={testId}
         className="size-4 rounded border-neutral/60 accent-accent"
       />
       {label}
@@ -138,6 +140,7 @@ export function FiltersPanel({
           label={t('pages.catalog.filters.inStockOnly')}
           checked={filters.available}
           onChange={() => onSetAvailable(!filters.available)}
+          data-testid="filter-available"
         />
       </FilterSection>
 

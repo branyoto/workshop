@@ -157,12 +157,12 @@ export function ContactPage() {
         <div className="lg:w-1/2">
           <h2 className="mb-4 text-lg font-semibold text-gray-900">{t('pages.contact.formTitle')}</h2>
           {success ? (
-            <div className="rounded-xl bg-secondary/50 px-6 py-8 text-center">
+            <div data-testid="contact-success" className="rounded-xl bg-secondary/50 px-6 py-8 text-center">
               <p className="text-lg font-semibold text-gray-900">✅ {t('pages.contact.successTitle')}</p>
               <p className="mt-1 text-sm text-gray-600">{t('pages.contact.successMessage')}</p>
             </div>
           ) : (
-            <form className="flex flex-col gap-4" onSubmit={e => { e.preventDefault(); form.handleSubmit(); }} noValidate>
+            <form className="flex flex-col gap-4" data-testid="contact-form" onSubmit={e => { e.preventDefault(); form.handleSubmit(); }} noValidate>
               <form.Field name="name">
                 {field => (
                   <Field label={t('pages.contact.fields.name')} id="contact-name" required error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}>

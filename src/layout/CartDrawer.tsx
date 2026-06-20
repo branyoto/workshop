@@ -27,6 +27,7 @@ export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
       <Link
         to={checkoutUrl()}
         onClick={onClose}
+        data-testid="cart-checkout-link"
         className="inline-flex w-full items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent/90"
       >
         {t('pages.cart.checkout')}
@@ -38,7 +39,7 @@ export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
   ) : undefined;
 
   return (
-    <Drawer open={open} onClose={onClose} side="right" title={t('pages.cart.title')} footer={footer} mobileFullScreen>
+    <Drawer open={open} onClose={onClose} side="right" title={t('pages.cart.title')} footer={footer} mobileFullScreen data-testid="cart-drawer">
       {items.length === 0 ? (
         <div className="flex flex-col items-center gap-4 py-8 text-center">
           <EmptyState title={t('pages.cart.empty.title')} description={t('pages.cart.empty.description')} />
@@ -53,7 +54,7 @@ export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
       ) : (
         <ul className="flex flex-col gap-3">
           {items.map(item => (
-            <li key={item.id} className="flex items-center gap-3 rounded-lg border border-neutral/40 p-2">
+            <li key={item.id} data-testid="cart-item" className="flex items-center gap-3 rounded-lg border border-neutral/40 p-2">
               <img src={item.thumbnailUrl} alt="" aria-hidden="true" className="h-14 w-14 rounded-md object-cover" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium">{item.titleSnapshot}</p>

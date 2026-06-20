@@ -188,6 +188,7 @@ export function ItemPage() {
                 className="w-full"
                 onClick={handleAddToCart}
                 disabled={inCart}
+                data-testid="add-to-cart"
                 aria-label={inCart ? t('pages.catalog.inCart') : t('pages.catalog.addToCart')}
               >
                 {inCart ? t('pages.catalog.inCart') : t('pages.catalog.addToCart')}
