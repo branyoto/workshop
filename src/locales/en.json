@@ -106,7 +106,25 @@
     },
     "contact": {
       "heading": "Contact",
-      "description": "Reach out for orders, wholesale, or studio visits."
+      "description": "Reach out for orders, wholesale, or studio visits.",
+      "bio": "About",
+      "markets": "Upcoming markets",
+      "noMarkets": "No upcoming markets at the moment.",
+      "marketLink": "View market",
+      "social": "Get in touch",
+      "emailLabel": "Send an email",
+      "location": "Location",
+      "viewMap": "View on map",
+      "locale": "en-GB",
+      "formTitle": "Send a message",
+      "submit": "Send",
+      "successTitle": "Message sent!",
+      "successMessage": "Thank you for your message. We will get back to you shortly.",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message"
+      }
     },
     "cms": {
       "loading": "Loading content…",

@@ -106,7 +106,25 @@
     },
     "contact": {
       "heading": "Contact",
-      "description": "Contactez-nous pour des commandes, de la vente en gros ou des visites d'atelier."
+      "description": "Contactez-nous pour des commandes, de la vente en gros ou des visites d'atelier.",
+      "bio": "À propos",
+      "markets": "Prochains marchés",
+      "noMarkets": "Aucun marché à venir pour le moment.",
+      "marketLink": "Voir le marché",
+      "social": "Nous contacter",
+      "emailLabel": "Envoyer un email",
+      "location": "Localisation",
+      "viewMap": "Voir sur la carte",
+      "locale": "fr-FR",
+      "formTitle": "Envoyer un message",
+      "submit": "Envoyer",
+      "successTitle": "Message envoyé !",
+      "successMessage": "Merci pour votre message. Nous vous répondrons sous peu.",
+      "fields": {
+        "name": "Nom",
+        "email": "Email",
+        "message": "Message"
+      }
     },
     "cms": {
       "loading": "Chargement du contenu…",
