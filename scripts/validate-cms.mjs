@@ -12,7 +12,6 @@ const schemaPath = join(rootDir, 'schemas', 'cms.schema.json');
 const imagesDir = join(rootDir, 'public', 'images');
 
 function fail(message) {
-  console.error(`::error::${message}`);
   console.error(message);
   process.exit(1);
 }
