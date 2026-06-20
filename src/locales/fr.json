@@ -23,6 +23,10 @@
     "cgv": "Conditions de vente (CGV)",
     "cgu": "Conditions d'utilisation (CGU)"
   },
+  "breadcrumb": {
+    "label": "Fil d'Ariane",
+    "home": "Accueil"
+  },
   "pages": {
     "home": {
       "heading": "Accueil",
@@ -39,6 +43,19 @@
       "notFound": {
         "title": "Catégorie introuvable",
         "description": "La catégorie demandée n'existe pas ou n'est plus disponible."
+      },
+      "breadcrumb": "Fil d'Ariane",
+      "filters": {
+        "title": "Filtres",
+        "clearAll": "Tout effacer",
+        "openFilters": "Filtres",
+        "price": "Prix (€)",
+        "minPlaceholder": "Min",
+        "maxPlaceholder": "Max",
+        "availability": "Disponibilité",
+        "inStockOnly": "En stock uniquement",
+        "colors": "Couleur",
+        "tags": "Tags"
       }
     },
     "checkout": {

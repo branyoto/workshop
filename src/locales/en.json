@@ -23,6 +23,10 @@
     "cgv": "Terms of Sale (CGV)",
     "cgu": "Terms of Use (CGU)"
   },
+  "breadcrumb": {
+    "label": "Breadcrumb",
+    "home": "Home"
+  },
   "pages": {
     "home": {
       "heading": "Home",
@@ -39,6 +43,19 @@
       "notFound": {
         "title": "Category not found",
         "description": "The requested category does not exist or is no longer available."
+      },
+      "breadcrumb": "Breadcrumb",
+      "filters": {
+        "title": "Filters",
+        "clearAll": "Clear all",
+        "openFilters": "Filters",
+        "price": "Price (€)",
+        "minPlaceholder": "Min",
+        "maxPlaceholder": "Max",
+        "availability": "Availability",
+        "inStockOnly": "In stock only",
+        "colors": "Color",
+        "tags": "Tags"
       }
     },
     "checkout": {

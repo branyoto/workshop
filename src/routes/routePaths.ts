@@ -8,9 +8,8 @@ export function catalogUrl(): string {
   return ROUTES.catalog;
 }
 
-export function categoryUrl(categoryId: string, subcategoryId?: string, subId?: string): string {
-  const segments = [categoryId, subcategoryId, subId].filter(Boolean);
-  return `/catalog/${segments.join('/')}`;
+export function categoryUrl(...categoryIds: (string | undefined | null)[]): string {
+  return `/catalog/${categoryIds.filter(Boolean).join('/')}`;
 }
 
 export function itemUrl(id: string): string {
