@@ -44,7 +44,7 @@ function MenuIcon() {
   );
 }
 
-export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: SiteHeaderProps) {
+export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<SiteHeaderProps>) {
   return (
     <header className="border-b border-neutral/50 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">

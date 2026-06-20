@@ -10,7 +10,7 @@ export interface SnackbarProps {
   className?: string;
 }
 
-export function Snackbar({ open, message, onClose, action, className }: SnackbarProps) {
+export function Snackbar({ open, message, onClose, action, className }: Readonly<SnackbarProps>) {
   if (!open) {
     return null;
   }

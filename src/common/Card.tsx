@@ -6,7 +6,7 @@ export interface CardProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
 }
 
-export function Card({ as: Component = 'div', className, children, ...props }: CardProps) {
+export function Card({ as: Component = 'div', className, children, ...props }: Readonly<CardProps>) {
   return (
     <Component className={clsx('rounded-xl border border-neutral/50 bg-white p-4 shadow-sm', className)} {...props}>
       {children}

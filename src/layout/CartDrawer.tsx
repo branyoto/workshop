@@ -6,7 +6,7 @@ export interface CartDrawerProps {
   onClose: () => void;
 }
 
-export function CartDrawer({ open, onClose }: CartDrawerProps) {
+export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
   return (
     <Drawer open={open} onClose={onClose} side="right" title="Cart">
       <EmptyState title="Your cart is empty" description="Items you add will appear here." />

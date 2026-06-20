@@ -20,7 +20,7 @@ const panelAnimation: Record<DrawerSide, string> = {
   right: 'data-[open=true]:translate-x-0 translate-x-full',
 };
 
-export function Drawer({ open, onClose, side, title, children, footer }: DrawerProps) {
+export function Drawer({ open, onClose, side, title, children, footer }: Readonly<DrawerProps>) {
   const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -58,8 +58,6 @@ export function Drawer({ open, onClose, side, title, children, footer }: DrawerP
       <button type="button" className="absolute inset-0 bg-black/40" aria-label="Close drawer" onClick={onClose} />
       <aside
         ref={panelRef}
-        role="dialog"
-        aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
         data-open={open}
         className={clsx(

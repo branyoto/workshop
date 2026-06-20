@@ -6,7 +6,7 @@ export interface LanguageSwitcherSlotProps {
   className?: string;
 }
 
-export function LanguageSwitcherSlot({ children, className }: LanguageSwitcherSlotProps) {
+export function LanguageSwitcherSlot({ children, className }: Readonly<LanguageSwitcherSlotProps>) {
   return (
     <div className={clsx('flex items-center gap-1', className)} aria-label="Language switcher">
       {children ?? (

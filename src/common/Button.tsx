@@ -15,7 +15,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   danger: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500/50',
 };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+export const Button = forwardRef<HTMLButtonElement, Readonly<ButtonProps>>(function Button(
   { variant = 'primary', className, children, type = 'button', ...props },
   ref,
 ) {
