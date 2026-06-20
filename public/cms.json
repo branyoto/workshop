@@ -1,0 +1,221 @@
+{
+  "settings": {
+    "artistEmail": "contact@atelier-boutique.fr",
+    "adminEmails": [],
+    "socialLinks": [
+      {
+        "type": "instagram",
+        "url": "https://instagram.com/atelier.boutique"
+      },
+      {
+        "type": "facebook",
+        "url": "https://facebook.com/atelier.boutique"
+      }
+    ],
+    "address": {
+      "fr": "Atelier sur rendez-vous — région lyonnaise",
+      "en": "Studio visits by appointment — Lyon area"
+    },
+    "mapUrl": "https://maps.google.com/?q=Lyon+France"
+  },
+  "categories": [
+    {
+      "id": "cat-crochet",
+      "name": {
+        "fr": "Crochet",
+        "en": "Crochet"
+      },
+      "description": {
+        "fr": "Peluches et accessoires faits main au crochet.",
+        "en": "Handmade crochet plushies and accessories."
+      },
+      "tags": ["crochet"],
+      "children": [
+        {
+          "id": "cat-plushies",
+          "name": {
+            "fr": "Peluches",
+            "en": "Plushies"
+          },
+          "tags": ["crochet", "plush"]
+        }
+      ]
+    },
+    {
+      "id": "cat-jewellery",
+      "name": {
+        "fr": "Bijoux",
+        "en": "Jewellery"
+      },
+      "description": {
+        "fr": "Bracelets, boucles et colliers en perles et résine.",
+        "en": "Pearl and resin bracelets, earrings, and necklaces."
+      },
+      "tags": ["jewellery"]
+    },
+    {
+      "id": "cat-diaper-cakes",
+      "name": {
+        "fr": "Gâteaux de couches",
+        "en": "Diaper cakes"
+      },
+      "description": {
+        "fr": "Compositions décoratives pour naissances et baby showers.",
+        "en": "Decorative compositions for births and baby showers."
+      },
+      "tags": ["baby", "diaper-cake"]
+    }
+  ],
+  "items": [
+    {
+      "id": "item-plush-bunny",
+      "title": {
+        "fr": "Peluche lapin pastel",
+        "en": "Pastel bunny plush"
+      },
+      "description": {
+        "fr": "Lapin au crochet en coton doux, idéal pour une chambre d'enfant.",
+        "en": "Soft cotton crochet bunny, perfect for a nursery."
+      },
+      "price": 28,
+      "tags": ["crochet", "plush", "baby"],
+      "available": true,
+      "characteristics": {
+        "material": "Coton",
+        "color": "Rose poudré"
+      }
+    },
+    {
+      "id": "item-plush-fox",
+      "title": {
+        "fr": "Peluche renard",
+        "en": "Fox plush"
+      },
+      "price": 32,
+      "tags": ["crochet", "plush"],
+      "available": true,
+      "characteristics": {
+        "material": "Coton",
+        "color": "Orange et blanc"
+      }
+    },
+    {
+      "id": "item-pearl-bracelet",
+      "title": {
+        "fr": "Bracelet perles nacrées",
+        "en": "Pearl bracelet"
+      },
+      "description": {
+        "fr": "Bracelet élégant monté à la main sur fil silicone.",
+        "en": "Elegant bracelet hand-strung on silicone thread."
+      },
+      "price": 18,
+      "tags": ["jewellery", "pearl"],
+      "available": true,
+      "characteristics": {
+        "material": "Perles de verre",
+        "dimension": "18 cm"
+      }
+    },
+    {
+      "id": "item-epoxy-earrings",
+      "title": {
+        "fr": "Boucles d'oreilles epoxy fleur",
+        "en": "Floral epoxy earrings"
+      },
+      "price": 22,
+      "tags": ["jewellery", "epoxy"],
+      "available": false,
+      "characteristics": {
+        "material": "Résine epoxy",
+        "color": "Bleu lavande"
+      }
+    },
+    {
+      "id": "item-diaper-cake-blue",
+      "title": {
+        "fr": "Gâteau de couches bleu ciel",
+        "en": "Sky blue diaper cake"
+      },
+      "description": {
+        "fr": "Composition de 25 couches avec accessoires bébé assortis.",
+        "en": "25-diaper composition with matching baby accessories."
+      },
+      "price": 65,
+      "tags": ["baby", "diaper-cake"],
+      "available": true,
+      "characteristics": {
+        "dimension": "3 étages",
+        "material": "Couches taille 1"
+      }
+    },
+    {
+      "id": "item-suncatcher-rainbow",
+      "title": {
+        "fr": "Attrape-rêves arc-en-ciel",
+        "en": "Rainbow suncatcher"
+      },
+      "price": 24,
+      "tags": ["suncatcher", "decoration"],
+      "available": true,
+      "characteristics": {
+        "material": "Fil métallique et cristaux",
+        "dimension": "25 cm"
+      }
+    }
+  ],
+  "featuredCategoryIds": ["cat-crochet"],
+  "featuredItemIds": ["item-plush-bunny", "item-pearl-bracelet", "item-diaper-cake-blue"],
+  "tags": [
+    "baby",
+    "crochet",
+    "decoration",
+    "diaper-cake",
+    "epoxy",
+    "jewellery",
+    "pearl",
+    "plush",
+    "suncatcher"
+  ],
+  "contact": {
+    "bio": {
+      "fr": "Bonjour, je suis Marie, créatrice passionnée de crochet, bijoux et compositions pour les tout-petits. Chaque pièce est réalisée à la main dans mon atelier lyonnais.",
+      "en": "Hello, I am Marie, a passionate maker of crochet, jewellery, and compositions for little ones. Every piece is handmade in my Lyon studio."
+    },
+    "categoriesOverview": {
+      "fr": "Peluches au crochet, bijoux artisanaux, gâteaux de couches et attrape-rêves personnalisés.",
+      "en": "Crochet plushies, handmade jewellery, diaper cakes, and custom suncatchers."
+    },
+    "markets": [
+      {
+        "date": "2026-07-12",
+        "location": {
+          "fr": "Marché des Créateurs, Lyon 6e",
+          "en": "Creators Market, Lyon 6th"
+        },
+        "description": {
+          "fr": "Stand près de l'entrée principale, de 9h à 18h.",
+          "en": "Stand near the main entrance, 9am to 6pm."
+        }
+      },
+      {
+        "date": "2026-08-23",
+        "location": {
+          "fr": "Foire artisanale de Villeurbanne",
+          "en": "Villeurbanne craft fair"
+        },
+        "url": "https://example.com/foire-villeurbanne"
+      }
+    ]
+  },
+  "legalLinks": [
+    {
+      "key": "cgv",
+      "url": "https://example.com/cgv"
+    },
+    {
+      "key": "cgu",
+      "url": "https://example.com/cgu"
+    }
+  ]
+}
