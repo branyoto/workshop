@@ -30,7 +30,14 @@
   "pages": {
     "home": {
       "heading": "Accueil",
-      "welcome": "Bienvenue sur Atelier Boutique."
+      "welcome": "Bienvenue sur Atelier Boutique.",
+      "tagline": "Créations artisanales faites avec soin",
+      "taglineSubtitle": "Bijoux, peluches et compositions décoratives uniques.",
+      "cta": "Découvrir les créations",
+      "categories": "Nos catégories",
+      "featured": "Articles en vedette",
+      "artistTeaser": "L'artisane",
+      "learnMore": "En savoir plus"
     },
     "catalog": {
       "heading": "Catalogue",

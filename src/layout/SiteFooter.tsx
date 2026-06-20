@@ -1,19 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import { useCms } from '../pages/cms/useCms';
 import { contactUrl } from '../routes/routePaths';
 
 export function SiteFooter() {
   const { t } = useTranslation();
+  const { data: cms } = useCms();
 
-  const socialLinks = [
-    { label: 'Instagram', href: 'https://instagram.com' },
-    { label: 'Facebook', href: 'https://facebook.com' },
-  ];
-
-  const legalLinks = [
-    { label: t('footer.cgv'), href: '/legal/cgv' },
-    { label: t('footer.cgu'), href: '/legal/cgu' },
-  ];
+  const socialLinks = cms?.settings.socialLinks ?? [];
+  const legalLinks = cms?.legalLinks ?? [];
 
   return (
     <footer className="mt-auto border-t border-neutral/50 bg-primary/20">
@@ -27,13 +22,17 @@ export function SiteFooter() {
           <p className="text-sm font-semibold text-gray-900">{t('footer.contact')}</p>
           <ul className="mt-2 space-y-1">
             <li>
-              <Link
-                to={contactUrl()}
-                className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-              >
+              <Link to={contactUrl()} className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
                 {t('footer.contactUs')}
               </Link>
             </li>
+            {cms?.settings.artistEmail && (
+              <li>
+                <a href={`mailto:${cms.settings.artistEmail}`} className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+                  {cms.settings.artistEmail}
+                </a>
+              </li>
+            )}
           </ul>
         </div>
 
@@ -41,14 +40,10 @@ export function SiteFooter() {
           <p className="text-sm font-semibold text-gray-900">{t('footer.social')}</p>
           <ul className="mt-2 space-y-1">
             {socialLinks.map(link => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                >
-                  {link.label}
+              <li key={link.url}>
+                <a href={link.url} target="_blank" rel="noreferrer" aria-label={link.type}
+                  className="text-sm capitalize text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+                  {link.type}
                 </a>
               </li>
             ))}
@@ -61,12 +56,9 @@ export function SiteFooter() {
           <p>© {new Date().getFullYear()} {t('footer.brand')}</p>
           <ul className="flex flex-wrap items-center gap-4">
             {legalLinks.map(link => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                >
-                  {link.label}
+              <li key={link.key}>
+                <a href={link.url} className="hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2">
+                  {t(`footer.${link.key}`)}
                 </a>
               </li>
             ))}

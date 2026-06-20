@@ -30,7 +30,14 @@
   "pages": {
     "home": {
       "heading": "Home",
-      "welcome": "Welcome to Atelier Boutique."
+      "welcome": "Welcome to Atelier Boutique.",
+      "tagline": "Handmade creations crafted with care",
+      "taglineSubtitle": "Unique jewellery, plushies and decorative compositions.",
+      "cta": "Discover the creations",
+      "categories": "Our categories",
+      "featured": "Featured items",
+      "artistTeaser": "The artist",
+      "learnMore": "Learn more"
     },
     "catalog": {
       "heading": "Catalog",
