@@ -38,6 +38,7 @@
       "inStock": "En stock",
       "outOfStock": "Épuisé",
       "addToCart": "Ajouter au panier",
+      "inCart": "Dans le panier",
       "loadMore": "Charger plus",
       "emptyTitle": "Aucun article trouvé",
       "emptyDescription": "Aucun article ne correspond à cette catégorie pour le moment.",
@@ -77,9 +78,14 @@
     },
     "cart": {
       "title": "Panier",
+      "total": "Total",
+      "checkout": "Passer la commande",
+      "clear": "Vider le panier",
+      "remove": "Retirer {{title}} du panier",
       "empty": {
         "title": "Votre panier est vide",
-        "description": "Les articles ajoutés apparaîtront ici."
+        "description": "Les articles ajoutés apparaîtront ici.",
+        "browseCatalog": "Parcourir le catalogue"
       }
     },
     "categories": {

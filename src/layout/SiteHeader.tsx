@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import { useCart } from '../cart/CartContext';
 import { Button } from '../common/Button';
 import { catalogUrl, checkoutUrl, contactUrl, homeUrl } from '../routes/routePaths';
 
@@ -46,6 +47,7 @@ function MenuIcon() {
 
 export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<SiteHeaderProps>) {
   const { t } = useTranslation();
+  const { count } = useCart();
   return (
     <header className="border-b border-neutral/50 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
@@ -91,8 +93,13 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
           >
             <MenuIcon />
           </Button>
-          <Button variant="ghost" className="px-2 py-2" onClick={onOpenCartDrawer} aria-label={t('header.openCart')}>
+          <Button variant="ghost" className="relative px-2 py-2" onClick={onOpenCartDrawer} aria-label={t('header.openCart')}>
             <CartIcon />
+            {count > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white" aria-hidden="true">
+                {count > 9 ? '9+' : count}
+              </span>
+            )}
           </Button>
         </div>
       </div>

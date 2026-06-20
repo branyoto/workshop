@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import { useCart } from '../../cart/CartContext';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
 import { getThumbnailUrl } from '../cms/imageUrl';
@@ -14,12 +15,19 @@ export interface ItemCardProps {
 export function ItemCard({ item }: Readonly<ItemCardProps>) {
   const { t, i18n } = useTranslation();
   const l = useLocalize();
+  const { addItem, items: cartItems } = useCart();
   const title = l(item.title);
   const thumbnailUrl = getThumbnailUrl(item.id);
   const priceLabel = new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', {
     style: 'currency',
     currency: 'EUR',
   }).format(item.price);
+
+  const inCart = cartItems.some(ci => ci.id === item.id);
+
+  const handleAddToCart = () => {
+    addItem({ id: item.id, titleSnapshot: title, priceSnapshot: item.price, thumbnailUrl });
+  };
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md">
@@ -62,8 +70,14 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
         <div className="mt-auto flex items-center justify-between gap-2">
           <span className="text-sm font-semibold text-gray-900">{priceLabel}</span>
           {item.available && (
-            <Button variant="secondary" className="px-2 py-1 text-xs" aria-label={`${t('pages.catalog.addToCart')} — ${title}`}>
-              {t('pages.catalog.addToCart')}
+            <Button
+              variant={inCart ? 'ghost' : 'secondary'}
+              className="px-2 py-1 text-xs"
+              aria-label={`${t('pages.catalog.addToCart')} — ${title}`}
+              onClick={handleAddToCart}
+              disabled={inCart}
+            >
+              {inCart ? t('pages.catalog.inCart') : t('pages.catalog.addToCart')}
             </Button>
           )}
         </div>
