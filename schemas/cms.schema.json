@@ -35,6 +35,10 @@
       "type": "object",
       "additionalProperties": { "$ref": "#/$defs/localizedText" }
     },
+    "colors": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/localizedText" }
+    },
     "contact": { "$ref": "#/$defs/contactContent" },
     "legalLinks": {
       "type": "array",
@@ -120,7 +124,7 @@
             "dimension": { "type": "string" },
             "colors": {
               "type": "array",
-              "items": { "$ref": "#/$defs/localizedText" }
+              "items": { "type": "string" }
             },
             "weight": { "type": "string" },
             "material": { "type": "string" }

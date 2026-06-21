@@ -2,14 +2,22 @@ import clsx from 'clsx';
 import { useFilters } from '../useFilters';
 import { useTranslation } from 'react-i18next';
 import { FilterSection } from '../FilterSection';
+import { useCms } from '../../../../services/providers/cms/useCms';
+import { useLocalize } from '../../../../services/providers/cms/useLocalize';
+import type { Item } from '../../../../services/providers/cms/types';
+import { uniqueTags } from '../../utils';
 
 export interface TagFilterProps {
-  tags: string[];
+  items: Item[];
 }
 
-export function TagFilter({ tags }: Readonly<TagFilterProps>) {
+export function TagFilter({ items }: Readonly<TagFilterProps>) {
   const { filters, toggleTag } = useFilters();
+  const { tags: cmsTags } = useCms();
   const { t } = useTranslation();
+  const l = useLocalize();
+
+  const tags = uniqueTags(items, cmsTags, l);
 
   if (!tags.length) return null;
 
@@ -29,7 +37,7 @@ export function TagFilter({ tags }: Readonly<TagFilterProps>) {
                 active ? 'border-accent bg-accent text-white' : 'border-neutral/60 bg-white text-gray-700 hover:border-accent hover:text-accent',
               )}
             >
-              {tag}
+              {l(cmsTags[tag])}
             </button>
           );
         })}

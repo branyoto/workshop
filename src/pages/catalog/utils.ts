@@ -1,20 +1,30 @@
 import type { CategoryView, Item, LocalizedText } from '../../services/providers/cms/types';
 import type { LocalizeText } from '../../services/providers/cms/useLocalize';
 
-export function uniqueColors(items: Item[], localize: LocalizeText): LocalizedText[] {
-  const seen = [];
-  for (const item of items) {
-    for (const color of item.characteristics?.colors ?? []) seen.push(color);
+function uniqueLocalized(values: string[], localizedTexts: Record<string, LocalizedText>, l: LocalizeText): string[] {
+  const seen = new Set<string>();
+  for (const value of values) {
+    if (localizedTexts[value]) {
+      seen.add(value);
+    }
   }
-  return seen.filter((item, i, items) => items.findIndex(x => x.fr === item.fr) === i).sort((a, b) => localize(a).localeCompare(localize(b)));
+  return [...seen].sort((a, b) => l(localizedTexts[a]).localeCompare(l(localizedTexts[b])));
 }
 
-export function uniqueTags(items: Item[]): string[] {
-  const seen = new Set<string>();
-  for (const item of items) {
-    for (const tag of item.tags) seen.add(tag);
-  }
-  return [...seen].sort((a, b) => a.localeCompare(b));
+export function uniqueColors(items: Item[], colors: Record<string, LocalizedText>, l: LocalizeText): string[] {
+  return uniqueLocalized(
+    items.flatMap(item => item.characteristics?.colors ?? []),
+    colors,
+    l,
+  );
+}
+
+export function uniqueTags(items: Item[], tags: Record<string, LocalizedText>, l: LocalizeText): string[] {
+  return uniqueLocalized(
+    items.flatMap(item => item.tags),
+    tags,
+    l,
+  );
 }
 
 export function collectTags(category: CategoryView): string[] {

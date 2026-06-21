@@ -236,9 +236,7 @@
         "animal"
       ],
       "characteristics": {
-        "colors": [
-          { "fr": "Bleu", "en": "Blue" }
-        ]
+        "colors": ["blue"]
       },
       "available": true
     },
@@ -255,10 +253,7 @@
         "christmas"
       ],
       "characteristics": {
-        "colors": [
-          { "fr": "Noir", "en": "Black" },
-          { "fr": "Blanc", "en": "White" }
-        ]
+        "colors": ["black", "white"]
       },
       "available": true
     },
@@ -275,10 +270,7 @@
         "christmas"
       ],
       "characteristics": {
-        "colors": [
-          { "fr": "Bleu", "en": "Blue" },
-          { "fr": "Blanc", "en": "White" }
-        ]
+        "colors": ["blue", "white"]
       },
       "available": true
     },
@@ -490,18 +482,6 @@
       "id": "ami-poulpe-bleu",
       "title": {
         "fr": "Amigurumi poulpe bleu"
-      },
-      "price": 0,
-      "tags": [
-        "amigurumi",
-        "crochet"
-      ],
-      "available": true
-    },
-    {
-      "id": "ami-poulpe-cyan",
-      "title": {
-        "fr": "Amigurumi poulpe cyan"
       },
       "price": 0,
       "tags": [
@@ -2407,7 +2387,7 @@
       "price": 0,
       "tags": [
         "accessory",
-        "sac"
+        "bag"
       ],
       "available": true
     },
@@ -2736,27 +2716,33 @@
   ],
   "tags": {
     "animal": {"fr": "Animaux", "en": "Animals"},
-    "accessory": {"fr":  "Accessoires", "en": "Accessories" },
-    "amigurumi":  {"fr":  "Amigurumis", "en": "Amigurumi" },
-    "baby": {"fr":  "Bébé", "en": "Baby" },
-    "bag":  {"fr":  "Sac & Panier", "en": "Bag" },
-    "bath": {"fr":  "Bain", "en": "Bath" },
-    "christmas":  {"fr":  "Noël", "en": "Christmas" },
-    "clothing": {"fr":  "Vêtements", "en": "Clothing" },
-    "crochet":  {"fr":  "Crochet", "en": "Crochet" },
-    "decoration": {"fr":  "Décorations", "en": "Decoration" },
-    "diaper-cake":  {"fr":  "Gâteau de couche", "en": "Diaper-cake" },
-    "dreamcatcher": {"fr":  "Attrape-rêves", "en": "Dreamcatcher" },
-    "earrings":  {"fr":  "Boucle d'oreille", "en": "Earrings" },
-    "scrunchy": {"fr":  "Chouchou", "en": "Scrunchy" },
-    "halloween":  {"fr":  "Halloween", "en": "Halloween" },
-    "kitchen": {"fr":  "Cuisine", "en": "Kitchen" },
-    "jewellery":  {"fr":  "Bijoux", "en": "Jewellery" },
-    "keychain": {"fr":  "Porte-clé", "en": "Keychain" },
-    "pacifier-clip": {"fr":  "Attache tétines", "en": "Pacifier-clip" },
-    "rattle": {"fr":  "Hochet", "en": "Rattle" },
-    "suncatcher":  {"fr":  "Attrape-soleil", "en": "Suncatcher" },
-    "wall-hanging": {"fr":  "Support mural", "en": "Wall-hanging" }
+    "accessory": {"fr": "Accessoires", "en": "Accessories" },
+    "amigurumi":  {"fr": "Amigurumis", "en": "Amigurumi" },
+    "baby": {"fr": "Bébé", "en": "Baby" },
+    "bag":  {"fr": "Sac & Panier", "en": "Bag" },
+    "bath": {"fr": "Bain", "en": "Bath" },
+    "christmas":  {"fr": "Noël", "en": "Christmas" },
+    "clothing": {"fr": "Vêtements", "en": "Clothing" },
+    "crochet":  {"fr": "Crochet", "en": "Crochet" },
+    "decoration": {"fr": "Décorations", "en": "Decoration" },
+    "diaper-cake":  {"fr": "Gâteau de couche", "en": "Diaper-cake" },
+    "dreamcatcher": {"fr": "Attrape-rêves", "en": "Dreamcatcher" },
+    "earrings":  {"fr": "Boucle d'oreille", "en": "Earrings" },
+    "scrunchy": {"fr": "Chouchou", "en": "Scrunchy" },
+    "halloween":  {"fr": "Halloween", "en": "Halloween" },
+    "kitchen": {"fr": "Cuisine", "en": "Kitchen" },
+    "jewellery":  {"fr": "Bijoux", "en": "Jewellery" },
+    "keychain": {"fr": "Porte-clé", "en": "Keychain" },
+    "pacifier-clip": {"fr": "Attache tétines", "en": "Pacifier-clip" },
+    "rattle": {"fr": "Hochet", "en": "Rattle" },
+    "suncatcher":  {"fr": "Attrape-soleil", "en": "Suncatcher" },
+    "wall-hanging": {"fr": "Support mural", "en": "Wall-hanging" }
+  },
+  "colors": {
+    "blue": {"fr": "Bleu", "en": "Blue"},
+    "white": {"fr": "Blanc", "en": "White"},
+    "black": {"fr": "Noir", "en": "Black"},
+    "red": {"fr": "Rouge", "en": "Red"}
   },
   "contact": {
     "bio": {

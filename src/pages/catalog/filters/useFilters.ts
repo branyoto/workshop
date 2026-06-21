@@ -1,7 +1,5 @@
 import { useSearchParams } from 'react-router';
-import type { Item, LocalizedText } from '../../../services/providers/cms/types';
 import { useMemo } from 'react';
-import type { LocalizeText } from '../../../services/providers/cms/useLocalize';
 
 export interface Filters {
   minPrice: number | null;
@@ -9,22 +7,6 @@ export interface Filters {
   colors: string[];
   tags: string[];
   available: boolean;
-}
-
-export function applyFilters(items: Item[], filters: Filters): Item[] {
-  return items.filter(item => {
-    if (filters.minPrice !== null && item.price < filters.minPrice) return false;
-    if (filters.maxPrice !== null && item.price > filters.maxPrice) return false;
-    if (filters.available && !item.available) return false;
-    if (filters.colors.length > 0) {
-      const colors = item.characteristics?.colors?.flatMap(c => [c.fr.toLowerCase(), c.en?.toLowerCase()]).filter(Boolean) ?? [];
-      if (!filters.colors.some(c => colors.includes(c.toLowerCase()))) return false;
-    }
-    if (filters.tags.length > 0) {
-      if (!filters.tags.some(t => item.tags.includes(t))) return false;
-    }
-    return true;
-  });
 }
 
 function patch(prev: URLSearchParams, updater: (next: URLSearchParams) => void): URLSearchParams {
@@ -67,22 +49,20 @@ export function useFilters() {
       setMaxPrice: (v: number | null) =>
         setSearchParams(p => patch(p, n => (v === null ? n.delete('maxPrice') : n.set('maxPrice', String(v)))), { replace: true }),
       setAvailable: (v: boolean) => setSearchParams(p => patch(p, n => (v ? n.set('available', 'true') : n.delete('available')))),
-      toggleColor: (color: LocalizedText, l: LocalizeText) =>
+      toggleColor: (color: string) =>
         setSearchParams(p =>
           patch(p, search => {
             const cur = search.getAll('color');
             search.delete('color');
-            const colorValues = Object.values(color);
-            const newColors = colorValues.some(c => cur.includes(c)) ? cur.filter(c => !colorValues.includes(c)) : [...cur, l(color)];
-            newColors.forEach(c => search.append('color', c));
+            (cur.includes(color) ? cur.filter(c => c !== color) : [...cur, color]).forEach(t => search.append('color', t));
           }),
         ),
       toggleTag: (tag: string) =>
         setSearchParams(p =>
-          patch(p, n => {
-            const cur = n.getAll('tag');
-            n.delete('tag');
-            (cur.includes(tag) ? cur.filter(t => t !== tag) : [...cur, tag]).forEach(t => n.append('tag', t));
+          patch(p, search => {
+            const cur = search.getAll('tag');
+            search.delete('tag');
+            (cur.includes(tag) ? cur.filter(t => t !== tag) : [...cur, tag]).forEach(t => search.append('tag', t));
           }),
         ),
       clearAll: () => setSearchParams(new URLSearchParams()),

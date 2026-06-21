@@ -5,7 +5,7 @@ export function getImageBaseUrl(): string {
 }
 
 export function getCategoryImageUrl(id: string): string {
-  return `${getImageBaseUrl()}/categories/${id}_thumbnail}.png`;
+  return `${getImageBaseUrl()}/categories/${id}_thumbnail.png`;
 }
 
 export function getProductImageUrl(id: string, index: number = 1): string {

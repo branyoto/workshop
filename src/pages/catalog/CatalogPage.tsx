@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useCms } from '../../services/providers/cms/useCms';
 import { Breadcrumbs } from './breadcrumbs/Breadcrumbs';
-import { applyFilters, useFilters } from './filters/useFilters';
+import { useFilters } from './filters/useFilters';
 import { CategoryHeader } from './CategoryHeader';
 import { LoadMoreSentinel } from './LoadMoreSentinel';
 import { ItemGrid } from './item/ItemGrid';
@@ -12,6 +12,7 @@ import { MobileFilterButton } from './mobile/MobileFilterButton';
 import { DesktopFilterDrawer } from './desktop/DesktopFilterDrawer';
 import { CatalogNotFound } from './CatalogNotFound';
 import { collectTags, resolveCategory } from './utils';
+import { applyFilters } from './filters/utils';
 
 const PAGE_SIZE = 12;
 
