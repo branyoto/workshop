@@ -16,8 +16,8 @@ export function applyFilters(items: Item[], filters: Filters): Item[] {
     if (filters.maxPrice !== null && item.price > filters.maxPrice) return false;
     if (filters.available && !item.available) return false;
     if (filters.colors.length > 0) {
-      const color = (item.characteristics?.color ?? '').toLowerCase();
-      if (!filters.colors.some(c => color === c.toLowerCase())) return false;
+      const colors = item.characteristics?.colors?.map(c => c.toLowerCase()) ?? [];
+      if (!filters.colors.some(c => colors.includes(c.toLowerCase()))) return false;
     }
     if (filters.tags.length > 0) {
       if (!filters.tags.some(t => item.tags.includes(t))) return false;

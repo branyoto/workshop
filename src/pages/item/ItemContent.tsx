@@ -2,8 +2,6 @@ import { getItemImageUrl, getThumbnailUrl } from '../../utils/imageUrl';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs } from 'swiper/modules';
 import { Badge } from '../../common/Badge';
-import { Link } from 'react-router';
-import { categoryUrl } from '../../routes/routePaths';
 import { Button } from '../../common/Button';
 import { useTranslation } from 'react-i18next';
 import { useLocalize } from '../../services/providers/cms/useLocalize';
@@ -11,7 +9,9 @@ import { useCms } from '../../services/providers/cms/useCms';
 import { useCart } from '../../services/providers/cart/useCart';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
-import type { CharacteristicKey, Item } from '../../services/providers/cms/types';
+import type { Item } from '../../services/providers/cms/types';
+import { FilterChip } from './FilterChip';
+import { ItemCharacteristic } from './characteristics/ItemCharacteristic';
 
 const MAX_GALLERY_IMAGES = 5;
 
@@ -19,8 +19,6 @@ function useGalleryImages(itemId: string): string[] {
   // Try up to MAX_GALLERY_IMAGES; caller removes failed ones
   return Array.from({ length: MAX_GALLERY_IMAGES }, (_, i) => getItemImageUrl(itemId, i + 1));
 }
-
-const CHARACTERISTIC_KEYS: CharacteristicKey[] = ['dimension', 'color', 'weight', 'material'];
 
 export interface ItemContentProps {
   item: Item;
@@ -124,20 +122,10 @@ export function ItemContent({ item }: Readonly<ItemContentProps>) {
             <div className="rounded-xl border border-neutral/40 p-4">
               <h3 className="mb-2 text-sm font-semibold text-gray-900">{t('pages.item.characteristics')}</h3>
               <dl className="grid grid-cols-2 gap-2 text-sm">
-                {CHARACTERISTIC_KEYS.map(key => {
-                  const val = item.characteristics?.[key];
-                  if (!val) return null;
-                  return (
-                    <>
-                      <dt key={`dt-${key}`} className="text-gray-500">
-                        {t(`pages.item.char.${key}`)}
-                      </dt>
-                      <dd key={`dd-${key}`} className="font-medium text-gray-900">
-                        {val}
-                      </dd>
-                    </>
-                  );
-                })}
+                <ItemCharacteristic item={item} itemKey="dimension" />
+                <ItemCharacteristic item={item} itemKey="material" />
+                <ItemCharacteristic item={item} itemKey="weight" />
+                <ItemCharacteristic item={item} itemKey="colors" />
               </dl>
             </div>
           )}
@@ -146,13 +134,7 @@ export function ItemContent({ item }: Readonly<ItemContentProps>) {
           {(categoryChips.length > 0 || otherTags.length > 0) && (
             <div className="flex flex-wrap gap-2">
               {categoryChips.map(c => (
-                <Link
-                  key={c.id}
-                  to={`${categoryUrl(c.id)}?tag=${encodeURIComponent(c.tag)}`}
-                  className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent hover:bg-accent/20"
-                >
-                  {c.name}
-                </Link>
+                <FilterChip label={c.name} category={c.id} value={c.tag} key={c.id} filter="tag" />
               ))}
               {otherTags.map(tag => (
                 <span

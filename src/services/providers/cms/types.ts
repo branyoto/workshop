@@ -1,9 +1,4 @@
-export type Locale = 'fr' | 'en';
-
-/** Bilingual text fields used across CMS content. */
 export type LocalizedText = { fr: string; en?: string };
-
-export type CharacteristicKey = 'dimension' | 'color' | 'weight' | 'material';
 
 export type SocialLinkType = 'instagram' | 'facebook' | 'website';
 
@@ -13,7 +8,7 @@ export type CmsSettings = { artistEmail: string; adminEmails: string[]; socialLi
 
 export type CategoryView = { id: string; name: LocalizedText; description?: LocalizedText; tags: string[]; children?: CategoryView[] };
 
-export type ItemCharacteristics = Partial<Record<CharacteristicKey, string>>;
+export type ItemCharacteristics = { dimension?: string; colors?: string[]; weight?: number; material?: string };
 
 export type Item = {
   id: string;

@@ -134,7 +134,7 @@
       "notFound": { "title": "Article introuvable", "description": "L'article demandé n'existe pas ou n'est plus disponible." },
       "characteristics": "Caractéristiques",
       "soldOut": "Cet article n'est plus disponible.",
-      "char": { "dimension": "Dimensions", "color": "Couleur", "weight": "Poids", "material": "Matière" }
+      "char": { "dimension": "Dimensions", "colors": "Couleurs", "weight": "Poids", "material": "Matière" }
     }
   }
 }

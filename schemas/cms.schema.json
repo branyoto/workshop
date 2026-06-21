@@ -118,7 +118,10 @@
           "additionalProperties": false,
           "properties": {
             "dimension": { "type": "string" },
-            "color": { "type": "string" },
+            "colors": {
+              "type": "array",
+              "items": { "type": "string"}
+            },
             "weight": { "type": "string" },
             "material": { "type": "string" }
           }

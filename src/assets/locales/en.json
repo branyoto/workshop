@@ -123,7 +123,7 @@
       "notFound": { "title": "Item not found", "description": "The requested item does not exist or is no longer available." },
       "characteristics": "Characteristics",
       "soldOut": "This item is no longer available.",
-      "char": { "dimension": "Dimensions", "color": "Color", "weight": "Weight", "material": "Material" }
+      "char": { "dimension": "Dimensions", "colors": "Colors", "weight": "Weight", "material": "Material" }
     }
   }
 }

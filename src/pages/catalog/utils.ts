@@ -3,8 +3,7 @@ import type { CategoryView, Item } from '../../services/providers/cms/types';
 export function uniqueColors(items: Item[]): string[] {
   const seen = new Set<string>();
   for (const item of items) {
-    const color = item.characteristics?.color;
-    if (color) seen.add(color);
+    for (const color of item.characteristics?.colors ?? []) seen.add(color);
   }
   return [...seen].sort((a, b) => a.localeCompare(b));
 }
