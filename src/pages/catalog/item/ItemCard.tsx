@@ -7,18 +7,19 @@ import { getThumbnailUrl } from '../../../utils/image';
 import { useLocalize } from '../../../services/providers/cms/useLocalize';
 import type { Item } from '../../../services/providers/cms/types';
 import { itemUrl } from '../../../routes/routePaths';
+import { useFormatPrice } from '../../../services/i18n/formatPrice';
 
 export interface ItemCardProps {
   item: Item;
 }
 
 export function ItemCard({ item }: Readonly<ItemCardProps>) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const l = useLocalize();
   const { addItem, items: cartItems } = useCart();
   const title = l(item.title);
   const thumbnailUrl = getThumbnailUrl(item.id);
-  const priceLabel = new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(item.price);
+  const formatPrice = useFormatPrice();
 
   const inCart = cartItems.some(ci => ci.id === item.id);
 
@@ -68,7 +69,7 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
         </div>
 
         <div className="mt-auto flex items-center justify-between gap-2">
-          <span className="text-sm font-semibold text-gray-900">{priceLabel}</span>
+          <span className="text-sm font-semibold text-gray-900">{formatPrice(item.price)}</span>
           {item.available && (
             <Button
               variant={inCart ? 'ghost' : 'secondary'}
