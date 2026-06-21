@@ -54,7 +54,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
-            className="min-h-[44px] min-w-[44px] px-2 py-2 md:hidden"
+            className="min-h-[44px] min-w-[44px] px-2 py-2"
             onClick={onOpenCategoryDrawer}
             aria-label={t('header.openCategoryMenu')}
           >
@@ -90,14 +90,6 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            className="hidden min-h-[44px] min-w-[44px] px-2 py-2 md:inline-flex"
-            onClick={onOpenCategoryDrawer}
-            aria-label={t('header.openCategoryMenu')}
-          >
-            <MenuIcon />
-          </Button>
           <Button
             variant="ghost"
             className="relative min-h-[44px] min-w-[44px] px-2 py-2"
