@@ -1,14 +1,14 @@
-import { categoryUrl } from '../../routes/routePaths';
+import { categoryUrl } from '../routes/routePaths';
 import { Link } from 'react-router';
 
-export interface FilterChipProps {
+export interface CatalogFilterChipProps {
   label: string;
   category?: string;
   value: string;
   filter: string;
 }
 
-export function FilterChip({ label, category, value, filter }: Readonly<FilterChipProps>) {
+export function CatalogFilterChip({ label, category, value, filter }: Readonly<CatalogFilterChipProps>) {
   return (
     <Link
       to={`${categoryUrl(category)}?${filter}=${encodeURIComponent(value)}`}

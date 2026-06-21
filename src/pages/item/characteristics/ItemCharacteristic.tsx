@@ -1,6 +1,6 @@
 import type { Item, ItemCharacteristics } from '../../../services/providers/cms/types';
 import { useTranslation } from 'react-i18next';
-import { FilterChip } from '../FilterChip';
+import { CatalogFilterChip } from '../../../common/CatalogFilterChip';
 import { useLocalize } from '../../../services/providers/cms/useLocalize';
 
 export interface ItemCharacteristicProps {
@@ -22,7 +22,7 @@ export function ItemCharacteristic({ item, itemKey }: Readonly<ItemCharacteristi
         {typeof characteristic === 'object' ?
           characteristic.map(c => {
             const localizedColor = l(c);
-            return <FilterChip key={localizedColor} label={localizedColor} value={localizedColor} filter="color" />;
+            return <CatalogFilterChip key={localizedColor} label={localizedColor} value={localizedColor} filter="color" />;
           })
         : characteristic}
       </dd>

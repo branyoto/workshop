@@ -10,7 +10,7 @@ import { useCart } from '../../services/providers/cart/useCart';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import type { Item } from '../../services/providers/cms/types';
-import { FilterChip } from './FilterChip';
+import { CatalogFilterChip } from '../../common/CatalogFilterChip';
 import { ItemCharacteristic } from './characteristics/ItemCharacteristic';
 
 const MAX_GALLERY_IMAGES = 5;
@@ -134,7 +134,7 @@ export function ItemContent({ item }: Readonly<ItemContentProps>) {
           {(categoryChips.length > 0 || otherTags.length > 0) && (
             <div className="flex flex-wrap gap-2">
               {categoryChips.map(c => (
-                <FilterChip label={c.name} category={c.id} value={c.tag} key={c.id} filter="tag" />
+                <CatalogFilterChip label={c.name} category={c.id} value={c.tag} key={c.id} filter="tag" />
               ))}
               {otherTags.map(tag => (
                 <span
