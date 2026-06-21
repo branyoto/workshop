@@ -29,7 +29,7 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
   return (
     <article
       data-testid="item-card"
-      className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md"
+      className="group flex flex-col overflow-hidden rounded-xl border border-neutral/50 bg-white shadow-sm transition-shadow hover:shadow-md h-full"
     >
       <Link
         to={itemUrl(item.id)}

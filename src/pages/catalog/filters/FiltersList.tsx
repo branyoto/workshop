@@ -19,12 +19,11 @@ export function FiltersList({ items }: Readonly<FiltersListProps>) {
 
   return (
     <div className="space-y-5">
-      <ClearButton />
-      <div className="h-px bg-neutral/40" />
       <PriceFilter key={`${filters.minPrice}-${filters.maxPrice}`} />
       <AvailabilityFilter />
       <ColorFilter colors={colors} />
       <TagFilter tags={tags} />
+      <ClearButton />
     </div>
   );
 }
