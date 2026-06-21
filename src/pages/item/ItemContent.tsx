@@ -1,4 +1,4 @@
-import { getItemImageUrl, getThumbnailUrl } from '../../utils/imageUrl';
+import { getItemImageUrl, getThumbnailUrl } from '../../utils/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs } from 'swiper/modules';
 import { Badge } from '../../common/Badge';

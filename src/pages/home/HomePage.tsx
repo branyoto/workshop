@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import { useCart } from '../../services/providers/cart/useCart';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
-import { getThumbnailUrl } from '../../utils/imageUrl';
+import { getThumbnailUrl } from '../../utils/image';
 import { useLocalize } from '../../services/providers/cms/useLocalize';
 import { useCms } from '../../services/providers/cms/useCms';
 import { catalogUrl, categoryUrl, itemUrl } from '../../routes/routePaths';
