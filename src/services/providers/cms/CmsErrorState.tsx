@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { Button } from '../../common/Button';
-import { EmptyState } from '../../common/EmptyState';
+import { Button } from '../../../common/Button';
+import { EmptyState } from '../../../common/EmptyState';
 
 export interface CmsErrorStateProps {
   onRetry: () => void;

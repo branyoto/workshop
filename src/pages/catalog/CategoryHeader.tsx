@@ -1,7 +1,7 @@
 import { CategoryBanner } from './CategoryBanner';
 import { useTranslation } from 'react-i18next';
-import { useLocalize } from '../cms/useLocalize';
-import type { CategoryView } from '../cms/types';
+import { useLocalize } from '../../services/providers/cms/useLocalize';
+import type { CategoryView } from '../../services/providers/cms/types';
 import { useMemo } from 'react';
 
 export interface CategoryHeaderProps {

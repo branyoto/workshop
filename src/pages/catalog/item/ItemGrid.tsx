@@ -1,4 +1,4 @@
-import type { Item } from '../../cms/types';
+import type { Item } from '../../../services/providers/cms/types';
 import { ItemCard } from './ItemCard';
 import { EmptyState } from '../../../common/EmptyState';
 import { useTranslation } from 'react-i18next';

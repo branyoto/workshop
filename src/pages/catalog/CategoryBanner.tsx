@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getThumbnailUrl } from '../cms/imageUrl';
+import { getThumbnailUrl } from '../../utils/imageUrl';
 
 export interface CategoryBannerProps {
   categoryId: string;

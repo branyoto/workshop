@@ -1,4 +1,4 @@
-import { type RefObject, useEffect, useRef, useState } from 'react';
+import { type RefObject, useEffect, useRef } from 'react';
 
 interface AddressInputProps {
   value: string;
@@ -11,6 +11,7 @@ interface AddressInputProps {
 }
 
 declare global {
+  // noinspection ES6ConvertVarToLetConst mandatory for global
   var google: {
     maps?: {
       places?: {
@@ -33,7 +34,6 @@ export function AddressInput({
   'aria-describedby': ariaDescribedBy,
 }: Readonly<AddressInputProps>) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [mapsAvailable, setMapsAvailable] = useState(false);
 
   useEffect(() => {
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined;
@@ -47,13 +47,11 @@ export function AddressInput({
       script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
       script.async = true;
       script.onload = () => initAutocomplete();
-      script.onerror = () => setMapsAvailable(false);
       document.head.appendChild(script);
     }
 
     function initAutocomplete() {
       if (!inputRef.current || !globalThis.google?.maps?.places) return;
-      setMapsAvailable(true);
       const autocomplete = new globalThis.google.maps.places.Autocomplete(inputRef.current, {
         componentRestrictions: { country: 'fr' },
         fields: ['formatted_address'],

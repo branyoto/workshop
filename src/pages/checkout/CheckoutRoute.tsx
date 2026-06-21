@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useCart } from '../../services/providers/cart/useCart';
 import { Snackbar } from '../../common/Snackbar';
 import { Button } from '../../common/Button';
-import { useCms } from '../cms/useCms';
-import { generateOrderNumber, saveOrderToHistory } from '../../services/orders/orderAdapter';
+import { useCms } from '../../services/providers/cms/useCms';
+import { generateOrderNumber, saveOrderToHistory } from '../../utils/orderAdapter';
 import { createEmailJsAdapter } from '../../services/email/emailjsAdapter';
 import type { CheckoutFormData } from './schema';
 import { CheckoutPage } from './CheckoutPage';
@@ -12,20 +12,19 @@ import { OrderConfirmation } from './OrderConfirmation';
 
 export function CheckoutRoute() {
   const { t } = useTranslation();
-  const { data: cms } = useCms();
+  const { settings } = useCms();
   const { items, total, clearCart } = useCart();
   const [confirmedOrder, setConfirmedOrder] = useState<string | null>(null);
   const [errorOpen, setErrorOpen] = useState(false);
   const [pending, setPending] = useState(false);
 
   const handleSubmit = async (data: CheckoutFormData) => {
-    if (!cms) return;
     setPending(true);
     const orderNumber = generateOrderNumber();
     const adapter = createEmailJsAdapter();
 
     try {
-      await adapter.submit({ orderNumber, items, total, customer: data, artistEmail: cms.settings.artistEmail });
+      await adapter.submit({ orderNumber, items, total, customer: data, artistEmail: settings.artistEmail });
       saveOrderToHistory(orderNumber);
       clearCart();
       setConfirmedOrder(orderNumber);

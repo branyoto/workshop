@@ -1,26 +1,23 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { useForm } from '@tanstack/react-form';
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../common/Button';
 import { Snackbar } from '../../common/Snackbar';
-import { useCms } from '../cms/useCms';
-import { useLocalize } from '../cms/useLocalize';
+import { useCms } from '../../services/providers/cms/useCms';
+import { useLocalize } from '../../services/providers/cms/useLocalize';
 
-const contactSchema = z.object({
-  name: z.string().min(1, 'required'),
-  email: z.string().email('invalidEmail'),
-  message: z.string().min(1, 'required'),
-});
+const contactSchema = z.object({ name: z.string().min(1, 'required'), email: z.email('invalidEmail'), message: z.string().min(1, 'required') });
 
-type ContactFormData = z.infer<typeof contactSchema>;
+// @ts-expect-error futur
+type ContactFormData = z.infer<typeof contactSchema>; // eslint-disable-line @typescript-eslint/no-unused-vars
 
 interface FieldProps {
   label: string;
   error?: string;
   id: string;
   required?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function Field({ label, error, id, required, children }: Readonly<FieldProps>) {
@@ -43,16 +40,15 @@ function Field({ label, error, id, required, children }: Readonly<FieldProps>) {
 export function ContactPage() {
   const { t } = useTranslation();
   const l = useLocalize();
-  const { data: cms } = useCms();
+  const { contact, settings } = useCms();
   const [success, setSuccess] = useState(false);
   const [errorOpen, setErrorOpen] = useState(false);
   const [pending, setPending] = useState(false);
 
   const form = useForm({
-    defaultValues: { name: '', email: '', message: '' } as ContactFormData,
+    defaultValues: { name: '', email: '', message: '' },
     validators: { onChange: contactSchema },
     onSubmit: async ({ value }) => {
-      if (!cms) return;
       setPending(true);
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
       const contactTemplateId = (import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID ?? import.meta.env.VITE_EMAILJS_TEMPLATE_ID) as string;
@@ -63,7 +59,7 @@ export function ContactPage() {
           await emailjs.default.send(
             serviceId,
             contactTemplateId,
-            { to_email: cms.settings.artistEmail, from_name: value.name, from_email: value.email, message: value.message },
+            { to_email: settings.artistEmail, from_name: value.name, from_email: value.email, message: value.message },
             publicKey,
           );
         }
@@ -76,7 +72,7 @@ export function ContactPage() {
     },
   });
 
-  const sortedMarkets = cms ? [...cms.contact.markets].sort((a, b) => a.date.localeCompare(b.date)) : [];
+  const sortedMarkets = [...contact.markets].sort((a, b) => a.date.localeCompare(b.date));
   const futureMarkets = sortedMarkets.filter(m => m.date >= new Date().toISOString().slice(0, 10));
 
   return (
@@ -89,11 +85,11 @@ export function ContactPage() {
         {/* Left: info */}
         <div className="flex flex-col gap-8 lg:w-1/2">
           {/* Bio */}
-          {cms?.contact.bio && (
+          {contact.bio && (
             <div>
               <h2 className="mb-2 text-lg font-semibold text-gray-900">{t('pages.contact.bio')}</h2>
-              <p className="text-gray-700">{l(cms.contact.bio)}</p>
-              {cms.contact.categoriesOverview && <p className="mt-2 text-sm text-gray-600">{l(cms.contact.categoriesOverview)}</p>}
+              <p className="text-gray-700">{l(contact.bio)}</p>
+              {contact.categoriesOverview && <p className="mt-2 text-sm text-gray-600">{l(contact.categoriesOverview)}</p>}
             </div>
           )}
 
@@ -103,12 +99,12 @@ export function ContactPage() {
             {futureMarkets.length === 0 ?
               <p className="text-sm text-gray-500">{t('pages.contact.noMarkets')}</p>
             : <ul className="flex flex-col gap-3">
-                {futureMarkets.map((market, i) => {
+                {futureMarkets.map(market => {
                   const dateStr = new Intl.DateTimeFormat(t('pages.contact.locale'), { year: 'numeric', month: 'long', day: 'numeric' }).format(
                     new Date(market.date),
                   );
                   return (
-                    <li key={i} className="rounded-lg border border-neutral/40 p-3">
+                    <li key={market.date} className="rounded-lg border border-neutral/40 p-3">
                       <p className="text-sm font-semibold text-gray-900">{dateStr}</p>
                       <p className="text-sm text-gray-700">{l(market.location)}</p>
                       {market.description && <p className="mt-1 text-xs text-gray-500">{l(market.description)}</p>}
@@ -128,18 +124,18 @@ export function ContactPage() {
           <div>
             <h2 className="mb-2 text-lg font-semibold text-gray-900">{t('pages.contact.social')}</h2>
             <ul className="flex flex-col gap-1">
-              {cms?.settings.artistEmail && (
+              {settings.artistEmail && (
                 <li>
                   <a
-                    href={`mailto:${cms.settings.artistEmail}`}
+                    href={`mailto:${settings.artistEmail}`}
                     className="text-sm text-accent hover:underline"
                     aria-label={t('pages.contact.emailLabel')}
                   >
-                    ✉ {cms.settings.artistEmail}
+                    ✉ {settings.artistEmail}
                   </a>
                 </li>
               )}
-              {cms?.settings.socialLinks.map(link => (
+              {settings.socialLinks.map(link => (
                 <li key={link.url}>
                   <a
                     href={link.url}
@@ -156,13 +152,13 @@ export function ContactPage() {
           </div>
 
           {/* Map */}
-          {(cms?.settings.mapUrl || cms?.settings.address) && (
+          {(settings.mapUrl || settings.address) && (
             <div>
               <h2 className="mb-2 text-lg font-semibold text-gray-900">{t('pages.contact.location')}</h2>
-              {cms.settings.address && <p className="text-sm text-gray-700">{l(cms.settings.address)}</p>}
-              {cms.settings.mapUrl && (
+              {settings.address && <p className="text-sm text-gray-700">{l(settings.address)}</p>}
+              {settings.mapUrl && (
                 <a
-                  href={cms.settings.mapUrl}
+                  href={settings.mapUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-1 inline-flex items-center text-sm text-accent hover:underline"
@@ -187,7 +183,7 @@ export function ContactPage() {
               data-testid="contact-form"
               onSubmit={e => {
                 e.preventDefault();
-                form.handleSubmit();
+                void form.handleSubmit();
               }}
               noValidate
             >

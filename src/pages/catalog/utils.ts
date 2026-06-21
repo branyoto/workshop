@@ -1,4 +1,4 @@
-import type { CategoryView, Item } from '../cms/types';
+import type { CategoryView, Item } from '../../services/providers/cms/types';
 
 export function uniqueColors(items: Item[]): string[] {
   const seen = new Set<string>();

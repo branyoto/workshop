@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Spinner } from '../../common/Spinner';
+import { Spinner } from '../../../common/Spinner';
 
 export function CmsLoadingState() {
   const { t } = useTranslation();

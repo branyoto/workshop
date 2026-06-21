@@ -1,7 +1,7 @@
 import { FiltersList } from '../filters/FiltersList';
 import { Drawer } from '../../../common/Drawer';
 import { useTranslation } from 'react-i18next';
-import type { Item } from '../../cms/types';
+import type { Item } from '../../../services/providers/cms/types';
 import type { Noop } from '../../../utils/useDisclosure';
 
 export interface MobileFilterDrawerProps {

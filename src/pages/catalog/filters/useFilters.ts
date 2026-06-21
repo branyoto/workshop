@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import type { Item } from '../../cms/types';
+import type { Item } from '../../../services/providers/cms/types';
 import { useMemo } from 'react';
 
 export interface Filters {

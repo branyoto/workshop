@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import type { CategoryView, LocalizedText } from '../../cms/types';
+import type { CategoryView, LocalizedText } from '../../../services/providers/cms/types';
 import { catalogUrl, categoryUrl, homeUrl } from '../../../routes/routePaths';
-import { useLocalize } from '../../cms/useLocalize';
+import { useLocalize } from '../../../services/providers/cms/useLocalize';
 import { useParams } from 'react-router';
 import { useMemo } from 'react';
 

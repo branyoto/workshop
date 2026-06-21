@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { useCms } from '../pages/cms/useCms';
+import { useCms } from '../services/providers/cms/useCms';
 import { contactUrl } from '../routes/routePaths';
 
 export function SiteFooter() {
   const { t } = useTranslation();
-  const { data: cms } = useCms();
-
-  const socialLinks = cms?.settings.socialLinks ?? [];
-  const legalLinks = cms?.legalLinks ?? [];
+  const {
+    settings: { artistEmail, socialLinks },
+    legalLinks,
+  } = useCms();
 
   return (
     <footer className="mt-auto border-t border-neutral/50 bg-primary/20">
@@ -29,13 +29,13 @@ export function SiteFooter() {
                 {t('footer.contactUs')}
               </Link>
             </li>
-            {cms?.settings.artistEmail && (
+            {artistEmail && (
               <li>
                 <a
-                  href={`mailto:${cms.settings.artistEmail}`}
+                  href={`mailto:${artistEmail}`}
                   className="text-sm text-gray-700 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 >
-                  {cms.settings.artistEmail}
+                  {artistEmail}
                 </a>
               </li>
             )}

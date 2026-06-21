@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useMatch } from 'react-router';
 import { Drawer } from '../common/Drawer';
-import { getThumbnailUrl } from '../pages/cms/imageUrl';
-import { useLocalize } from '../pages/cms/useLocalize';
-import type { CategoryView } from '../pages/cms/types';
-import { useCms } from '../pages/cms/useCms';
+import { getThumbnailUrl } from '../utils/imageUrl';
+import { useLocalize } from '../services/providers/cms/useLocalize';
+import type { CategoryView } from '../services/providers/cms/types';
+import { useCms } from '../services/providers/cms/useCms';
 import { catalogUrl } from '../routes/routePaths';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
@@ -89,7 +89,7 @@ export interface CategoryDrawerProps {
 export function CategoryDrawer({ open, onClose }: Readonly<CategoryDrawerProps>) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language as 'fr' | 'en';
-  const { data: cms } = useCms();
+  const { categories } = useCms();
 
   const matchCat = useMatch('/catalog/:categoryId');
   const matchSub = useMatch('/catalog/:categoryId/:subcategoryId');
@@ -116,7 +116,7 @@ export function CategoryDrawer({ open, onClose }: Readonly<CategoryDrawerProps>)
             </Link>
           </li>
         </ul>
-        {cms && <CategoryTree categories={cms.categories} locale={locale} activeId={activeId} parentPath="/catalog" depth={0} onClose={onClose} />}
+        <CategoryTree categories={categories} locale={locale} activeId={activeId} parentPath="/catalog" depth={0} onClose={onClose} />
       </nav>
     </Drawer>
   );

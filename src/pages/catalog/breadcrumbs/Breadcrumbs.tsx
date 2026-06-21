@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
-import { useCms } from '../../cms/useCms';
+import { useCms } from '../../../services/providers/cms/useCms';
 import { useBreadcrumbs } from './useBreadcrumbs';
 
 export function Breadcrumbs() {
   const { t } = useTranslation();
-  const { data } = useCms();
-  const breadcrumbs = useBreadcrumbs(data?.categories);
+  const { categories } = useCms();
+  const breadcrumbs = useBreadcrumbs(categories);
 
   return (
     <div className="mb-4">

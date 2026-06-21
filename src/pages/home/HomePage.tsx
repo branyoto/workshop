@@ -7,23 +7,22 @@ import 'swiper/css/navigation';
 import { useCart } from '../../services/providers/cart/useCart';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
-import { getThumbnailUrl } from '../cms/imageUrl';
-import { useLocalize } from '../cms/useLocalize';
-import { useCms } from '../cms/useCms';
+import { getThumbnailUrl } from '../../utils/imageUrl';
+import { useLocalize } from '../../services/providers/cms/useLocalize';
+import { useCms } from '../../services/providers/cms/useCms';
 import { catalogUrl, categoryUrl, itemUrl } from '../../routes/routePaths';
 import heroImg from '../../assets/hero.png';
+import { useFormatPrice } from '../../services/i18n/formatPrice';
 
 export function HomePage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const l = useLocalize();
-  const { data: cms } = useCms();
+  const { categories, contact, featuredCategoryIds, featuredItemIds, items } = useCms();
   const { addItem, items: cartItems } = useCart();
+  const formatPrice = useFormatPrice();
 
-  const priceLabel = (amount: number) =>
-    new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(amount);
-
-  const featuredCategories = cms ? cms.featuredCategoryIds.map(id => cms.categories.find(c => c.id === id)).filter(Boolean) : [];
-  const featuredItems = cms ? cms.featuredItemIds.map(id => cms.items.find(i => i.id === id)).filter(Boolean) : [];
+  const featuredCategories = featuredCategoryIds.map(id => categories.find(c => c.id === id)).filter(Boolean);
+  const featuredItems = featuredItemIds.map(id => items.find(i => i.id === id)).filter(Boolean);
 
   // prefers-reduced-motion
   const reducedMotion = globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -135,7 +134,7 @@ export function HomePage() {
                         {title}
                       </Link>
                       <div className="mt-auto flex items-center justify-between gap-2">
-                        <span className="text-sm font-semibold">{priceLabel(item.price)}</span>
+                        <span className="text-sm font-semibold">{formatPrice(item.price)}</span>
                         {item.available && (
                           <Button
                             variant={inCart ? 'ghost' : 'secondary'}
@@ -157,20 +156,18 @@ export function HomePage() {
       )}
 
       {/* Artist teaser */}
-      {cms?.contact.bio && (
-        <section aria-labelledby="artist-heading" className="rounded-xl bg-primary/10 px-6 py-8">
-          <h2 id="artist-heading" className="mb-2 text-xl font-semibold text-gray-900">
-            {t('pages.home.artistTeaser')}
-          </h2>
-          <p className="max-w-prose text-gray-700">
-            {l(cms.contact.bio).slice(0, 240)}
-            {l(cms.contact.bio).length > 240 ? '…' : ''}
-          </p>
-          <Link to="/contact" className="mt-4 inline-flex items-center text-sm font-medium text-accent hover:underline">
-            {t('pages.home.learnMore')} →
-          </Link>
-        </section>
-      )}
+      <section aria-labelledby="artist-heading" className="rounded-xl bg-primary/10 px-6 py-8">
+        <h2 id="artist-heading" className="mb-2 text-xl font-semibold text-gray-900">
+          {t('pages.home.artistTeaser')}
+        </h2>
+        <p className="max-w-prose text-gray-700">
+          {l(contact.bio).slice(0, 240)}
+          {l(contact.bio).length > 240 ? '…' : ''}
+        </p>
+        <Link to="/contact" className="mt-4 inline-flex items-center text-sm font-medium text-accent hover:underline">
+          {t('pages.home.learnMore')} →
+        </Link>
+      </section>
     </div>
   );
 }

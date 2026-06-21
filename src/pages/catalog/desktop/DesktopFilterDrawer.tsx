@@ -1,5 +1,5 @@
 import { FiltersList } from '../filters/FiltersList';
-import type { Item } from '../../cms/types';
+import type { Item } from '../../../services/providers/cms/types';
 
 export interface DesktopFilterDrawerProps {
   items: Item[];

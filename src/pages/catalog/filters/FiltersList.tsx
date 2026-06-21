@@ -4,7 +4,7 @@ import { ColorFilter } from './filter/ColorFilter';
 import { PriceFilter } from './filter/PriceFilter';
 import { AvailabilityFilter } from './filter/AvailabilityFilter';
 import { ClearButton } from './ClearButton';
-import type { Item } from '../../cms/types';
+import type { Item } from '../../../services/providers/cms/types';
 import { uniqueColors, uniqueTags } from '../utils';
 
 export interface FiltersListProps {
