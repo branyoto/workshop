@@ -97,7 +97,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                 label={t('pages.checkout.fields.name')}
                 id="name"
                 required
-                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0].message}`) : undefined}
               >
                 <input
                   id="name"
@@ -120,7 +120,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
               <Field
                 label={t('pages.checkout.fields.email')}
                 id="email"
-                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0].message}`) : undefined}
               >
                 <input
                   id="email"
@@ -142,7 +142,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
               <Field
                 label={t('pages.checkout.fields.phone')}
                 id="phone"
-                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0].message}`) : undefined}
               >
                 <input
                   id="phone"
@@ -165,7 +165,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                 label={t('pages.checkout.fields.address')}
                 id="address"
                 required
-                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+                error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0].message}`) : undefined}
               >
                 <AddressInput
                   id="address"

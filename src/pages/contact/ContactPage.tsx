@@ -193,7 +193,7 @@ export function ContactPage() {
                     label={t('pages.contact.fields.name')}
                     id="contact-name"
                     required
-                    error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+                    error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0].message}`) : undefined}
                   >
                     <input
                       id="contact-name"
@@ -214,7 +214,7 @@ export function ContactPage() {
                     label={t('pages.contact.fields.email')}
                     id="contact-email"
                     required
-                    error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+                    error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0].message}`) : undefined}
                   >
                     <input
                       id="contact-email"
@@ -235,7 +235,7 @@ export function ContactPage() {
                     label={t('pages.contact.fields.message')}
                     id="contact-message"
                     required
-                    error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0]}`) : undefined}
+                    error={field.state.meta.errors[0] ? t(`pages.checkout.errors.${field.state.meta.errors[0].message}`) : undefined}
                   >
                     <textarea
                       id="contact-message"
