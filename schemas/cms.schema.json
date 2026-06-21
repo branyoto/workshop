@@ -32,8 +32,8 @@
       "items": { "type": "string", "minLength": 1 }
     },
     "tags": {
-      "type": "array",
-      "items": { "type": "string", "minLength": 1 }
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/localizedText" }
     },
     "contact": { "$ref": "#/$defs/contactContent" },
     "legalLinks": {

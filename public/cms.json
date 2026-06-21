@@ -1,6 +1,6 @@
 {
   "settings": {
-    "artistEmail": "contact@atelier-boutique.fr",
+    "artistEmail": "bgc77160@gmail.com",
     "adminEmails": [],
     "socialLinks": [
       {
@@ -20,193 +20,2754 @@
   },
   "categories": [
     {
-      "id": "cat-crochet",
+      "id": "crochet",
       "name": {
         "fr": "Crochet",
         "en": "Crochet"
       },
       "description": {
-        "fr": "Peluches et accessoires faits main au crochet.",
-        "en": "Handmade crochet plushies and accessories."
+        "fr": "Créations au crochet et amigurumis.",
+        "en": "Crochet creations and amigurumi."
       },
-      "tags": ["crochet"],
+      "tags": [
+        "crochet"
+      ],
       "children": [
         {
-          "id": "cat-plushies",
+          "id": "amigurumi",
           "name": {
-            "fr": "Peluches",
-            "en": "Plushies"
+            "fr": "Amigurumis",
+            "en": "Amigurumi"
           },
-          "tags": ["crochet", "plush"]
+          "tags": [
+            "crochet",
+            "amigurumi"
+          ]
+        },
+        {
+          "id": "clothing",
+          "name": {
+            "fr": "Bonnets et accessoires crochet",
+            "en": "Crochet hats and accessories"
+          },
+          "tags": [
+            "crochet",
+            "clothing"
+          ]
         }
       ]
     },
     {
-      "id": "cat-jewellery",
+      "id": "baby",
+      "name": {
+        "fr": "Bébé",
+        "en": "Baby"
+      },
+      "description": {
+        "fr": "Gâteaux de couches, hochets, doudous et attaches tétine.",
+        "en": "Diaper cakes, rattles, comforters, and pacifier clips."
+      },
+      "tags": [
+        "baby"
+      ],
+      "children": [
+        {
+          "id": "diaper-cakes",
+          "name": {
+            "fr": "Gâteaux de couches",
+            "en": "Diaper cakes"
+          },
+          "tags": [
+            "baby",
+            "diaper-cake"
+          ]
+        },
+        {
+          "id": "rattle",
+          "name": {
+            "fr": "Hochets",
+            "en": "Rattles"
+          },
+          "tags": [
+            "baby",
+            "rattle"
+          ]
+        },
+        {
+          "id": "pacifier-clip",
+          "name": {
+            "fr": "Attaches tétine",
+            "en": "Pacifier clips"
+          },
+          "tags": [
+            "baby",
+            "pacifier-clip"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jewellery",
       "name": {
         "fr": "Bijoux",
         "en": "Jewellery"
       },
       "description": {
-        "fr": "Bracelets, boucles et colliers en perles et résine.",
-        "en": "Pearl and resin bracelets, earrings, and necklaces."
+        "fr": "Boucles d'oreilles et bijoux faits main.",
+        "en": "Handmade earrings and jewellery."
       },
-      "tags": ["jewellery"]
+      "tags": [
+        "jewellery"
+      ]
     },
     {
-      "id": "cat-diaper-cakes",
+      "id": "decoration",
       "name": {
-        "fr": "Gâteaux de couches",
-        "en": "Diaper cakes"
+        "fr": "Décoration",
+        "en": "Decoration"
       },
       "description": {
-        "fr": "Compositions décoratives pour naissances et baby showers.",
-        "en": "Decorative compositions for births and baby showers."
+        "fr": "Décorations saisonnières, attrape-rêves et supports muraux.",
+        "en": "Seasonal decorations, dreamcatchers, and wall hangings."
       },
-      "tags": ["baby", "diaper-cake"]
+      "tags": [
+        "decoration"
+      ],
+      "children": [
+        {
+          "id": "christmas",
+          "name": {
+            "fr": "Noël",
+            "en": "Christmas"
+          },
+          "tags": [
+            "decoration",
+            "christmas"
+          ]
+        },
+        {
+          "id": "halloween",
+          "name": {
+            "fr": "Halloween",
+            "en": "Halloween"
+          },
+          "tags": [
+            "decoration",
+            "halloween"
+          ]
+        },
+        {
+          "id": "dreamcatcher",
+          "name": {
+            "fr": "Attrape-rêves",
+            "en": "Dreamcatchers"
+          },
+          "tags": [
+            "decoration",
+            "dreamcatcher"
+          ]
+        },
+        {
+          "id": "suncatcher",
+          "name": {
+            "fr": "Attrape-soleil",
+            "en": "Suncatchers"
+          },
+          "tags": [
+            "decoration",
+            "suncatcher"
+          ]
+        },
+        {
+          "id": "wall-hanging",
+          "name": {
+            "fr": "Supports muraux",
+            "en": "Wall hangings"
+          },
+          "tags": [
+            "decoration",
+            "wall-hanging"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accessory",
+      "name": {
+        "fr": "Accessoires",
+        "en": "Accessories"
+      },
+      "description": {
+        "fr": "Sacs, paniers, porte-clés, chouchous et objets du quotidien.",
+        "en": "Bags, baskets, keychains, hair ties, and everyday objects."
+      },
+      "tags": [
+        "accessory"
+      ],
+      "children": [{
+        "id": "bag",
+        "name": {
+          "fr": "Sacs et paniers",
+          "en": "Bags and basket"
+        },
+        "tags": ["accessory", "bag", "basket"]
+      },
+        {
+          "id": "keychain",
+          "name": {
+            "fr": "Porte clé",
+            "en": "Keychain"
+          },
+          "tags": ["accessory", "keychain"]
+        }
+      ]
     }
   ],
   "items": [
     {
-      "id": "item-plush-bunny",
+      "id": "ami-araignee-bleu",
       "title": {
-        "fr": "Peluche lapin pastel",
-        "en": "Pastel bunny plush"
+        "fr": "Amigurumi araignée bleu"
       },
-      "description": {
-        "fr": "Lapin au crochet en coton doux, idéal pour une chambre d'enfant.",
-        "en": "Soft cotton crochet bunny, perfect for a nursery."
-      },
-      "price": 28,
-      "tags": ["crochet", "plush", "baby"],
-      "available": true,
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet",
+        "animal"
+      ],
       "characteristics": {
-        "material": "Coton",
-        "colors": [{"fr": "Rose poudré", "en": "Antique Pink"}]
-      }
+        "colors": [
+          { "fr": "Bleu", "en": "Blue" }
+        ]
+      },
+      "available": true
     },
     {
-      "id": "item-plush-fox",
+      "id": "ami-bonhomme-neige",
       "title": {
-        "fr": "Peluche renard",
-        "en": "Fox plush"
+        "fr": "Amigurumi bonhomme neige"
       },
-      "price": 32,
-      "tags": ["crochet", "plush"],
-      "available": true,
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet",
+        "decoration",
+        "christmas"
+      ],
       "characteristics": {
-        "material": "Coton",
-        "colors": [{"fr": "Orange et blanc", "en": "Orange and white"}]
-      }
+        "colors": [
+          { "fr": "Noir", "en": "Black" },
+          { "fr": "Blanc", "en": "White" }
+        ]
+      },
+      "available": true
     },
     {
-      "id": "item-pearl-bracelet",
+      "id": "ami-bonhomme-neige-bonnet",
       "title": {
-        "fr": "Bracelet perles nacrées",
-        "en": "Pearl bracelet"
+        "fr": "Amigurumi bonhomme neige bonnet"
       },
-      "description": {
-        "fr": "Bracelet élégant monté à la main sur fil silicone.",
-        "en": "Elegant bracelet hand-strung on silicone thread."
-      },
-      "price": 18,
-      "tags": ["jewellery", "pearl"],
-      "available": true,
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet",
+        "decoration",
+        "christmas"
+      ],
       "characteristics": {
-        "material": "Perles de verre",
-        "dimension": "18 cm"
-      }
+        "colors": [
+          { "fr": "Bleu", "en": "Blue" },
+          { "fr": "Blanc", "en": "White" }
+        ]
+      },
+      "available": true
     },
     {
-      "id": "item-epoxy-earrings",
+      "id": "ami-bonhomme-pain-epice",
       "title": {
-        "fr": "Boucles d'oreilles epoxy fleur",
-        "en": "Floral epoxy earrings"
+        "fr": "Amigurumi bonhomme pain épice"
       },
-      "price": 22,
-      "tags": ["jewellery", "epoxy"],
-      "available": false,
-      "characteristics": {
-        "material": "Résine epoxy",
-        "colors": [{ "fr": "Bleu lavande", "en": "Lavender" }]
-      }
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
     },
     {
-      "id": "item-diaper-cake-blue",
+      "id": "ami-enveloppe",
       "title": {
-        "fr": "Gâteau de couches bleu ciel",
-        "en": "Sky blue diaper cake"
+        "fr": "Amigurumi enveloppe"
       },
-      "description": {
-        "fr": "Composition de 25 couches avec accessoires bébé assortis.",
-        "en": "25-diaper composition with matching baby accessories."
-      },
-      "price": 65,
-      "tags": ["baby", "diaper-cake"],
-      "available": true,
-      "characteristics": {
-        "dimension": "3 étages",
-        "material": "Couches taille 1"
-      }
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
     },
     {
-      "id": "item-suncatcher-rainbow",
+      "id": "ami-etoile-bleu",
       "title": {
-        "fr": "Attrape-rêves arc-en-ciel",
-        "en": "Rainbow suncatcher"
+        "fr": "Amigurumi étoile bleu"
       },
-      "price": 24,
-      "tags": ["suncatcher", "decoration"],
-      "available": true,
-      "characteristics": {
-        "material": "Fil métallique et cristaux",
-        "dimension": "25 cm"
-      }
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-etoile-rouge",
+      "title": {
+        "fr": "Amigurumi étoile rouge"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-golem",
+      "title": {
+        "fr": "Amigurumi golem"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-groot",
+      "title": {
+        "fr": "Amigurumi groot"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-lapin-bleu",
+      "title": {
+        "fr": "Amigurumi lapin bleu"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-nain-blanc",
+      "title": {
+        "fr": "Amigurumi nain blanc"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-nain-gris",
+      "title": {
+        "fr": "Amigurumi nain gris"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-nain-rouge",
+      "title": {
+        "fr": "Amigurumi nain rouge"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-pere-noel",
+      "title": {
+        "fr": "Amigurumi père noël"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-cyan",
+      "title": {
+        "fr": "Amigurumi poulpe cyan"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-test-rouge-blanc",
+      "title": {
+        "fr": "Amigurumi test rouge blanc"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-tete-bleu",
+      "title": {
+        "fr": "Amigurumi tête bleu"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-tete-rouge",
+      "title": {
+        "fr": "Amigurumi tête rouge"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-tete-rouge-blanc",
+      "title": {
+        "fr": "Amigurumi tête rouge blanc"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-tete-rouge-blanc-rayure",
+      "title": {
+        "fr": "Amigurumi tête rouge blanc rayure"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-bleu",
+      "title": {
+        "fr": "Amigurumi poulpe bleu"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-cyan",
+      "title": {
+        "fr": "Amigurumi poulpe cyan"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-fancy",
+      "title": {
+        "fr": "Amigurumi poulpe fancy"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-rose",
+      "title": {
+        "fr": "Amigurumi poulpe rose"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-rose-enerve",
+      "title": {
+        "fr": "Amigurumi poulpe rose enerve"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-rouge",
+      "title": {
+        "fr": "Amigurumi poulpe rouge"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-vanille",
+      "title": {
+        "fr": "Amigurumi poulpe vanille"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "ami-poulpe-vert",
+      "title": {
+        "fr": "Amigurumi poulpe vert"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-amour",
+      "title": {
+        "fr": "Attache tétine amour"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-antoine",
+      "title": {
+        "fr": "Attache tétine Antoine"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-aron",
+      "title": {
+        "fr": "Attache tétine Aron"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-augustin",
+      "title": {
+        "fr": "Attache tétine Augustin"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-baby",
+      "title": {
+        "fr": "Attache tétine baby"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-capucine",
+      "title": {
+        "fr": "Attache tétine Capucine"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-charles",
+      "title": {
+        "fr": "Attache tétine Charles"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-come",
+      "title": {
+        "fr": "Attache tétine Come"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-diego",
+      "title": {
+        "fr": "Attache tétine Diego"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-eden",
+      "title": {
+        "fr": "Attache tétine Eden"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-gabin",
+      "title": {
+        "fr": "Attache tétine Gabin"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-jade",
+      "title": {
+        "fr": "Attache tétine Jade"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-jumelle",
+      "title": {
+        "fr": "Attache tétine jumelle"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-leo",
+      "title": {
+        "fr": "Attache tétine Leo"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-louis",
+      "title": {
+        "fr": "Attache tétine Louis"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-love",
+      "title": {
+        "fr": "Attache tétine love"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-love-cercle",
+      "title": {
+        "fr": "Attache tétine love cercle"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-manoe",
+      "title": {
+        "fr": "Attache tétine Manoe"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-marie",
+      "title": {
+        "fr": "Attache tétine Marie"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-mylann",
+      "title": {
+        "fr": "Attache tétine Mylann"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-noah",
+      "title": {
+        "fr": "Attache tétine Noah"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-pere-noel",
+      "title": {
+        "fr": "Attache tétine père noël"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-slayleur",
+      "title": {
+        "fr": "Attache tétine Slayleur"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-thais",
+      "title": {
+        "fr": "Attache tétine Thais"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "attache-tetine-tiago",
+      "title": {
+        "fr": "Attache tétine Tiago"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "pacifier-clip"
+      ],
+      "available": true
+    },
+    {
+      "id": "beret-violet",
+      "title": {
+        "fr": "Béret violet"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-automne",
+      "title": {
+        "fr": "Bonnet automne"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-doree",
+      "title": {
+        "fr": "Bonnet doré"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-multicolor-point",
+      "title": {
+        "fr": "Bonnet multicolore point"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-multicolor-raye",
+      "title": {
+        "fr": "Bonnet multicolore rayé"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-neige",
+      "title": {
+        "fr": "Bonnet neige"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-printemps",
+      "title": {
+        "fr": "Bonnet printemps"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-rose",
+      "title": {
+        "fr": "Bonnet rose"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-vert",
+      "title": {
+        "fr": "Bonnet vert"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "bonnet-violet",
+      "title": {
+        "fr": "Bonnet violet"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-blanc",
+      "title": {
+        "fr": "Boucles d'oreilles blanc"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-etoille-rose",
+      "title": {
+        "fr": "Boucles d'oreilles étoile rose"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-jaune",
+      "title": {
+        "fr": "Boucles d'oreilles jaune"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-lance-rose",
+      "title": {
+        "fr": "Boucles d'oreilles lance rose"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-lance-vert",
+      "title": {
+        "fr": "Boucles d'oreilles lance vert"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-larme-rouge",
+      "title": {
+        "fr": "Boucles d'oreilles larme rouge"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-larme-vert",
+      "title": {
+        "fr": "Boucles d'oreilles larme vert"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-spirale",
+      "title": {
+        "fr": "Boucles d'oreilles spirale"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "boucle-oreille-vert",
+      "title": {
+        "fr": "Boucles d'oreilles vert"
+      },
+      "price": 0,
+      "tags": [
+        "earrings",
+        "jewellery"
+      ],
+      "available": true
+    },
+    {
+      "id": "chouchou-bleu",
+      "title": {
+        "fr": "Chouchou bleu"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "scrunchy"
+      ],
+      "available": true
+    },
+    {
+      "id": "chouchou-jaune",
+      "title": {
+        "fr": "Chouchou jaune"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "scrunchy"
+      ],
+      "available": true
+    },
+    {
+      "id": "cirouille-violette",
+      "title": {
+        "fr": "Citrouille violette"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "citrouille",
+      "title": {
+        "fr": "Citrouille"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "citrouille-violette",
+      "title": {
+        "fr": "Citrouille violette"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "coeur-rose",
+      "title": {
+        "fr": "Coeur rose"
+      },
+      "price": 0,
+      "tags": [
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "couvre-mug-beige",
+      "title": {
+        "fr": "Couvre mug beige"
+      },
+      "price": 0,
+      "tags": [
+        "crochet",
+        "kitchen"
+      ],
+      "available": true
+    },
+    {
+      "id": "couvre-mug-bleu",
+      "title": {
+        "fr": "Couvre mug bleu"
+      },
+      "price": 0,
+      "tags": [
+        "crochet",
+        "kitchen"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-halloween-chapeau",
+      "title": {
+        "fr": "Déco Halloween chapeau"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-halloween-fantome",
+      "title": {
+        "fr": "Déco Halloween fantôme"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-halloween-fantome-blob",
+      "title": {
+        "fr": "Déco Halloween fantôme blob"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-halloween-main",
+      "title": {
+        "fr": "Déco Halloween main"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-halloween-oeil",
+      "title": {
+        "fr": "Déco Halloween oeil"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "halloween"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-ange-blanc",
+      "title": {
+        "fr": "Déco de Noël ange blanc"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-ange-fil",
+      "title": {
+        "fr": "Déco de Noël ange fil"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-ange-plastique",
+      "title": {
+        "fr": "Déco de Noël ange plastique"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-bonhomme-pain-epice",
+      "title": {
+        "fr": "Déco de Noël bonhomme pain épice"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-bonnet-noel",
+      "title": {
+        "fr": "Déco de Noël bonnet noël"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-boule-blanc",
+      "title": {
+        "fr": "Déco de Noël boule blanc"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-boule-rouge",
+      "title": {
+        "fr": "Déco de Noël boule rouge"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-boule-verte",
+      "title": {
+        "fr": "Déco de Noël boule verte"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-carte-blanc",
+      "title": {
+        "fr": "Déco de Noël carte blanc"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-carte-hibou",
+      "title": {
+        "fr": "Déco de Noël carte hibou"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-carte-noel",
+      "title": {
+        "fr": "Déco de Noël carte noël"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-carte-sapin",
+      "title": {
+        "fr": "Déco de Noël carte sapin"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-cerf-blanc",
+      "title": {
+        "fr": "Déco de Noël cerf blanc"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-cerf-rose",
+      "title": {
+        "fr": "Déco de Noël cerf rose"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-etoile-blanc",
+      "title": {
+        "fr": "Déco de Noël étoile blanc"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-etoile-rouge",
+      "title": {
+        "fr": "Déco de Noël étoile rouge"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-fantome-blob",
+      "title": {
+        "fr": "Déco de Noël fantôme blob"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-flocon",
+      "title": {
+        "fr": "Déco de Noël flocon"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-gant-pere-noel",
+      "title": {
+        "fr": "Déco de Noël gant père noël"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-globe",
+      "title": {
+        "fr": "Déco de Noël globe"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-noeud",
+      "title": {
+        "fr": "Déco de Noël noeud"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-noeud-blanc",
+      "title": {
+        "fr": "Déco de Noël noeud blanc"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "deco-noel-sapin",
+      "title": {
+        "fr": "Déco de Noël sapin"
+      },
+      "price": 0,
+      "tags": [
+        "christmas",
+        "decoration"
+      ],
+      "available": true
+    },
+    {
+      "id": "doudou-lapin-rose",
+      "title": {
+        "fr": "Doudou lapin rose"
+      },
+      "price": 0,
+      "tags": [
+        "amigurumi",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "dreamcatcher-cyan",
+      "title": {
+        "fr": "Attrape-rêves cyan"
+      },
+      "price": 0,
+      "tags": [
+        
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "dreamcatcher-cyan-perle",
+      "title": {
+        "fr": "Attrape-rêves cyan perle"
+      },
+      "price": 0,
+      "tags": [
+        
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "dreamcatcher-fluo",
+      "title": {
+        "fr": "Attrape-rêves fluo"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "dreamcatcher-perle",
+      "title": {
+        "fr": "Attrape-rêves perle"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "dreamcatcher-rose",
+      "title": {
+        "fr": "Attrape-rêves rose"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "dreamcatcher-violet-plume",
+      "title": {
+        "fr": "Attrape-rêves violet plume"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "fleur-de-douche-rose",
+      "title": {
+        "fr": "Fleur de douche rose"
+      },
+      "price": 0,
+      "tags": [
+        "bath",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "fleur-de-douche-rouge",
+      "title": {
+        "fr": "Fleur de douche rouge"
+      },
+      "price": 0,
+      "tags": [
+        "bath",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "gants-rose",
+      "title": {
+        "fr": "Gants rose"
+      },
+      "price": 0,
+      "tags": [
+        "clothing",
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-baleine-rose",
+      "title": {
+        "fr": "Gâteau baleine rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-berceau",
+      "title": {
+        "fr": "Gâteau berceau"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-bleu",
+      "title": {
+        "fr": "Gâteau bleu"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-bleu-blanc",
+      "title": {
+        "fr": "Gâteau bleu blanc"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-canard",
+      "title": {
+        "fr": "Gâteau canard"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-canard-rose",
+      "title": {
+        "fr": "Gâteau canard rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-canard-vert",
+      "title": {
+        "fr": "Gâteau canard vert"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-chat",
+      "title": {
+        "fr": "Gâteau chat"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-chien-bleu",
+      "title": {
+        "fr": "Gâteau chien bleu"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-chien-moutarde",
+      "title": {
+        "fr": "Gâteau chien moutarde"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-cochon",
+      "title": {
+        "fr": "Gâteau cochon"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-elephant",
+      "title": {
+        "fr": "Gâteau éléphant"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-elephant-rose",
+      "title": {
+        "fr": "Gâteau éléphant rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-giraffe",
+      "title": {
+        "fr": "Gâteau girafe"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-hippo",
+      "title": {
+        "fr": "Gâteau hippo"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-lapin",
+      "title": {
+        "fr": "Gâteau lapin"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-lapin-rose",
+      "title": {
+        "fr": "Gâteau lapin rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-lapins",
+      "title": {
+        "fr": "Gâteau lapins"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-nounours-rose",
+      "title": {
+        "fr": "Gâteau nounours rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-ours-polaire",
+      "title": {
+        "fr": "Gâteau ours polaire"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-papillon",
+      "title": {
+        "fr": "Gâteau papillon"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-pointu",
+      "title": {
+        "fr": "Gâteau pointu"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-poulpe",
+      "title": {
+        "fr": "Gâteau poulpe"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-rose",
+      "title": {
+        "fr": "Gâteau rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-rose-point",
+      "title": {
+        "fr": "Gâteau rose point"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-rouge",
+      "title": {
+        "fr": "Gâteau rouge"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-singe",
+      "title": {
+        "fr": "Gâteau singe"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-souris-blanc",
+      "title": {
+        "fr": "Gâteau souris blanc"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-souris-rose",
+      "title": {
+        "fr": "Gâteau souris rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-tigre-blanc",
+      "title": {
+        "fr": "Gâteau tigre blanc"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-vert",
+      "title": {
+        "fr": "Gâteau vert"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-vert-pomme",
+      "title": {
+        "fr": "Gâteau vert pomme"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-vertical",
+      "title": {
+        "fr": "Gâteau vertical"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-vertical-rose",
+      "title": {
+        "fr": "Gâteau vertical rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-violet",
+      "title": {
+        "fr": "Gâteau violet"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "gateau-violet-point",
+      "title": {
+        "fr": "Gâteau violet point"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "diaper-cake"
+      ],
+      "available": true
+    },
+    {
+      "id": "glace-citron-fraise",
+      "title": {
+        "fr": "Glace citron fraise"
+      },
+      "price": 0,
+      "tags": [
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "glace-fraise",
+      "title": {
+        "fr": "Glace fraise"
+      },
+      "price": 0,
+      "tags": [
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "glace-fraise-choco",
+      "title": {
+        "fr": "Glace fraise choco"
+      },
+      "price": 0,
+      "tags": [
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "glace-pasteque",
+      "title": {
+        "fr": "Glace pasteque"
+      },
+      "price": 0,
+      "tags": [
+        "crochet"
+      ],
+      "available": true
+    },
+    {
+      "id": "hochet-elephant",
+      "title": {
+        "fr": "Hochet éléphant"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "crochet",
+        "rattle"
+      ],
+      "available": true
+    },
+    {
+      "id": "hochet-giraffe",
+      "title": {
+        "fr": "Hochet girafe"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "crochet",
+        "rattle"
+      ],
+      "available": true
+    },
+    {
+      "id": "hochet-lapin-blanc",
+      "title": {
+        "fr": "Hochet lapin blanc"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "crochet",
+        "rattle"
+      ],
+      "available": true
+    },
+    {
+      "id": "hochet-lapin-bleu",
+      "title": {
+        "fr": "Hochet lapin bleu"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "crochet",
+        "rattle"
+      ],
+      "available": true
+    },
+    {
+      "id": "hochet-lapin-cyan",
+      "title": {
+        "fr": "Hochet lapin cyan"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "crochet",
+        
+        "rattle"
+      ],
+      "available": true
+    },
+    {
+      "id": "hochet-lapin-rose",
+      "title": {
+        "fr": "Hochet lapin rose"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "crochet",
+        "rattle"
+      ],
+      "available": true
+    },
+    {
+      "id": "hochet-lapin-violet",
+      "title": {
+        "fr": "Hochet lapin violet"
+      },
+      "price": 0,
+      "tags": [
+        "baby",
+        "crochet",
+        "rattle"
+      ],
+      "available": true
+    },
+    {
+      "id": "manique-blanc-noir",
+      "title": {
+        "fr": "Manique blanc noir"
+      },
+      "price": 0,
+      "tags": [
+        "crochet",
+        "kitchen"
+      ],
+      "available": true
+    },
+    {
+      "id": "nuage-charlie",
+      "title": {
+        "fr": "Nuage Charlie"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "nuage-pluie-rose-blanc",
+      "title": {
+        "fr": "Nuage pluie rose blanc"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "nuage-reves",
+      "title": {
+        "fr": "Nuage rêves"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "dreamcatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "panier-beige",
+      "title": {
+        "fr": "Panier beige"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "bag"
+      ],
+      "available": true
+    },
+    {
+      "id": "panier-bleu",
+      "title": {
+        "fr": "Panier bleu"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "bag"
+      ],
+      "available": true
+    },
+    {
+      "id": "panier-gris",
+      "title": {
+        "fr": "Panier gris"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "bag"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-cle-chapeau-rose",
+      "title": {
+        "fr": "Porte-clé chapeau rose"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "keychain"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-cle-chapeau-rose-rouge",
+      "title": {
+        "fr": "Porte-clé chapeau rose rouge"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "keychain"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-cle-coeur-rose",
+      "title": {
+        "fr": "Porte-clé coeur rose"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "keychain"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-cle-coeur-rouge",
+      "title": {
+        "fr": "Porte-clé coeur rouge"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "keychain"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-cle-coeur-rouge-blanc",
+      "title": {
+        "fr": "Porte-clé coeur rouge blanc"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "keychain"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-cle-coeur-wink",
+      "title": {
+        "fr": "Porte-clé coeur wink"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "keychain"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-cle-fleur-jaune",
+      "title": {
+        "fr": "Porte-clé fleur jaune"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "keychain"
+      ],
+      "available": true
+    },
+    {
+      "id": "porte-monnaie-rose-violet",
+      "title": {
+        "fr": "Porte-monnaie rose violet"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "sac"
+      ],
+      "available": true
+    },
+    {
+      "id": "protege-bras-bleu",
+      "title": {
+        "fr": "Protège bras bleu"
+      },
+      "price": 0,
+      "tags": [
+        "accessory"
+      ],
+      "available": true
+    },
+    {
+      "id": "protege-bras-rose",
+      "title": {
+        "fr": "Protège bras rose"
+      },
+      "price": 0,
+      "tags": [
+        "accessory"
+      ],
+      "available": true
+    },
+    {
+      "id": "protege-bras-violet",
+      "title": {
+        "fr": "Protège bras violet"
+      },
+      "price": 0,
+      "tags": [
+        "accessory"
+      ],
+      "available": true
+    },
+    {
+      "id": "sac-cordon-rose",
+      "title": {
+        "fr": "Sac cordon rose"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "bag"
+      ],
+      "available": true
+    },
+    {
+      "id": "sac-gris-vert",
+      "title": {
+        "fr": "Sac gris vert"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "bag"
+      ],
+      "available": true
+    },
+    {
+      "id": "sac-rose",
+      "title": {
+        "fr": "Sac rose"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "bag"
+      ],
+      "available": true
+    },
+    {
+      "id": "sac-rose-violet-treilli",
+      "title": {
+        "fr": "Sac rose violet treillis"
+      },
+      "price": 0,
+      "tags": [
+        "accessory",
+        "bag"
+      ],
+      "available": true
+    },
+    {
+      "id": "suncatcher-amethyste",
+      "title": {
+        "fr": "Suncatcher améthyste"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "suncatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "suncatcher-ligne",
+      "title": {
+        "fr": "Suncatcher ligne"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "suncatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "suncatcher-or",
+      "title": {
+        "fr": "Suncatcher or"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "suncatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "suncatcher-perle",
+      "title": {
+        "fr": "Suncatcher perle"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "suncatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "suncatcher-rose",
+      "title": {
+        "fr": "Suncatcher rose"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+                "suncatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "suncatcher-rubis",
+      "title": {
+        "fr": "Suncatcher rubis"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "suncatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "suncatcher-saphire",
+      "title": {
+        "fr": "Suncatcher saphir"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "suncatcher"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-aaron",
+      "title": {
+        "fr": "Support mural Aaron"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-aron",
+      "title": {
+        "fr": "Support mural Aron"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-atelier-patrouchka",
+      "title": {
+        "fr": "Support mural atelier patrouchka"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-bonne-fete-maman",
+      "title": {
+        "fr": "Support mural bonne fête maman"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-emma",
+      "title": {
+        "fr": "Support mural Emma"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-iris",
+      "title": {
+        "fr": "Support mural Iris"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-joyeux-noel",
+      "title": {
+        "fr": "Support mural joyeux noël"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-leana",
+      "title": {
+        "fr": "Support mural Leana"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-margot",
+      "title": {
+        "fr": "Support mural Margot"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-melinda",
+      "title": {
+        "fr": "Support mural Melinda"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-serena",
+      "title": {
+        "fr": "Support mural Serena"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
+    },
+    {
+      "id": "support-mural-tiago",
+      "title": {
+        "fr": "Support mural Tiago"
+      },
+      "price": 0,
+      "tags": [
+        "decoration",
+        "wall-hanging"
+      ],
+      "available": true
     }
   ],
-  "featuredCategoryIds": ["cat-crochet"],
-  "featuredItemIds": ["item-plush-bunny", "item-pearl-bracelet", "item-diaper-cake-blue"],
-  "tags": [
-    "baby",
+  "featuredCategoryIds": [
     "crochet",
-    "decoration",
-    "diaper-cake",
-    "epoxy",
-    "jewellery",
-    "pearl",
-    "plush",
-    "suncatcher"
+    "baby",
+    "decoration"
   ],
+  "featuredItemIds": [
+    "ami-araignee-bleu",
+    "ami-bonhomme-neige",
+    "ami-bonhomme-neige-bonnet",
+    "ami-bonhomme-pain-epice",
+    "ami-enveloppe",
+    "ami-etoile-bleu"
+  ],
+  "tags": {
+    "animal": {"fr": "Animaux", "en": "Animals"},
+    "accessory": {"fr":  "Accessoires", "en": "Accessories" },
+    "amigurumi":  {"fr":  "Amigurumis", "en": "Amigurumi" },
+    "baby": {"fr":  "Bébé", "en": "Baby" },
+    "bag":  {"fr":  "Sac & Panier", "en": "Bag" },
+    "bath": {"fr":  "Bain", "en": "Bath" },
+    "christmas":  {"fr":  "Noël", "en": "Christmas" },
+    "clothing": {"fr":  "Vêtements", "en": "Clothing" },
+    "crochet":  {"fr":  "Crochet", "en": "Crochet" },
+    "decoration": {"fr":  "Décorations", "en": "Decoration" },
+    "diaper-cake":  {"fr":  "Gâteau de couche", "en": "Diaper-cake" },
+    "dreamcatcher": {"fr":  "Attrape-rêves", "en": "Dreamcatcher" },
+    "earrings":  {"fr":  "Boucle d'oreille", "en": "Earrings" },
+    "scrunchy": {"fr":  "Chouchou", "en": "Scrunchy" },
+    "halloween":  {"fr":  "Halloween", "en": "Halloween" },
+    "kitchen": {"fr":  "Cuisine", "en": "Kitchen" },
+    "jewellery":  {"fr":  "Bijoux", "en": "Jewellery" },
+    "keychain": {"fr":  "Porte-clé", "en": "Keychain" },
+    "pacifier-clip": {"fr":  "Attache tétines", "en": "Pacifier-clip" },
+    "rattle": {"fr":  "Hochet", "en": "Rattle" },
+    "suncatcher":  {"fr":  "Attrape-soleil", "en": "Suncatcher" },
+    "wall-hanging": {"fr":  "Support mural", "en": "Wall-hanging" }
+  },
   "contact": {
     "bio": {
-      "fr": "Bonjour, je suis Marie, créatrice passionnée de crochet, bijoux et compositions pour les tout-petits. Chaque pièce est réalisée à la main dans mon atelier lyonnais.",
-      "en": "Hello, I am Marie, a passionate maker of crochet, jewellery, and compositions for little ones. Every piece is handmade in my Lyon studio."
+      "fr": "Créations artisanales au crochet, bijoux, accessoires et compositions personnalisées.",
+      "en": "Handmade crochet creations, jewellery, accessories, and custom compositions."
     },
     "categoriesOverview": {
-      "fr": "Peluches au crochet, bijoux artisanaux, gâteaux de couches et attrape-rêves personnalisés.",
-      "en": "Crochet plushies, handmade jewellery, diaper cakes, and custom suncatchers."
+      "fr": "Amigurumis, articles bébé, bijoux, décorations saisonnières et accessoires faits main.",
+      "en": "Amigurumi, baby items, jewellery, seasonal decorations, and handmade accessories."
     },
-    "markets": [
-      {
-        "date": "2026-07-12",
-        "location": {
-          "fr": "Marché des Créateurs, Lyon 6e",
-          "en": "Creators Market, Lyon 6th"
-        },
-        "description": {
-          "fr": "Stand près de l'entrée principale, de 9h à 18h.",
-          "en": "Stand near the main entrance, 9am to 6pm."
-        }
-      },
-      {
-        "date": "2026-08-23",
-        "location": {
-          "fr": "Foire artisanale de Villeurbanne",
-          "en": "Villeurbanne craft fair"
-        },
-        "url": "https://example.com/foire-villeurbanne"
-      }
-    ]
+    "markets": []
   },
   "legalLinks": [
     {
