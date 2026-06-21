@@ -1,7 +1,7 @@
-import type { Item, ItemCharacteristics } from '../../../services/providers/cms/types';
+import type { Item, ItemCharacteristics } from '../../../../services/providers/cms/types';
 import { useTranslation } from 'react-i18next';
-import { CatalogFilterChip } from '../../../common/CatalogFilterChip';
-import { useLocalize } from '../../../services/providers/cms/useLocalize';
+import { CatalogFilterChip } from '../../../../common/CatalogFilterChip';
+import { useLocalize } from '../../../../services/providers/cms/useLocalize';
 
 export interface ItemCharacteristicProps {
   item: Item;

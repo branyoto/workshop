@@ -3,7 +3,7 @@ export function getThumbnailUrl(id: string): string {
 }
 
 export function getItemImageUrl(id: string, index: number): string {
-  return _getItemImageUrl(id, index.toLocaleString().padStart(2, '0'));
+  return _getItemImageUrl(id, index.toString());
 }
 
 function _getItemImageUrl(id: string, suffix: string): string {
