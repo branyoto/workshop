@@ -2,11 +2,11 @@ import type { CategoryView, Item, LocalizedText } from '../../services/providers
 import type { LocalizeText } from '../../services/providers/cms/useLocalize';
 
 export function uniqueColors(items: Item[], localize: LocalizeText): LocalizedText[] {
-  const seen = new Set<LocalizedText>();
+  const seen = [];
   for (const item of items) {
-    for (const color of item.characteristics?.colors ?? []) seen.add(color);
+    for (const color of item.characteristics?.colors ?? []) seen.push(color);
   }
-  return [...seen].sort((a, b) => localize(a).localeCompare(localize(b)));
+  return seen.filter((item, i, items) => items.findIndex(x => x.fr === item.fr) === i).sort((a, b) => localize(a).localeCompare(localize(b)));
 }
 
 export function uniqueTags(items: Item[]): string[] {
