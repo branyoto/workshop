@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { useCart } from '../../../services/providers/cart/useCart';
 import { Badge } from '../../../common/Badge';
 import { Button } from '../../../common/Button';
-import { getThumbnailUrl } from '../../../utils/image';
+import { getProductImageUrl } from '../../../utils/image';
 import { useLocalize } from '../../../services/providers/cms/useLocalize';
 import type { Item } from '../../../services/providers/cms/types';
 import { itemUrl } from '../../../routes/routePaths';
@@ -18,14 +18,11 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
   const l = useLocalize();
   const { addItem, items: cartItems } = useCart();
   const title = l(item.title);
-  const thumbnailUrl = getThumbnailUrl(item.id);
   const formatPrice = useFormatPrice();
 
   const inCart = cartItems.some(ci => ci.id === item.id);
 
-  const handleAddToCart = () => {
-    addItem({ id: item.id, titleSnapshot: title, priceSnapshot: item.price, thumbnailUrl });
-  };
+  const handleAddToCart = () => addItem({ id: item.id, titleSnapshot: title, priceSnapshot: item.price });
 
   return (
     <article
@@ -39,7 +36,7 @@ export function ItemCard({ item }: Readonly<ItemCardProps>) {
       >
         <div className="relative aspect-square overflow-hidden bg-primary/10">
           <img
-            src={thumbnailUrl}
+            src={getProductImageUrl(item.id)}
             alt=""
             aria-hidden="true"
             className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"

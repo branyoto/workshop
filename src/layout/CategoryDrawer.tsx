@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useMatch } from 'react-router';
 import { Drawer } from '../common/Drawer';
-import { getThumbnailUrl } from '../utils/image';
+import { getCategoryImageUrl } from '../utils/image';
 import { useLocalize } from '../services/providers/cms/useLocalize';
 import type { CategoryView } from '../services/providers/cms/types';
 import { useCms } from '../services/providers/cms/useCms';
@@ -37,7 +37,7 @@ function CategoryItem({ category, href, isActive, locale, depth, activeId, onClo
       >
         {!imgHidden && (
           <img
-            src={getThumbnailUrl(category.id)}
+            src={getCategoryImageUrl(category.id)}
             alt=""
             aria-hidden="true"
             onError={() => setImgHidden(true)}

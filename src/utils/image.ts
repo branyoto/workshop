@@ -1,14 +1,13 @@
-export function getThumbnailUrl(id: string): string {
-  return _getItemImageUrl(id, 'thumbnail');
-}
-
-export function getItemImageUrl(id: string, index: number): string {
-  return _getItemImageUrl(id, index.toString());
-}
-
-function _getItemImageUrl(id: string, suffix: string): string {
+export function getImageBaseUrl(): string {
   const baseUrl = import.meta.env.VITE_CMS_IMAGE_BASE_URL;
   if (!baseUrl) throw new Error('VITE_CMS_IMAGE_BASE_URL is not configured');
-  const normalizedBase = baseUrl.replace(/\/$/, '');
-  return `${normalizedBase}/${id}_${suffix}.png`;
+  return baseUrl.replace(/\/$/, '');
+}
+
+export function getCategoryImageUrl(id: string): string {
+  return `${getImageBaseUrl()}/categories/${id}_thumbnail}.png`;
+}
+
+export function getProductImageUrl(id: string, index: number = 1): string {
+  return `${getImageBaseUrl()}/products/${id}_${index}.png`;
 }

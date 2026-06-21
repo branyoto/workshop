@@ -2,7 +2,6 @@ import { Button } from '../../../common/Button';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../../../services/providers/cart/useCart';
 import type { Item } from '../../../services/providers/cms/types';
-import { getThumbnailUrl } from '../../../utils/image';
 import { useLocalize } from '../../../services/providers/cms/useLocalize';
 
 export interface AddToCartButtonProps {
@@ -17,7 +16,7 @@ export function AddToCartButton({ item }: Readonly<AddToCartButtonProps>) {
   const inCart = items.some(ci => ci.id === item.id);
 
   const handleAddToCart = () => {
-    addItem({ id: item.id, titleSnapshot: l(item.title), priceSnapshot: item.price, thumbnailUrl: getThumbnailUrl(item.id) });
+    addItem({ id: item.id, titleSnapshot: l(item.title), priceSnapshot: item.price });
   };
 
   return (

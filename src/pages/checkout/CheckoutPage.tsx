@@ -7,6 +7,7 @@ import { EmptyState } from '../../common/EmptyState';
 import { catalogUrl } from '../../routes/routePaths';
 import { AddressInput } from './AddressInput';
 import { checkoutSchema, type CheckoutFormData } from './schema';
+import { getProductImageUrl } from '../../utils/image';
 
 interface FieldProps {
   label: string;
@@ -207,7 +208,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
             <ul className="flex flex-col gap-3">
               {items.map(item => (
                 <li key={item.id} className="flex items-center gap-3">
-                  <img src={item.thumbnailUrl} alt="" aria-hidden="true" className="h-12 w-12 rounded-md object-cover" />
+                  <img src={getProductImageUrl(item.id)} alt="" aria-hidden="true" className="h-12 w-12 rounded-md object-cover" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{item.titleSnapshot}</p>
                     <p className="text-sm text-gray-600">{priceLabel(item.priceSnapshot)}</p>

@@ -5,6 +5,7 @@ import { Button } from '../common/Button';
 import { Drawer } from '../common/Drawer';
 import { EmptyState } from '../common/EmptyState';
 import { catalogUrl, checkoutUrl } from '../routes/routePaths';
+import { getProductImageUrl } from '../utils/image';
 
 export interface CartDrawerProps {
   open: boolean;
@@ -55,7 +56,7 @@ export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
       : <ul className="flex flex-col gap-3">
           {items.map(item => (
             <li key={item.id} data-testid="cart-item" className="flex items-center gap-3 rounded-lg border border-neutral/40 p-2">
-              <img src={item.thumbnailUrl} alt="" aria-hidden="true" className="h-14 w-14 rounded-md object-cover" />
+              <img src={getProductImageUrl(item.id)} alt="" aria-hidden="true" className="h-14 w-14 rounded-md object-cover" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium">{item.titleSnapshot}</p>
                 <p className="text-sm text-gray-600">{priceLabel(item.priceSnapshot)}</p>

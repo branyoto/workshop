@@ -39,6 +39,10 @@ function formatAjvErrors(errors) {
     .join('\n');
 }
 
+function relative(path) {
+  return path.replace(rootDir + '/', '');
+}
+
 function validateSchema(content) {
   const schema = JSON.parse(readFileSync(schemaPath, 'utf8'));
   const ajv = new Ajv2020({ allErrors: true, strict: false });
@@ -52,16 +56,33 @@ function validateSchema(content) {
   }
 }
 
+function validateProducts(content) {
+  const products = content.items;
+  const badProducts = [];
+  for (const product of products) {
+    if (!/^[a-z-]*$/.test(product.id)) {
+      badProducts.push(product.id);
+    }
+  }
+  if (badProducts.length) {
+    fail(`Bad product names ${badProducts.length} CMS id(s):\n${badProducts.join(', ')}`);
+  }
+}
+
 function validateProductImages(id) {
   const productFolder = join(imagesDir, 'products');
   const missingProductImages = [];
   let lastImageIndex;
-  for (let i = 20; i > 1; i--) {
-    if (existsSync(join(productFolder, `${id}_${i}.png`))) {
+  for (let i = 20; i > 0; i--) {
+    let path = join(productFolder, `${id}_${i}.png`);
+    if (existsSync(path)) {
       lastImageIndex ??= i;
     } else if (lastImageIndex !== undefined) {
-      missingProductImages.push(`  - public/images/products/${id}_${i}.png`);
+      missingProductImages.push(`  - ${relative(path)}`);
     }
+  }
+  if (lastImageIndex === undefined) {
+    missingProductImages.push(`  - ${relative(productFolder)}/${id}_1.png`);
   }
   return missingProductImages;
 }
@@ -69,16 +90,14 @@ function validateProductImages(id) {
 function validateImages(content) {
   const categoryIds = collectCategoryIds(content.categories ?? []);
   const missingImages = categoryIds
-    .filter(id => {
-      const categoryPath = join(imagesDir, 'categories', `${id}_thumbnail.png`);
-      return !existsSync(categoryPath);
-    })
-    .map(id => `  - public/images/categories/${id}_thumbnail.png`);
+    .map(id => join(imagesDir, 'categories', `${id}_thumbnail.png`))
+    .filter(path => !existsSync(path))
+    .map(path => `  - ${relative(path)}`);
   const productIds = (content.items ?? []).map(item => item.id);
   missingImages.push(...productIds.flatMap(id => validateProductImages(id)));
 
   if (missingImages.length > 0) {
-    fail(`Missing thumbnail images for ${missingImages.length} CMS id(s):\n${missingImages.join('\n')}`);
+    fail(`Missing images for ${missingImages.length} CMS id(s):\n${missingImages.join('\n')}`);
   }
 }
 
@@ -94,6 +113,7 @@ try {
 }
 
 validateSchema(content);
+validateProducts(content);
 validateImages(content);
 
 console.log('CMS validation passed.');

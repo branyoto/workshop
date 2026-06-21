@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import { useCart } from '../../services/providers/cart/useCart';
 import { Badge } from '../../common/Badge';
 import { Button } from '../../common/Button';
-import { getThumbnailUrl } from '../../utils/image';
+import { getCategoryImageUrl, getProductImageUrl } from '../../utils/image';
 import { useLocalize } from '../../services/providers/cms/useLocalize';
 import { useCms } from '../../services/providers/cms/useCms';
 import { catalogUrl, categoryUrl, itemUrl } from '../../routes/routePaths';
@@ -74,7 +74,7 @@ export function HomePage() {
                   >
                     <div className="aspect-square w-full overflow-hidden rounded-lg bg-primary/10">
                       <img
-                        src={getThumbnailUrl(cat.id)}
+                        src={getCategoryImageUrl(cat.id)}
                         alt=""
                         aria-hidden="true"
                         className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
@@ -99,7 +99,6 @@ export function HomePage() {
             {featuredItems.map(item => {
               if (!item) return null;
               const title = l(item.title);
-              const thumbnailUrl = getThumbnailUrl(item.id);
               const inCart = cartItems.some(ci => ci.id === item.id);
               return (
                 <li key={item.id}>
@@ -111,7 +110,7 @@ export function HomePage() {
                     >
                       <div className="relative aspect-square overflow-hidden bg-primary/10">
                         <img
-                          src={thumbnailUrl}
+                          src={getProductImageUrl(item.id)}
                           alt=""
                           aria-hidden="true"
                           className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
@@ -140,7 +139,7 @@ export function HomePage() {
                             variant={inCart ? 'ghost' : 'secondary'}
                             className="px-2 py-1 text-xs"
                             disabled={inCart}
-                            onClick={() => addItem({ id: item.id, titleSnapshot: title, priceSnapshot: item.price, thumbnailUrl })}
+                            onClick={() => addItem({ id: item.id, titleSnapshot: title, priceSnapshot: item.price })}
                           >
                             {inCart ? t('pages.catalog.inCart') : t('pages.catalog.addToCart')}
                           </Button>
