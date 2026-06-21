@@ -34,7 +34,7 @@ export type CmsContent = {
   items: Item[];
   featuredCategoryIds: string[];
   featuredItemIds: string[];
-  tags?: string[];
+  tags: Record<string, LocalizedText>;
   contact: ContactContent;
   legalLinks: LegalLink[];
 };
