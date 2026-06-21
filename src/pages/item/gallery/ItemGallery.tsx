@@ -33,7 +33,7 @@ export function ItemGallery({ item }: Readonly<ItemGalleryProps>) {
               <img
                 src={url}
                 alt={i === 0 ? title : `${title} — ${i + 1}`}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover select-none"
                 onError={() => setFailedImages(prev => new Set([...prev, url]))}
               />
             </div>
@@ -49,7 +49,7 @@ export function ItemGallery({ item }: Readonly<ItemGalleryProps>) {
                   src={url}
                   alt={title + (i === 0 ? '' : ` — ${i + 1}`) + ' thumbnail'}
                   aria-hidden="true"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover select-none"
                 />
               </div>
             </SwiperSlide>
