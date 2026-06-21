@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router';
-import type { Item } from '../../../services/providers/cms/types';
+import type { Item, LocalizedText } from '../../../services/providers/cms/types';
 import { useMemo } from 'react';
+import type { LocalizeText } from '../../../services/providers/cms/useLocalize';
 
 export interface Filters {
   minPrice: number | null;
@@ -16,7 +17,7 @@ export function applyFilters(items: Item[], filters: Filters): Item[] {
     if (filters.maxPrice !== null && item.price > filters.maxPrice) return false;
     if (filters.available && !item.available) return false;
     if (filters.colors.length > 0) {
-      const colors = item.characteristics?.colors?.map(c => c.toLowerCase()) ?? [];
+      const colors = item.characteristics?.colors?.flatMap(c => [c.fr.toLowerCase(), c.en?.toLowerCase()]).filter(Boolean) ?? [];
       if (!filters.colors.some(c => colors.includes(c.toLowerCase()))) return false;
     }
     if (filters.tags.length > 0) {
@@ -66,12 +67,14 @@ export function useFilters() {
       setMaxPrice: (v: number | null) =>
         setSearchParams(p => patch(p, n => (v === null ? n.delete('maxPrice') : n.set('maxPrice', String(v)))), { replace: true }),
       setAvailable: (v: boolean) => setSearchParams(p => patch(p, n => (v ? n.set('available', 'true') : n.delete('available')))),
-      toggleColor: (color: string) =>
+      toggleColor: (color: LocalizedText, l: LocalizeText) =>
         setSearchParams(p =>
-          patch(p, n => {
-            const cur = n.getAll('color');
-            n.delete('color');
-            (cur.includes(color) ? cur.filter(c => c !== color) : [...cur, color]).forEach(c => n.append('color', c));
+          patch(p, search => {
+            const cur = search.getAll('color');
+            search.delete('color');
+            const colorValues = Object.values(color);
+            const newColors = colorValues.some(c => cur.includes(c)) ? cur.filter(c => !colorValues.includes(c)) : [...cur, l(color)];
+            newColors.forEach(c => search.append('color', c));
           }),
         ),
       toggleTag: (tag: string) =>

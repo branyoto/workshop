@@ -82,7 +82,7 @@
       "available": true,
       "characteristics": {
         "material": "Coton",
-        "colors": ["Rose poudré"]
+        "colors": [{"fr": "Rose poudré", "en": "Antique Pink"}]
       }
     },
     {
@@ -96,7 +96,7 @@
       "available": true,
       "characteristics": {
         "material": "Coton",
-        "color": ["Orange et blanc"]
+        "colors": [{"fr": "Orange et blanc", "en": "Orange and white"}]
       }
     },
     {
@@ -128,7 +128,7 @@
       "available": false,
       "characteristics": {
         "material": "Résine epoxy",
-        "color": ["Bleu lavande"]
+        "colors": [{ "fr": "Bleu lavande", "en": "Lavender" }]
       }
     },
     {

@@ -6,6 +6,7 @@ import { AvailabilityFilter } from './filter/AvailabilityFilter';
 import { ClearButton } from './ClearButton';
 import type { Item } from '../../../services/providers/cms/types';
 import { uniqueColors, uniqueTags } from '../utils';
+import { useLocalize } from '../../../services/providers/cms/useLocalize';
 
 export interface FiltersListProps {
   items: Item[];
@@ -13,8 +14,9 @@ export interface FiltersListProps {
 
 export function FiltersList({ items }: Readonly<FiltersListProps>) {
   const { filters } = useFilters();
+  const l = useLocalize();
 
-  const colors = uniqueColors(items);
+  const colors = uniqueColors(items, l);
   const tags = uniqueTags(items);
 
   return (

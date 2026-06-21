@@ -1,6 +1,7 @@
 import type { Item, ItemCharacteristics } from '../../../services/providers/cms/types';
 import { useTranslation } from 'react-i18next';
 import { FilterChip } from '../FilterChip';
+import { useLocalize } from '../../../services/providers/cms/useLocalize';
 
 export interface ItemCharacteristicProps {
   item: Item;
@@ -9,6 +10,7 @@ export interface ItemCharacteristicProps {
 
 export function ItemCharacteristic({ item, itemKey }: Readonly<ItemCharacteristicProps>) {
   const { t } = useTranslation();
+  const l = useLocalize();
   const characteristic = item.characteristics?.[itemKey];
   if (!characteristic) return null;
   return (
@@ -17,7 +19,12 @@ export function ItemCharacteristic({ item, itemKey }: Readonly<ItemCharacteristi
         {t(`pages.item.char.${itemKey}`)}
       </dt>
       <dd key={`dd-${itemKey}`} className="font-medium text-gray-900">
-        {typeof characteristic === 'object' ? characteristic.map(c => <FilterChip key={c} label={c} value={c} filter="color" />) : characteristic}
+        {typeof characteristic === 'object' ?
+          characteristic.map(c => {
+            const localizedColor = l(c);
+            return <FilterChip key={localizedColor} label={localizedColor} value={localizedColor} filter="color" />;
+          })
+        : characteristic}
       </dd>
     </>
   );

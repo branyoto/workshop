@@ -1,11 +1,12 @@
-import type { CategoryView, Item } from '../../services/providers/cms/types';
+import type { CategoryView, Item, LocalizedText } from '../../services/providers/cms/types';
+import type { LocalizeText } from '../../services/providers/cms/useLocalize';
 
-export function uniqueColors(items: Item[]): string[] {
-  const seen = new Set<string>();
+export function uniqueColors(items: Item[], localize: LocalizeText): LocalizedText[] {
+  const seen = new Set<LocalizedText>();
   for (const item of items) {
     for (const color of item.characteristics?.colors ?? []) seen.add(color);
   }
-  return [...seen].sort((a, b) => a.localeCompare(b));
+  return [...seen].sort((a, b) => localize(a).localeCompare(localize(b)));
 }
 
 export function uniqueTags(items: Item[]): string[] {

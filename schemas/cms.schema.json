@@ -120,7 +120,7 @@
             "dimension": { "type": "string" },
             "colors": {
               "type": "array",
-              "items": { "type": "string"}
+              "items": { "$ref": "#/$defs/localizedText" }
             },
             "weight": { "type": "string" },
             "material": { "type": "string" }
