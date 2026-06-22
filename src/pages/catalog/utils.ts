@@ -46,3 +46,21 @@ export function resolveCategory(
   if (grand === undefined) return { category: null, notFound: true };
   return { category: grand, notFound: false };
 }
+
+export function resolveCategoryTags(
+  categories: CategoryView[],
+  categoryId: string | undefined,
+  subcategoryId: string | undefined,
+  subId: string | undefined,
+): string[] {
+  if (!categoryId) return [];
+  const root = categories.find(c => c.id === categoryId);
+  if (root === undefined) return [];
+  if (subcategoryId === undefined) return root.tags;
+  const child = root.children?.find(c => c.id === subcategoryId);
+  if (child === undefined) return root.tags;
+  if (subId === undefined) return [...root.tags, ...child.tags];
+  const grand = child.children?.find(c => c.id === subId);
+  if (grand === undefined) return [...root.tags, ...child.tags];
+  return [...root.tags, ...child.tags, ...grand.tags];
+}

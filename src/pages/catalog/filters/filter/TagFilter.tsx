@@ -5,7 +5,8 @@ import { FilterSection } from '../FilterSection';
 import { useCms } from '../../../../services/providers/cms/useCms';
 import { useLocalize } from '../../../../services/providers/cms/useLocalize';
 import type { Item } from '../../../../services/providers/cms/types';
-import { uniqueTags } from '../../utils';
+import { resolveCategoryTags, uniqueTags } from '../../utils';
+import { useParams } from 'react-router';
 
 export interface TagFilterProps {
   items: Item[];
@@ -13,18 +14,21 @@ export interface TagFilterProps {
 
 export function TagFilter({ items }: Readonly<TagFilterProps>) {
   const { filters, toggleTag } = useFilters();
-  const { tags: cmsTags } = useCms();
+  const { categories, tags: cmsTags } = useCms();
+  const { categoryId, subcategoryId, subId } = useParams();
   const { t } = useTranslation();
   const l = useLocalize();
 
   const tags = uniqueTags(items, cmsTags, l);
+  const categoryTags = resolveCategoryTags(categories, categoryId, subcategoryId, subId);
+  const nonCategoryTags = tags.filter(tag => !categoryTags.includes(tag));
 
-  if (!tags.length) return null;
+  if (!nonCategoryTags.length) return null;
 
   return (
     <FilterSection title={t('pages.catalog.filters.tags')}>
       <div className="flex flex-wrap gap-1.5">
-        {tags.map(tag => {
+        {nonCategoryTags.map(tag => {
           const active = filters.tags.includes(tag);
           return (
             <button
