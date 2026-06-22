@@ -206,7 +206,7 @@
         {
           "id": "keychain",
           "name": {
-            "fr": "Porte clé",
+            "fr": "Porte clés",
             "en": "Keychain"
           },
           "tags": ["keychain"]
@@ -2723,7 +2723,7 @@
     "halloween":  {"fr": "Halloween", "en": "Halloween" },
     "kitchen": {"fr": "Cuisine", "en": "Kitchen" },
     "jewellery":  {"fr": "Bijoux", "en": "Jewellery" },
-    "keychain": {"fr": "Porte-clé", "en": "Keychain" },
+    "keychain": {"fr": "Porte-clés", "en": "Keychain" },
     "pacifier-clip": {"fr": "Attache tétines", "en": "Pacifier-clip" },
     "rattle": {"fr": "Hochet", "en": "Rattle" },
     "suncatcher":  {"fr": "Attrape-soleil", "en": "Suncatcher" },

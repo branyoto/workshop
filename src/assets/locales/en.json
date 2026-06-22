@@ -124,6 +124,7 @@
       "characteristics": "Characteristics",
       "soldOut": "This item is no longer available.",
       "char": { "dimension": "Dimensions", "colors": "Colors", "weight": "Weight", "material": "Material" }
-    }
+    },
+    "notFound": { "title": "Page not found", "description": "The page you are looking for does not exist.", "back": "Back to home" }
   }
 }

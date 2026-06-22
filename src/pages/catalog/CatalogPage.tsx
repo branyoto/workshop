@@ -23,7 +23,6 @@ export function CatalogPage() {
   const [filterDrawerOpened, openFilterDrawer, closeFilterDrawer] = useDisclosure();
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  // Reset pagination on filter/category change
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- resync url change with state
     setVisibleCount(PAGE_SIZE);
