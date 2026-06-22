@@ -9,11 +9,25 @@ export interface Filters {
   available: boolean;
 }
 
-function patch(prev: URLSearchParams, updater: (next: URLSearchParams) => void): URLSearchParams {
-  const next = new URLSearchParams(prev);
-  next.delete('page');
-  updater(next);
-  return next;
+function setOrDelete(key: string, newValue: string | number | boolean | null | undefined) {
+  return (searchParams: URLSearchParams) => {
+    if (newValue === null || !newValue) {
+      searchParams.delete(key);
+    } else {
+      searchParams.set(key, String(newValue));
+    }
+    return searchParams;
+  };
+}
+
+function setOrDeleteMultiple(key: string, newValue: string) {
+  return (searchParams: URLSearchParams) => {
+    const prevValues = searchParams.getAll(key);
+    searchParams.delete(key);
+    const newValues = prevValues.includes(newValue) ? prevValues.filter(c => c !== newValue) : [...prevValues, newValue];
+    newValues.forEach(t => searchParams.append(key, t));
+    return searchParams;
+  };
 }
 
 export function useFilters() {
@@ -44,27 +58,11 @@ export function useFilters() {
     () => ({
       filters,
       activeCount,
-      setMinPrice: (v: number | null) =>
-        setSearchParams(p => patch(p, n => (v === null ? n.delete('minPrice') : n.set('minPrice', String(v)))), { replace: true }),
-      setMaxPrice: (v: number | null) =>
-        setSearchParams(p => patch(p, n => (v === null ? n.delete('maxPrice') : n.set('maxPrice', String(v)))), { replace: true }),
-      setAvailable: (v: boolean) => setSearchParams(p => patch(p, n => (v ? n.set('available', 'true') : n.delete('available')))),
-      toggleColor: (color: string) =>
-        setSearchParams(p =>
-          patch(p, search => {
-            const cur = search.getAll('color');
-            search.delete('color');
-            (cur.includes(color) ? cur.filter(c => c !== color) : [...cur, color]).forEach(t => search.append('color', t));
-          }),
-        ),
-      toggleTag: (tag: string) =>
-        setSearchParams(p =>
-          patch(p, search => {
-            const cur = search.getAll('tag');
-            search.delete('tag');
-            (cur.includes(tag) ? cur.filter(t => t !== tag) : [...cur, tag]).forEach(t => search.append('tag', t));
-          }),
-        ),
+      setMinPrice: (newValue: number | null) => setSearchParams(setOrDelete('minPrice', newValue)),
+      setMaxPrice: (newValue: number | null) => setSearchParams(setOrDelete('maxPrice', newValue)),
+      setAvailable: (newValue: boolean) => setSearchParams(setOrDelete('available', newValue)),
+      toggleColor: (color: string) => setSearchParams(setOrDeleteMultiple('color', color)),
+      toggleTag: (tag: string) => setSearchParams(setOrDeleteMultiple('tag', tag)),
       clearAll: () => setSearchParams(new URLSearchParams()),
     }),
     [activeCount, filters, setSearchParams],
