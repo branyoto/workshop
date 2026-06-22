@@ -27,16 +27,6 @@ export function uniqueTags(items: Item[], tags: Record<string, LocalizedText>, l
   );
 }
 
-export function collectTags(category: CategoryView): string[] {
-  const tags = new Set(category.tags);
-  for (const child of category.children ?? []) {
-    for (const tag of collectTags(child)) {
-      tags.add(tag);
-    }
-  }
-  return [...tags];
-}
-
 type ResolveResult = { category: CategoryView | null; notFound: boolean };
 
 export function resolveCategory(

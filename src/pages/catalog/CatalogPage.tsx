@@ -11,7 +11,7 @@ import { useDisclosure } from '../../utils/useDisclosure';
 import { MobileFilterButton } from './mobile/MobileFilterButton';
 import { DesktopFilterDrawer } from './desktop/DesktopFilterDrawer';
 import { CatalogNotFound } from './CatalogNotFound';
-import { collectTags, resolveCategory } from './utils';
+import { resolveCategory } from './utils';
 import { applyFilters } from './filters/utils';
 
 const PAGE_SIZE = 12;
@@ -39,11 +39,8 @@ export function CatalogPage() {
     return <CatalogNotFound />;
   }
 
-  // Base items: scoped to category (before user filters)
-  const activeCategoryTags = category ? collectTags(category) : null;
+  const activeCategoryTags = category?.tags;
   const baseItems = activeCategoryTags ? items.filter(item => item.tags.some(tag => activeCategoryTags.includes(tag))) : items;
-
-  // Apply user filters
   const filteredItems = applyFilters(baseItems, filterState.filters);
   const visibleItems = filteredItems.slice(0, visibleCount);
   const hasMore = visibleCount < filteredItems.length;

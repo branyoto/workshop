@@ -40,7 +40,6 @@
             "en": "Amigurumi"
           },
           "tags": [
-            "crochet",
             "amigurumi"
           ]
         },
@@ -51,7 +50,6 @@
             "en": "Crochet hats and accessories"
           },
           "tags": [
-            "crochet",
             "clothing"
           ]
         }
@@ -78,7 +76,6 @@
             "en": "Diaper cakes"
           },
           "tags": [
-            "baby",
             "diaper-cake"
           ]
         },
@@ -89,7 +86,6 @@
             "en": "Rattles"
           },
           "tags": [
-            "baby",
             "rattle"
           ]
         },
@@ -100,7 +96,6 @@
             "en": "Pacifier clips"
           },
           "tags": [
-            "baby",
             "pacifier-clip"
           ]
         }
@@ -141,7 +136,6 @@
             "en": "Christmas"
           },
           "tags": [
-            "decoration",
             "christmas"
           ]
         },
@@ -152,7 +146,6 @@
             "en": "Halloween"
           },
           "tags": [
-            "decoration",
             "halloween"
           ]
         },
@@ -163,7 +156,6 @@
             "en": "Dreamcatchers"
           },
           "tags": [
-            "decoration",
             "dreamcatcher"
           ]
         },
@@ -174,7 +166,6 @@
             "en": "Suncatchers"
           },
           "tags": [
-            "decoration",
             "suncatcher"
           ]
         },
@@ -185,7 +176,6 @@
             "en": "Wall hangings"
           },
           "tags": [
-            "decoration",
             "wall-hanging"
           ]
         }
@@ -204,21 +194,22 @@
       "tags": [
         "accessory"
       ],
-      "children": [{
-        "id": "bag",
-        "name": {
-          "fr": "Sacs et paniers",
-          "en": "Bags and basket"
+      "children": [
+        {
+          "id": "bag",
+          "name": {
+            "fr": "Sacs et paniers",
+            "en": "Bags and basket"
+          },
+          "tags": ["bag", "basket"]
         },
-        "tags": ["accessory", "bag", "basket"]
-      },
         {
           "id": "keychain",
           "name": {
             "fr": "Porte clé",
             "en": "Keychain"
           },
-          "tags": ["accessory", "keychain"]
+          "tags": ["keychain"]
         }
       ]
     }
