@@ -1,3 +1,5 @@
+import { notNull } from '../utils/commonFilter';
+
 export const ROUTES = { home: '/', catalog: '/catalog', item: '/item/:id', checkout: '/checkout', contact: '/contact' } as const;
 
 export function homeUrl(): string {
@@ -9,7 +11,7 @@ export function catalogUrl(): string {
 }
 
 export function categoryUrl(...categoryIds: (string | undefined | null)[]): string {
-  const parts = categoryIds.filter(Boolean);
+  const parts = categoryIds.filter(notNull);
   return parts.length ? `${catalogUrl()}/${parts.join('/')}` : catalogUrl();
 }
 
