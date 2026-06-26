@@ -2,7 +2,7 @@ import { useLocalize } from '../../services/providers/cms/useLocalize';
 import { useCms } from '../../services/providers/cms/useCms';
 import { useMemo } from 'react';
 import { notNull } from '../../utils/commonFilter';
-import { itemUrl } from '../../routes/routePaths';
+import { categoryUrl, itemUrl } from '../../routes/routePaths';
 import { getProductImageUrl } from '../../utils/image';
 import { FeaturedElements } from './FeaturedElements';
 import { Link } from 'react-router';
@@ -11,6 +11,7 @@ import type { Item } from '../../services/providers/cms/types';
 import { useCart } from '../../services/providers/cart/useCart';
 import { useFormatPrice } from '../../services/i18n/formatPrice';
 import { useTranslation } from 'react-i18next';
+import { FEATURED_ITEMS_CATEGORY_ID } from '../catalog/utils';
 
 export function FeaturedItems() {
   const { items, featuredItemIds } = useCms();
@@ -24,7 +25,7 @@ export function FeaturedItems() {
     [items, featuredItemIds],
   );
 
-  return <FeaturedElements titleKey="pages.home.featured" elements={featuredCategories} />;
+  return <FeaturedElements titleKey="pages.home.featured" titleHref={categoryUrl(FEATURED_ITEMS_CATEGORY_ID)} elements={featuredCategories} />;
 }
 
 function FeaturedItemLabel({ item }: Readonly<{ item: Item }>) {

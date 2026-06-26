@@ -3,7 +3,7 @@ import { useCms } from '../../services/providers/cms/useCms';
 import { useMemo } from 'react';
 import { FeaturedElements } from './FeaturedElements';
 import { notNull } from '../../utils/commonFilter';
-import { categoryUrl } from '../../routes/routePaths';
+import { catalogUrl, categoryUrl } from '../../routes/routePaths';
 import { getCategoryImageUrl } from '../../utils/image';
 
 export function FeaturedCategories() {
@@ -19,7 +19,14 @@ export function FeaturedCategories() {
     [categories, featuredCategoryIds, l],
   );
 
-  return <FeaturedElements titleKey="pages.home.categories" elements={featuredCategories} />;
+  const titleSearchParams = useMemo(() => {
+    const params = new URLSearchParams();
+    const featuredTags = featuredCategories.flatMap(({ id }) => categories.find(c => c.id === id)?.tags ?? []);
+    featuredTags.distinct().forEach(tag => params.append('tag', tag));
+    return '?' + params.toString();
+  }, [categories, featuredCategories]);
+
+  return <FeaturedElements titleKey="pages.home.categories" titleHref={catalogUrl() + titleSearchParams} elements={featuredCategories} />;
 }
 
 function FeaturedCategoryLabel({ label }: Readonly<{ label: string }>) {
