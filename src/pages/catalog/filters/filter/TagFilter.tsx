@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { useFilters } from '../useFilters';
 import { useTranslation } from 'react-i18next';
 import { FilterSection } from '../FilterSection';
@@ -7,6 +6,7 @@ import { useLocalize } from '../../../../services/providers/cms/useLocalize';
 import type { Item } from '../../../../services/providers/cms/types';
 import { resolveCategoryTags, uniqueTags } from '../../utils';
 import { useParams } from 'react-router';
+import { ToggleButton } from '../../../../common/input/ToggleButton';
 
 export interface TagFilterProps {
   items: Item[];
@@ -28,23 +28,9 @@ export function TagFilter({ items }: Readonly<TagFilterProps>) {
   return (
     <FilterSection title={t('pages.catalog.filters.tags')}>
       <div className="flex flex-wrap gap-1.5">
-        {nonCategoryTags.map(tag => {
-          const active = filters.tags.includes(tag);
-          return (
-            <button
-              key={tag}
-              type="button"
-              onClick={() => toggleTag(tag)}
-              aria-pressed={active}
-              className={clsx(
-                'rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors',
-                active ? 'border-accent bg-accent text-white' : 'border-neutral/60 bg-white text-gray-700 hover:border-accent hover:text-accent',
-              )}
-            >
-              {l(cmsTags[tag])}
-            </button>
-          );
-        })}
+        {nonCategoryTags.map(tag => (
+          <ToggleButton key={tag} label={l(cmsTags[tag])} active={filters.tags.includes(tag)} onClick={() => toggleTag(tag)} />
+        ))}
       </div>
     </FilterSection>
   );

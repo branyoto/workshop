@@ -43,6 +43,7 @@
       "breadcrumb": "Fil d'Ariane",
       "filters": {
         "title": "Filtres",
+        "featured": "Articles vedette",
         "clearAll": "Tout effacer",
         "openFilters": "Filtres",
         "price": "Prix (€)",

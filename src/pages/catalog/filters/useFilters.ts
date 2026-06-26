@@ -1,11 +1,13 @@
-import { useSearchParams } from 'react-router';
+import { useParams, useSearchParams } from 'react-router';
 import { useMemo } from 'react';
+import { FEATURED_ITEMS_CATEGORY_ID } from '../utils';
 
 export interface Filters {
   minPrice: number | null;
   maxPrice: number | null;
   colors: string[];
   tags: string[];
+  featured: boolean;
   available: boolean;
 }
 
@@ -32,6 +34,7 @@ function setOrDeleteMultiple(key: string, newValue: string) {
 
 export function useFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { categoryId } = useParams();
 
   const filters: Filters = useMemo(
     () => ({
@@ -39,9 +42,10 @@ export function useFilters() {
       maxPrice: searchParams.has('maxPrice') ? Number(searchParams.get('maxPrice')) : null,
       colors: searchParams.getAll('color'),
       tags: searchParams.getAll('tag'),
+      featured: categoryId === FEATURED_ITEMS_CATEGORY_ID,
       available: searchParams.get('available') === 'true',
     }),
-    [searchParams],
+    [searchParams, categoryId],
   );
 
   const activeCount = useMemo(
@@ -50,6 +54,7 @@ export function useFilters() {
       (filters.maxPrice == null ? 0 : 1) +
       filters.colors.length +
       filters.tags.length +
+      (filters.featured ? 1 : 0) +
       (filters.available ? 1 : 0),
     [filters],
   );

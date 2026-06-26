@@ -11,17 +11,18 @@ import { useDisclosure } from '../../utils/useDisclosure';
 import { MobileFilterButton } from './mobile/MobileFilterButton';
 import { DesktopFilterDrawer } from './desktop/DesktopFilterDrawer';
 import { CatalogNotFound } from './CatalogNotFound';
-import { resolveCategory } from './utils';
+import { FEATURED_ITEMS_CATEGORY_ID, resolveCategory } from './utils';
 import { applyFilters } from './filters/utils';
 
 const PAGE_SIZE = 12;
 
 export function CatalogPage() {
   const { categoryId, subcategoryId, subId } = useParams();
-  const { categories, items } = useCms();
+  const { categories, items, featuredItemIds } = useCms();
   const filterState = useFilters();
   const [filterDrawerOpened, openFilterDrawer, closeFilterDrawer] = useDisclosure();
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const { category, notFound } = resolveCategory(categories, categoryId, subcategoryId, subId);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- resync url change with state
@@ -32,14 +33,15 @@ export function CatalogPage() {
     setVisibleCount(prev => prev + PAGE_SIZE);
   }, []);
 
-  const { category, notFound } = resolveCategory(categories, categoryId, subcategoryId, subId);
-
   if (notFound) {
     return <CatalogNotFound />;
   }
 
   const activeCategoryTags = category?.tags;
-  const baseItems = activeCategoryTags ? items.filter(item => item.tags.some(tag => activeCategoryTags.includes(tag))) : items;
+  const baseItems =
+    activeCategoryTags ? items.filter(item => item.tags.some(tag => activeCategoryTags.includes(tag)))
+    : categoryId === FEATURED_ITEMS_CATEGORY_ID ? items.filter(item => featuredItemIds.includes(item.id))
+    : items;
   const filteredItems = applyFilters(baseItems, filterState.filters);
   const visibleItems = filteredItems.slice(0, visibleCount);
   const hasMore = visibleCount < filteredItems.length;

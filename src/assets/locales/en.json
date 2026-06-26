@@ -42,6 +42,7 @@
       "breadcrumb": "Breadcrumb",
       "filters": {
         "title": "Filters",
+        "featured": "Featured Items",
         "clearAll": "Clear all",
         "openFilters": "Filters",
         "price": "Price (€)",
