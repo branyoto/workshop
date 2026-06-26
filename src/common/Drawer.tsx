@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { X } from 'lucide-react';
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { Button } from './Button';
 
@@ -74,7 +75,7 @@ export function Drawer({ open, onClose, side, title, children, footer, mobileFul
             </h2>
           : <span />}
           <Button ref={closeButtonRef} variant="ghost" className="px-2 py-1" onClick={onClose} aria-label="Close drawer">
-            ✕
+            <X aria-hidden="true" className="size-4" strokeWidth={1.75} />
           </Button>
         </header>
         <div className="flex-1 overflow-y-auto px-4 py-4">{children}</div>

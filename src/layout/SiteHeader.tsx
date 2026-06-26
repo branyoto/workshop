@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import { Menu, ShoppingBag } from 'lucide-react';
 import { useCart } from '../services/providers/cart/useCart';
 import { Button } from '../common/Button';
 import { homeUrl } from '../routes/routePaths';
-import cartIcon from '../assets/icons/cart.svg';
-import menuIcon from '../assets/icons/menu.svg';
 
 export interface SiteHeaderProps {
   onOpenCategoryDrawer: () => void;
@@ -23,7 +22,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
           onClick={onOpenCategoryDrawer}
           aria-label={t('header.openCategoryMenu')}
         >
-          <img className="size-5" src={menuIcon} alt="" />
+          <Menu aria-hidden="true" className="size-5" strokeWidth={1.75} />
         </Button>
 
         <Link
@@ -41,7 +40,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
             aria-label={t('header.openCart')}
             data-testid="header-cart-button"
           >
-            <img className="size-5" src={cartIcon} alt="" />
+            <ShoppingBag aria-hidden="true" className="size-5" strokeWidth={1.75} />
             {count > 0 && (
               <span
                 className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white"

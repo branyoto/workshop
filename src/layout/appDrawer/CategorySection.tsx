@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router';
 import { useId, useState } from 'react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import { catalogUrl } from '../../routes/routePaths';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -31,9 +32,9 @@ export function CategorySection({ onClose }: Readonly<CategorySectionProps>) {
               onClick={() => setExpanded(current => !current)}
               className="rounded-md px-2 py-1.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-primary/20"
             >
-              <span aria-hidden="true" className="text-xs text-gray-500">
-                {expanded ? 'v' : '>'}
-              </span>
+              {expanded ?
+                <ChevronDown aria-hidden="true" className="size-4 text-gray-500" strokeWidth={1.75} />
+              : <ChevronRight aria-hidden="true" className="size-4 text-gray-500" strokeWidth={1.75} />}
             </button>
             <Link
               to={catalogUrl()}

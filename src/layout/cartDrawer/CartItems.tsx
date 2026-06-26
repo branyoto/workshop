@@ -1,3 +1,4 @@
+import { X } from 'lucide-react';
 import { getProductImageUrl } from '../../utils/image';
 import { Button } from '../../common/Button';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +25,7 @@ export function CartItems() {
             onClick={() => removeItem(item.id)}
             aria-label={t('pages.cart.remove', { title: item.titleSnapshot })}
           >
-            ✕
+            <X aria-hidden="true" className="size-4" strokeWidth={1.75} />
           </Button>
         </li>
       ))}
