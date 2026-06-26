@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router';
 import { CartDrawer } from './cartDrawer/CartDrawer';
-import { CategoryDrawer } from './appDrawer/CategoryDrawer';
+import { AppDrawer } from './appDrawer/AppDrawer';
 import { SiteFooter } from './SiteFooter';
 import { SiteHeader } from './SiteHeader';
 
@@ -16,7 +16,7 @@ export function AppShell() {
         <Outlet />
       </main>
       <SiteFooter />
-      <CategoryDrawer open={categoryDrawerOpen} onClose={() => setCategoryDrawerOpen(false)} />
+      <AppDrawer open={categoryDrawerOpen} onClose={() => setCategoryDrawerOpen(false)} />
       <CartDrawer open={cartDrawerOpen} onClose={() => setCartDrawerOpen(false)} />
     </div>
   );

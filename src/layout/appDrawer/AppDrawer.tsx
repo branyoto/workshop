@@ -86,7 +86,7 @@ export interface CategoryDrawerProps {
   onClose: () => void;
 }
 
-export function CategoryDrawer({ open, onClose }: Readonly<CategoryDrawerProps>) {
+export function AppDrawer({ open, onClose }: Readonly<CategoryDrawerProps>) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language as 'fr' | 'en';
   const { categories } = useCms();
