@@ -1,30 +1,23 @@
-import type { Item, ItemCharacteristics } from '../../../../services/providers/cms/types';
+import type { ItemCharacteristics } from '../../../../services/providers/cms/types';
 import { useTranslation } from 'react-i18next';
 import { CatalogFilterChip } from '../../../../common/CatalogFilterChip';
-import { useLocalize } from '../../../../services/providers/cms/useLocalize';
 
 export interface ItemCharacteristicProps {
-  item: Item;
+  value: number | string | string[] | undefined;
   itemKey: keyof ItemCharacteristics;
+  filter?: string;
 }
 
-export function ItemCharacteristic({ item, itemKey }: Readonly<ItemCharacteristicProps>) {
+export function ItemCharacteristic({ value, itemKey, filter }: Readonly<ItemCharacteristicProps>) {
   const { t } = useTranslation();
-  const l = useLocalize();
-  const characteristic = item.characteristics?.[itemKey];
-  if (!characteristic) return null;
+  if (!value) return null;
   return (
     <>
       <dt key={`dt-${itemKey}`} className="text-gray-500">
         {t(`pages.item.char.${itemKey}`)}
       </dt>
       <dd key={`dd-${itemKey}`} className="font-medium text-gray-900">
-        {typeof characteristic === 'object' ?
-          characteristic.map(c => {
-            const localizedColor = l(c);
-            return <CatalogFilterChip key={localizedColor} label={localizedColor} value={localizedColor} filter="color" />;
-          })
-        : characteristic}
+        {typeof value === 'object' ? value.map(v => <CatalogFilterChip key={v} label={v} value={v} filter={filter} />) : value}
       </dd>
     </>
   );
