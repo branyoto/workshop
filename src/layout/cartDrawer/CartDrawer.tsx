@@ -6,6 +6,7 @@ import { Drawer } from '../../common/Drawer';
 import { EmptyState } from '../../common/EmptyState';
 import { catalogUrl, checkoutUrl } from '../../routes/routePaths';
 import { getProductImageUrl } from '../../utils/image';
+import { useFormatPrice } from '../../services/i18n/formatPrice';
 
 export interface CartDrawerProps {
   open: boolean;
@@ -13,18 +14,16 @@ export interface CartDrawerProps {
 }
 
 export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { items, total, removeItem, clearCart } = useCart();
-
-  const priceLabel = (amount: number) =>
-    new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(amount);
+  const formatPrice = useFormatPrice();
 
   const footer =
     items.length > 0 ?
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between text-sm font-semibold">
           <span>{t('pages.cart.total')}</span>
-          <span>{priceLabel(total)}</span>
+          <span>{formatPrice(total)}</span>
         </div>
         <Link
           to={checkoutUrl()}
@@ -59,7 +58,7 @@ export function CartDrawer({ open, onClose }: Readonly<CartDrawerProps>) {
               <img src={getProductImageUrl(item.id)} alt="" aria-hidden="true" className="h-14 w-14 rounded-md object-cover" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium">{item.titleSnapshot}</p>
-                <p className="text-sm text-gray-600">{priceLabel(item.priceSnapshot)}</p>
+                <p className="text-sm text-gray-600">{formatPrice(item.priceSnapshot)}</p>
               </div>
               <Button
                 variant="ghost"

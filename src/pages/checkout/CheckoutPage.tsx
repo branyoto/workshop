@@ -8,6 +8,7 @@ import { catalogUrl } from '../../routes/routePaths';
 import { AddressInput } from './AddressInput';
 import { checkoutSchema, type CheckoutFormData } from './schema';
 import { getProductImageUrl } from '../../utils/image';
+import { useFormatPrice } from '../../services/i18n/formatPrice';
 
 interface FieldProps {
   label: string;
@@ -40,11 +41,9 @@ interface CheckoutPageProps {
 }
 
 export function CheckoutPage({ onSubmit, submitting = false }: Readonly<CheckoutPageProps>) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { items, total } = useCart();
-
-  const priceLabel = (amount: number) =>
-    new Intl.NumberFormat(i18n.language === 'fr' ? 'fr-FR' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(amount);
+  const formatPrice = useFormatPrice();
 
   const form = useForm({
     defaultValues: { name: '', email: '', phone: '', address: '', instructions: '' },
@@ -211,7 +210,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   <img src={getProductImageUrl(item.id)} alt="" aria-hidden="true" className="h-12 w-12 rounded-md object-cover" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{item.titleSnapshot}</p>
-                    <p className="text-sm text-gray-600">{priceLabel(item.priceSnapshot)}</p>
+                    <p className="text-sm text-gray-600">{formatPrice(item.priceSnapshot)}</p>
                   </div>
                 </li>
               ))}
@@ -219,7 +218,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
             <div className="mt-4 border-t border-neutral/40 pt-3">
               <div className="flex items-center justify-between text-sm font-semibold">
                 <span>{t('pages.checkout.summary.total')}</span>
-                <span>{priceLabel(total)}</span>
+                <span>{formatPrice(total)}</span>
               </div>
               <p className="mt-2 text-xs text-gray-500">{t('pages.checkout.summary.deliveryNote')}</p>
             </div>
