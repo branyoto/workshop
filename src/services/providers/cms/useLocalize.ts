@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { LocalizedText } from './types';
+import type { Languages } from '../../i18n/i18n';
 
 export type LocalizeText = (text: LocalizedText) => string;
 
@@ -10,6 +11,6 @@ export type LocalizeText = (text: LocalizedText) => string;
  */
 export function useLocalize(): LocalizeText {
   const { i18n } = useTranslation();
-  const locale = i18n.language as 'fr' | 'en';
+  const locale = i18n.language as Languages;
   return text => (locale === 'en' && text.en ? text.en : text.fr);
 }

@@ -9,12 +9,13 @@ import type { CategoryView } from '../../services/providers/cms/types';
 import { useCms } from '../../services/providers/cms/useCms';
 import { catalogUrl } from '../../routes/routePaths';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import type { Languages } from '../../services/i18n/i18n';
 
 interface CategoryItemProps {
   category: CategoryView;
   href: string;
   isActive: boolean;
-  locale: 'fr' | 'en';
+  locale: Languages;
   depth: number;
   activeId: string | undefined;
   onClose: () => void;
@@ -55,7 +56,7 @@ function CategoryItem({ category, href, isActive, locale, depth, activeId, onClo
 
 interface CategoryTreeProps {
   categories: CategoryView[];
-  locale: 'fr' | 'en';
+  locale: Languages;
   activeId: string | undefined;
   parentPath: string;
   depth: number;
@@ -88,7 +89,7 @@ export interface CategoryDrawerProps {
 
 export function AppDrawer({ open, onClose }: Readonly<CategoryDrawerProps>) {
   const { t, i18n } = useTranslation();
-  const locale = i18n.language as 'fr' | 'en';
+  const locale = i18n.language as Languages;
   const { categories } = useCms();
 
   const matchCat = useMatch('/catalog/:categoryId');
