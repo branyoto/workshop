@@ -2,12 +2,12 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useMatch } from 'react-router';
-import { Drawer } from '../common/Drawer';
-import { getCategoryImageUrl } from '../utils/image';
-import { useLocalize } from '../services/providers/cms/useLocalize';
-import type { CategoryView } from '../services/providers/cms/types';
-import { useCms } from '../services/providers/cms/useCms';
-import { catalogUrl } from '../routes/routePaths';
+import { Drawer } from '../../common/Drawer';
+import { getCategoryImageUrl } from '../../utils/image';
+import { useLocalize } from '../../services/providers/cms/useLocalize';
+import type { CategoryView } from '../../services/providers/cms/types';
+import { useCms } from '../../services/providers/cms/useCms';
+import { catalogUrl } from '../../routes/routePaths';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface CategoryItemProps {

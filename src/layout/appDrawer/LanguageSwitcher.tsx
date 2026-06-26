@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import i18n from '../services/i18n/i18n';
+import i18n from '../../services/i18n/i18n';
 import { useTranslation } from 'react-i18next';
 
 function switchLanguage(lang: 'fr' | 'en') {

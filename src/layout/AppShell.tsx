@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router';
-import { CartDrawer } from './CartDrawer';
-import { CategoryDrawer } from './CategoryDrawer';
+import { CartDrawer } from './cartDrawer/CartDrawer';
+import { CategoryDrawer } from './appDrawer/CategoryDrawer';
 import { SiteFooter } from './SiteFooter';
 import { SiteHeader } from './SiteHeader';
 
