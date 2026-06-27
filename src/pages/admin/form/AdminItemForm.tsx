@@ -14,7 +14,10 @@ export function AdminItemForm() {
 
   if (!selectedItem)
     return (
-      <form className="flex-3 space-y-6 rounded-lg border border-neutral/50 p-4 h-min" onSubmit={event => event.preventDefault()}>
+      <form
+        className="flex-3 flex justify-center items-center rounded-lg text-2xl font-bold border border-neutral/50 p-4 h-120"
+        onSubmit={event => event.preventDefault()}
+      >
         Pas de produit sélectionné
       </form>
     );
