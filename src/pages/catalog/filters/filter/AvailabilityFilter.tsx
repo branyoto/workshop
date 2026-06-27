@@ -9,12 +9,7 @@ export function AvailabilityFilter() {
 
   return (
     <FilterSection title={t('pages.catalog.filters.availability')}>
-      <Checkbox
-        label={t('pages.catalog.filters.inStockOnly')}
-        checked={filters.available}
-        onChange={e => setAvailable(e.target.checked)}
-        data-testid="filter-available"
-      />
+      <Checkbox label={t('pages.catalog.filters.inStockOnly')} checked={filters.available} onChange={setAvailable} data-testid="filter-available" />
     </FilterSection>
   );
 }
