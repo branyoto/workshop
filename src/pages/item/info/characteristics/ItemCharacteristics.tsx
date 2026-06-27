@@ -3,6 +3,7 @@ import { ItemCharacteristic } from './ItemCharacteristic';
 import { useTranslation } from 'react-i18next';
 import { useCms } from '../../../../services/providers/cms/useCms';
 import { useLocalize } from '../../../../services/providers/cms/useLocalize';
+import { excludeArrayCharacs } from '../../../../utils/excludeArrayCharacs';
 
 export interface ItemCharacteristicsProps {
   item: Item;
@@ -19,9 +20,9 @@ export function ItemCharacteristics({ item }: Readonly<ItemCharacteristicsProps>
     <div className="rounded-xl border border-neutral/40 p-4">
       <h3 className="mb-2 text-sm font-semibold text-gray-900">{t('pages.item.characteristics')}</h3>
       <dl className="grid grid-cols-2 gap-2 text-sm">
-        <ItemCharacteristic value={item.characteristics?.dimension} itemKey="dimension" />
-        <ItemCharacteristic value={item.characteristics?.material} itemKey="material" />
-        <ItemCharacteristic value={item.characteristics?.weight} itemKey="weight" />
+        {excludeArrayCharacs(item).map(([key, value]) => (
+          <ItemCharacteristic key={key} value={value} itemKey={key} />
+        ))}
         <ItemCharacteristic value={item.characteristics?.colors?.map(c => ({ id: c, label: l(colors[c]) }))} itemKey="colors" filter="colors" />
       </dl>
     </div>

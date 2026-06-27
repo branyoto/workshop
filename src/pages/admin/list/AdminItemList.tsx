@@ -1,24 +1,19 @@
 import { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
-import { useCms } from '../../../services/providers/cms/useCms';
 import { AdminItemListContent } from './AdminItemListContent';
+import { useAdminModification } from '../utils/useAdminModification';
 
-export interface AdminItemListProps {
-  selectedItemId: string;
-  setSelectedItemId: (itemId: string) => void;
-}
-
-export function AdminItemList({ selectedItemId, setSelectedItemId }: Readonly<AdminItemListProps>) {
-  const { items } = useCms();
+export function AdminItemList() {
+  const { value } = useAdminModification();
   const [query, setQuery] = useState('');
 
   const filteredItems = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    if (!normalizedQuery) return items;
-    return items.filter(item =>
+    if (!normalizedQuery) return value.items;
+    return value.items.filter(item =>
       [item.id, item.title.fr, item.title.en].filter(Boolean).some(value => value?.toLowerCase().includes(normalizedQuery)),
     );
-  }, [items, query]);
+  }, [value, query]);
 
   return (
     <aside className="relative flex-1 rounded-lg border border-neutral/50 bg-white">
@@ -31,7 +26,7 @@ export function AdminItemList({ selectedItemId, setSelectedItemId }: Readonly<Ad
           placeholder="Search item"
         />
       </div>
-      <AdminItemListContent selectedItemId={selectedItemId} setSelectedItemId={setSelectedItemId} items={filteredItems} />
+      <AdminItemListContent items={filteredItems} />
     </aside>
   );
 }

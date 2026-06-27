@@ -1,0 +1,34 @@
+import { createContext, type SetStateAction } from 'react';
+import type { CategoryView, CmsContent, Item } from '../../../services/providers/cms/types';
+import type { Noop } from '../../../utils/useDisclosure';
+import type { EditImage, EditLocalizedText } from './AdminModificationReducer';
+
+export type ModificationState = 'idle' | 'copied' | 'downloaded';
+
+export interface AdminModificationContextValue {
+  state: ModificationState;
+  setState: (state: ModificationState) => void;
+  selectedItemId: string;
+  setSelectedItemId: (id: string) => void;
+  value: CmsContent;
+  editCategory: (prevCategoryId: string, category: CategoryView) => void;
+  deleteCategory: (categoryId: string) => void;
+  editItem: (prevItemId: string, item: Item) => void;
+  deleteItem: (itemId: string) => void;
+  editItemImage: (itemId: string, index: number, image: EditImage) => void;
+  deleteItemImage: (itemId: string, index: number) => void;
+  editColor: (prevColorKey: string, color: EditLocalizedText) => void;
+  deleteColor: (colorKey: string) => void;
+  editTag: (prevTagKey: string, tag: EditLocalizedText) => void;
+  deleteTag: (tagKey: string) => void;
+  addCategoryToFeatured: (categoryId: string) => void;
+  removeCategoryFromFeatured: (categoryId: string) => void;
+  addItemToFeatured: (itemId: string) => void;
+  removeItemFromFeatured: (itemId: string) => void;
+  hydrate: (cmsContent: SetStateAction<CmsContent>) => void;
+  copy: Noop;
+  download: Noop;
+  reset: Noop;
+}
+
+export const AdminModificationContext = createContext<AdminModificationContextValue | undefined>(undefined);

@@ -1,14 +1,14 @@
 import type { Item } from '../../../services/providers/cms/types';
 import clsx from 'clsx';
 import { getProductImageUrl } from '../../../utils/image';
+import { useAdminModification } from '../utils/useAdminModification';
 
 export interface AdminItemListContentProps {
-  selectedItemId: string;
-  setSelectedItemId: (itemId: string) => void;
   items: Item[];
 }
 
-export function AdminItemListContent({ items, setSelectedItemId, selectedItemId }: Readonly<AdminItemListContentProps>) {
+export function AdminItemListContent({ items }: Readonly<AdminItemListContentProps>) {
+  const { selectedItemId, setSelectedItemId } = useAdminModification();
   return (
     <div className="absolute top-12 inset-0 overflow-y-auto p-1">
       {items.map(item => (
