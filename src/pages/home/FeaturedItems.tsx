@@ -5,7 +5,6 @@ import { notNull } from '../../utils/commonFilter';
 import { catalogUrl, itemUrl } from '../../routes/routePaths';
 import { getProductImageUrl } from '../../utils/image';
 import { FeaturedElements } from './FeaturedElements';
-import { Link } from 'react-router';
 import { Button } from '../../common/Button';
 import type { Item } from '../../services/providers/cms/types';
 import { useCart } from '../../services/providers/cart/useCart';
@@ -37,12 +36,7 @@ function FeaturedItemLabel({ item }: Readonly<{ item: Item }>) {
 
   return (
     <div className="flex flex-1 flex-col gap-2 p-3">
-      <Link
-        to={itemUrl(item.id)}
-        className="text-sm font-medium text-gray-900 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1"
-      >
-        {l(item.title)}
-      </Link>
+      {l(item.title)}
       <div className="mt-auto flex items-center justify-between gap-2">
         <span className="text-sm font-semibold">{formatPrice(item.price)}</span>
         {item.available && (
