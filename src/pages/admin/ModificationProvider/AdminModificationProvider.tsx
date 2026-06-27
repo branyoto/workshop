@@ -1,5 +1,11 @@
 import { type PropsWithChildren, type SetStateAction, useCallback, useMemo, useReducer } from 'react';
-import { adminModificationReducer, type EditImage, type EditLocalizedText, type ModificationStatus } from './AdminModificationReducer';
+import {
+  adminModificationReducer,
+  type EditImage,
+  type EditLocalizedText,
+  type EditStateAction,
+  type ModificationStatus,
+} from './AdminModificationReducer';
 import { useCms } from '../../../services/providers/cms/useCms';
 import { AdminModificationContext, type AdminModificationContextValue } from './AdminModificationContext';
 import type { CategoryView, CmsContent, Item } from '../../../services/providers/cms/types';
@@ -15,7 +21,11 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
     [dispatch],
   );
   const deleteCategory = useCallback((categoryId: string) => dispatch({ type: 'DELETE_CATEGORY', categoryId }), [dispatch]);
-  const editItem = useCallback((prevItemId: string, item: Item) => dispatch({ type: 'EDIT_ITEM', prevItemId, item }), [dispatch]);
+  const editItem = useCallback(
+    (prevItemId: string, updater: SetStateAction<Item>) => dispatch({ type: 'EDIT_ITEM', prevItemId, updater }),
+    [dispatch],
+  );
+  const editSelectedItem = useCallback((action: EditStateAction<Item>) => dispatch({ type: 'EDIT_SELECTED_ITEM', action }), [dispatch]);
   const deleteItem = useCallback((itemId: string) => dispatch({ type: 'DELETE_ITEM', itemId }), [dispatch]);
   const editItemImage = useCallback(
     (itemId: string, index: number, image: EditImage) => dispatch({ type: 'EDIT_IMAGE', itemId, index, image }),
@@ -46,6 +56,7 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
       editCategory,
       deleteCategory,
       editItem,
+      editSelectedItem,
       deleteItem,
       editItemImage,
       deleteItemImage,
@@ -69,6 +80,7 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
       editCategory,
       deleteCategory,
       editItem,
+      editSelectedItem,
       deleteItem,
       editItemImage,
       deleteItemImage,

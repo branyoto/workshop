@@ -1,4 +1,4 @@
-import { useAdminModification } from './utils/useAdminModification';
+import { useAdminModification } from './ModificationProvider/useAdminModification';
 import { Button } from '../../common/Button';
 import { Check, Copy, Download } from 'lucide-react';
 

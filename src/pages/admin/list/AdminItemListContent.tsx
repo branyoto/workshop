@@ -1,7 +1,7 @@
 import type { Item } from '../../../services/providers/cms/types';
 import clsx from 'clsx';
 import { getProductImageUrl } from '../../../utils/image';
-import { useAdminModification } from '../utils/useAdminModification';
+import { useAdminModification } from '../ModificationProvider/useAdminModification';
 
 export interface AdminItemListContentProps {
   items: Item[];

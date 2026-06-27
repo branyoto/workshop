@@ -1,7 +1,7 @@
 import { AdminItemList } from './list/AdminItemList';
 import { AdminItemForm } from './form/AdminItemForm';
 import { AdminHeader } from './AdminHeader';
-import { AdminModificationProvider } from './utils/AdminModificationProvider';
+import { AdminModificationProvider } from './ModificationProvider/AdminModificationProvider';
 
 export function AdminPage() {
   return (

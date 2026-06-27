@@ -2,8 +2,11 @@ import type { CategoryView, CmsContent, Item, LocalizedText } from '../../../ser
 import { notNull } from '../../../utils/commonFilter';
 import type { SetStateAction } from 'react';
 import { findCategory } from '../../catalog/utils';
+import type { DeepPartial } from '../../../utils/DeepPartial';
 
 export type ModificationStatus = 'idle' | 'copied' | 'downloaded';
+
+export type EditStateAction<T> = DeepPartial<T> | ((item: T) => DeepPartial<T>);
 
 export interface AdminModificationReducerState {
   cms: CmsContent;
@@ -27,7 +30,8 @@ export type ModificationAction =
   | { type: 'SELECT_ITEM'; itemId: string }
   | { type: 'EDIT_CATEGORY'; prevCategoryId: string; category: CategoryView }
   | { type: 'DELETE_CATEGORY'; categoryId: string }
-  | { type: 'EDIT_ITEM'; prevItemId: string; item: Item }
+  | { type: 'EDIT_ITEM'; prevItemId: string; updater: SetStateAction<Item> }
+  | { type: 'EDIT_SELECTED_ITEM'; action: EditStateAction<Item> }
   | { type: 'DELETE_ITEM'; itemId: string }
   | { type: 'EDIT_IMAGE'; itemId: string; index: number; image: EditImage }
   | { type: 'DELETE_IMAGE'; itemId: string; index: number }

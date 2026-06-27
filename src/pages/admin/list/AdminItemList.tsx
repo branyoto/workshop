@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import { AdminItemListContent } from './AdminItemListContent';
-import { useAdminModification } from '../utils/useAdminModification';
+import { useAdminModification } from '../ModificationProvider/useAdminModification';
 import { TextField } from '../../../common/input/TextField';
 
 export function AdminItemList() {
