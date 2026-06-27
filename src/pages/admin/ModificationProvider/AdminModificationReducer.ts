@@ -79,6 +79,41 @@ function removeCategoryFromFeatured(cms: CmsContent, categoryId: string): CmsCon
   return { ...cms, featuredCategoryIds: cms.featuredCategoryIds.filter(id => id !== categoryId) };
 }
 
+function mergeItem(item: Item, action: EditStateAction<Item>): Item {
+  const newItem: DeepPartial<Item> = typeof action === 'function' ? action(item) : action;
+  const description = { fr: newItem.description?.fr ?? item.description?.fr, en: newItem.description?.en ?? item.description?.en };
+  return {
+    id: newItem.id ?? item.id,
+    available: newItem.available ?? item.available,
+    price: newItem.price ?? item.price,
+    title: { fr: newItem.title?.fr ?? item.title.fr, en: newItem.title?.en ?? item.title.en },
+    description: description.fr ? { fr: description.fr, en: description.en } : undefined,
+    tags: (newItem.tags as string[] | undefined) ?? item.tags,
+    characteristics: {
+      dimension: newItem.characteristics?.dimension ?? item.characteristics?.dimension,
+      weight: newItem.characteristics?.weight ?? item.characteristics?.weight,
+      material: newItem.characteristics?.material ?? item.characteristics?.material,
+      colors: (newItem.characteristics?.colors as string[] | undefined) ?? item.characteristics?.colors,
+    },
+  };
+}
+
+function editSelectedItem(state: AdminModificationReducerState, action: EditStateAction<Item>): AdminModificationReducerState {
+  const items: Item[] = [];
+  const featuredItemIndex = state.cms.featuredItemIds.indexOf(state.selectedItemId);
+  let selectedItemId = state.selectedItemId;
+  for (let item of state.cms.items) {
+    if (item.id === state.selectedItemId) {
+      item = mergeItem(item, action);
+      selectedItemId = item.id;
+    }
+    items.push(item);
+  }
+  const featuredItemIds =
+    featuredItemIndex >= 0 ? state.cms.featuredItemIds.map((id, i) => (i === featuredItemIndex ? selectedItemId : id)) : state.cms.featuredItemIds;
+  return { ...state, selectedItemId, cms: { ...state.cms, items, featuredItemIds } };
+}
+
 export function adminModificationReducer(state: AdminModificationReducerState, action: ModificationAction): AdminModificationReducerState {
   state.status = 'idle';
   switch (action.type) {
@@ -90,6 +125,8 @@ export function adminModificationReducer(state: AdminModificationReducerState, a
       return { ...state, cms: editCategory(state.cms, action.categoryId) };
     case 'EDIT_CATEGORY':
       return { ...state, cms: editCategory(state.cms, action.prevCategoryId, action.category) };
+    case 'EDIT_SELECTED_ITEM':
+      return editSelectedItem(state, action.action);
     case 'ADD_CATEGORY_TO_FEATURED':
       return { ...state, cms: addCategoryToFeatured(state.cms, action.categoryId) };
     case 'REMOVE_CATEGORY_FROM_FEATURED':
