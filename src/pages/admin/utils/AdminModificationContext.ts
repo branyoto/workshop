@@ -1,16 +1,11 @@
 import { createContext, type SetStateAction } from 'react';
 import type { CategoryView, CmsContent, Item } from '../../../services/providers/cms/types';
 import type { Noop } from '../../../utils/useDisclosure';
-import type { EditImage, EditLocalizedText } from './AdminModificationReducer';
+import type { AdminModificationReducerState, EditImage, EditLocalizedText, ModificationStatus } from './AdminModificationReducer';
 
-export type ModificationState = 'idle' | 'copied' | 'downloaded';
-
-export interface AdminModificationContextValue {
-  state: ModificationState;
-  setState: (state: ModificationState) => void;
-  selectedItemId: string;
-  setSelectedItemId: (id: string) => void;
-  value: CmsContent;
+export interface AdminModificationContextValue extends AdminModificationReducerState {
+  setStatus: (status: ModificationStatus) => void;
+  selectItem: (itemId: string) => void;
   editCategory: (prevCategoryId: string, category: CategoryView) => void;
   deleteCategory: (categoryId: string) => void;
   editItem: (prevItemId: string, item: Item) => void;

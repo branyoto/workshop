@@ -29,6 +29,17 @@ export function uniqueTags(items: Item[], tags: Record<string, LocalizedText>, l
 
 type ResolveResult = { category: CategoryView | null; notFound: boolean };
 
+export function findCategory(categories: CategoryView[], categoryId: string): CategoryView | undefined {
+  const category = categories.find(category => category.id === categoryId);
+  if (category) return category;
+  for (const cat of categories) {
+    if (!cat.children) continue;
+    const subCategory = findCategory(cat.children, categoryId);
+    if (subCategory) return subCategory;
+  }
+  return undefined;
+}
+
 export function resolveCategory(
   categories: CategoryView[],
   categoryId: string | undefined,

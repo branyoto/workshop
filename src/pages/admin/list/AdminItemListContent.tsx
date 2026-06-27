@@ -8,7 +8,7 @@ export interface AdminItemListContentProps {
 }
 
 export function AdminItemListContent({ items }: Readonly<AdminItemListContentProps>) {
-  const { selectedItemId, setSelectedItemId } = useAdminModification();
+  const { selectedItemId, selectItem } = useAdminModification();
   return (
     <div className="absolute top-12 inset-0 overflow-y-auto p-1">
       {items.map(item => (
@@ -18,7 +18,7 @@ export function AdminItemListContent({ items }: Readonly<AdminItemListContentPro
             'flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-neutral/20',
             item.id === selectedItemId && 'bg-secondary/50',
           )}
-          onClick={() => setSelectedItemId(item.id)}
+          onClick={() => selectItem(item.id)}
         >
           <img src={getProductImageUrl(item.id)} alt="" className="aspect-square size-16 h-full rounded-md object-cover" loading="lazy" />
           <span className="min-w-0">

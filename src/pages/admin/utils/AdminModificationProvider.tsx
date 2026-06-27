@@ -1,15 +1,15 @@
-import { type PropsWithChildren, type SetStateAction, useCallback, useMemo, useReducer, useState } from 'react';
-import { adminModificationReducer, type EditImage, type EditLocalizedText } from './AdminModificationReducer';
+import { type PropsWithChildren, type SetStateAction, useCallback, useMemo, useReducer } from 'react';
+import { adminModificationReducer, type EditImage, type EditLocalizedText, type ModificationStatus } from './AdminModificationReducer';
 import { useCms } from '../../../services/providers/cms/useCms';
-import { AdminModificationContext, type AdminModificationContextValue, type ModificationState } from './AdminModificationContext';
+import { AdminModificationContext, type AdminModificationContextValue } from './AdminModificationContext';
 import type { CategoryView, CmsContent, Item } from '../../../services/providers/cms/types';
 
 export function AdminModificationProvider({ children }: Readonly<PropsWithChildren>) {
   const cms = useCms();
-  const [state, setState] = useState<ModificationState>('idle');
-  const [selectedItemId, setSelectedItemId] = useState<string>(cms.items[0]?.id ?? '');
-  const [value, dispatch] = useReducer(adminModificationReducer, cms);
+  const [value, dispatch] = useReducer(adminModificationReducer, { cms, status: 'idle', selectedItemId: cms.items[0]?.id });
 
+  const setStatus = useCallback((status: ModificationStatus) => dispatch({ type: 'SET_STATUS', status }), []);
+  const selectItem = useCallback((itemId: string) => dispatch({ type: 'SELECT_ITEM', itemId }), []);
   const editCategory = useCallback(
     (prevCategoryId: string, category: CategoryView) => dispatch({ type: 'EDIT_CATEGORY', prevCategoryId, category }),
     [dispatch],
@@ -40,11 +40,9 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
 
   const cmsValues = useMemo(
     (): AdminModificationContextValue => ({
-      state,
-      setState,
-      selectedItemId,
-      setSelectedItemId,
-      value,
+      ...value,
+      setStatus,
+      selectItem,
       editCategory,
       deleteCategory,
       editItem,
@@ -66,8 +64,8 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
     }),
     [
       value,
-      state,
-      selectedItemId,
+      setStatus,
+      selectItem,
       editCategory,
       deleteCategory,
       editItem,

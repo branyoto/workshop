@@ -36,16 +36,16 @@ function sortOptions(entries: [string, LocalizedText][], l: (text: LocalizedText
 }
 
 export function AdminItemForm() {
-  const { setState, selectedItemId, value, hydrate } = useAdminModification();
+  const { setStatus, selectedItemId, cms, hydrate } = useAdminModification();
   const l = useLocalize();
 
-  const selectedItem = value.items.find(item => item.id === selectedItemId);
-  const tagOptions = useMemo(() => sortOptions(Object.entries(value.tags), l), [value.tags, l]);
-  const colorOptions = useMemo(() => sortOptions(Object.entries(value.colors), l), [value.colors, l]);
+  const selectedItem = cms.items.find(item => item.id === selectedItemId);
+  const tagOptions = useMemo(() => sortOptions(Object.entries(cms.tags), l), [cms.tags, l]);
+  const colorOptions = useMemo(() => sortOptions(Object.entries(cms.colors), l), [cms.colors, l]);
 
   function updateSelectedItem(updater: (item: Item) => Item) {
     if (!selectedItem) return;
-    setState('idle');
+    setStatus('idle');
     hydrate(current => ({ ...current, items: current.items.map(item => (item.id === selectedItem.id ? updater(item) : item)) }));
   }
 
