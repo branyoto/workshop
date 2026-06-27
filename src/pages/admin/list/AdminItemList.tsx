@@ -20,7 +20,7 @@ export function AdminItemList() {
     <aside className="relative flex-1 rounded-lg border border-neutral/50 bg-white">
       <div className="flex items-center gap-2 border-b border-neutral/50 p-3">
         <Search className="size-4 text-sm text-gray-600" aria-hidden="true" />
-        <TextField value={query} onChange={setQuery} className="flex-1 bg-transparent outline-none" placeholder="Search item" />
+        <TextField value={query} onChange={setQuery} className="flex-1" inputClassname="border-0 outline-none" placeholder="Search item" />
       </div>
       <AdminItemListContent items={filteredItems} />
     </aside>

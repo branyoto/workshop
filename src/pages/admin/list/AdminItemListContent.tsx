@@ -15,8 +15,8 @@ export function AdminItemListContent({ items }: Readonly<AdminItemListContentPro
         <button
           key={item.id}
           className={clsx(
-            'flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-neutral/20',
-            item.id === selectedItemId && 'bg-secondary/50',
+            'flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors',
+            item.id === selectedItemId ? 'bg-secondary/50' : 'hover:bg-neutral/20',
           )}
           onClick={() => selectItem(item.id)}
         >

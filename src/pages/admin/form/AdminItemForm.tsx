@@ -37,7 +37,7 @@ export function AdminItemForm() {
           />
           <TextField label="Titre FR" value={selectedItem.title.fr} onChange={fr => editSelectedItem({ title: { fr } })} />
           <TextField label="Titre EN" value={selectedItem.title.en} onChange={en => editSelectedItem({ title: { en } })} />
-          <Checkbox label="Disponible" checked={selectedItem.available} onChange={available => editSelectedItem({ available })} />
+          <Checkbox className="w-min" label="Disponible" checked={selectedItem.available} onChange={available => editSelectedItem({ available })} />
         </div>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
