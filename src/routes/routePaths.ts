@@ -1,6 +1,6 @@
 import { notNull } from '../utils/commonFilter';
 
-export const ROUTES = { home: '/', catalog: '/catalog', item: '/item/:id', checkout: '/checkout', contact: '/contact' } as const;
+export const ROUTES = { home: '/', catalog: '/catalog', item: '/item/:id', checkout: '/checkout', contact: '/contact', admin: '/admin' } as const;
 
 export function homeUrl(): string {
   return ROUTES.home;
@@ -25,4 +25,8 @@ export function checkoutUrl(): string {
 
 export function contactUrl(): string {
   return ROUTES.contact;
+}
+
+export function adminUrl(): string {
+  return ROUTES.admin;
 }

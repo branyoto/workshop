@@ -8,7 +8,7 @@ export type CmsSettings = { artistEmail: string; adminEmails: string[]; socialLi
 
 export type CategoryView = { id: string; name: LocalizedText; description?: LocalizedText; tags: string[]; children?: CategoryView[] };
 
-export type ItemCharacteristics = { dimension?: string; colors?: string[]; weight?: number; material?: string };
+export type ItemCharacteristics = { dimension?: string; colors?: string[]; weight?: string; material?: string };
 
 export type Item = {
   id: string;

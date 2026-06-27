@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router';
 import { AppShell } from '../layout/AppShell';
+import { AdminPage } from '../pages/admin/AdminPage';
 import { CatalogPage } from '../pages/catalog/CatalogPage';
 import { CheckoutRoute } from '../pages/checkout/CheckoutRoute';
 import { ContactPage } from '../pages/contact/ContactPage';
@@ -19,6 +20,7 @@ export function AppRoutes() {
         <Route path="item/:id" element={<ItemPage />} />
         <Route path="checkout" element={<CheckoutRoute />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="admin" element={<AdminPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
