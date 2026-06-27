@@ -1,11 +1,12 @@
-import { Check, Copy, Download, Search } from 'lucide-react';
-import { useMemo, useState, type ChangeEvent, type ReactNode } from 'react';
+import { Check, Copy, Download } from 'lucide-react';
+import { type ChangeEvent, type ReactNode, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import { Button } from '../../common/Button';
 import type { CmsContent, Item, ItemCharacteristics, LocalizedText } from '../../services/providers/cms/types';
 import { useCms } from '../../services/providers/cms/useCms';
 import { useLocalize } from '../../services/providers/cms/useLocalize';
 import { getProductImageUrl } from '../../utils/image';
+import { AdminItemList } from './list/AdminItemList';
 
 type DraftItemField = 'title' | 'description';
 type CharacteristicsField = Exclude<keyof ItemCharacteristics, 'colors'>;
@@ -43,20 +44,11 @@ export function AdminPage() {
   const l = useLocalize();
   const [draft, setDraft] = useState(() => cloneCms(cms));
   const [selectedItemId, setSelectedItemId] = useState(() => cms.items[0]?.id ?? '');
-  const [query, setQuery] = useState('');
   const [saveState, setSaveState] = useState<SaveState>('idle');
 
   const selectedItem = draft.items.find(item => item.id === selectedItemId) ?? draft.items[0];
   const tagOptions = useMemo(() => sortOptions(Object.entries(draft.tags), l), [draft.tags, l]);
   const colorOptions = useMemo(() => sortOptions(Object.entries(draft.colors), l), [draft.colors, l]);
-
-  const filteredItems = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-    if (!normalizedQuery) return draft.items;
-    return draft.items.filter(item =>
-      [item.id, item.title.fr, item.title.en].filter(Boolean).some(value => value?.toLowerCase().includes(normalizedQuery)),
-    );
-  }, [draft.items, query]);
 
   const exportedJson = useMemo(() => JSON.stringify(draft, null, 2), [draft]);
 
@@ -144,37 +136,7 @@ export function AdminPage() {
       </div>
 
       <div className="flex gap-4">
-        <aside className="relative flex-1 rounded-lg border border-neutral/50 bg-white">
-          <label className="flex items-center gap-2 border-b border-neutral/50 px-3 py-2 text-sm text-gray-600">
-            <Search className="size-4" aria-hidden="true" />
-            <input
-              className="min-w-0 flex-1 bg-transparent py-1 outline-none"
-              value={query}
-              onChange={event => setQuery(event.target.value)}
-              placeholder="Search item"
-            />
-          </label>
-          <div className="absolute top-11 inset-0 overflow-y-auto">
-            <div className="p-2">
-              {filteredItems.map(item => (
-                <button
-                  key={item.id}
-                  className={clsx(
-                    'flex w-full items-center gap-3 rounded-md px-2 py-2 text-left transition-colors hover:bg-neutral/20',
-                    item.id === selectedItem.id && 'bg-secondary/50',
-                  )}
-                  onClick={() => setSelectedItemId(item.id)}
-                >
-                  <img src={getProductImageUrl(item.id)} alt="" className="aspect-square size-16 h-full rounded-md object-cover" loading="lazy" />
-                  <span className="min-w-0">
-                    <span className="block truncate text-sm font-medium text-gray-950">{item.title.fr}</span>
-                    <span className="block truncate text-xs text-gray-500">{item.id}</span>
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </aside>
+        <AdminItemList selectedItemId={selectedItemId} setSelectedItemId={setSelectedItemId} />
 
         <form className="flex-3 space-y-6 rounded-lg border border-neutral/50 p-4 h-min" onSubmit={event => event.preventDefault()}>
           <div className="grid gap-4 md:grid-cols-[180px_minmax(0,1fr)]">
