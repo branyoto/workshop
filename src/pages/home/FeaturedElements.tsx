@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import type { ReactNode } from 'react';
+import { ElementCard } from '../../common/ElementCard';
 
 export interface Element {
   id: string;
@@ -40,6 +41,7 @@ export function FeaturedElements({ titleKey, titleHref, elements }: Readonly<Fea
       <Swiper
         modules={[Navigation, Keyboard, A11y]}
         navigation
+        loop
         keyboard={{ enabled: true }}
         slidesPerView={2}
         spaceBetween={16}
@@ -47,20 +49,7 @@ export function FeaturedElements({ titleKey, titleHref, elements }: Readonly<Fea
       >
         {elements.map(({ id, label, href, imageUrl }) => (
           <SwiperSlide key={id}>
-            <Link
-              to={href}
-              className="group flex flex-col items-center gap-2 rounded-xl border border-neutral/40 bg-white p-3 text-center transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            >
-              <div className="aspect-square w-full overflow-hidden rounded-lg bg-primary/10">
-                <img
-                  src={imageUrl}
-                  alt=""
-                  aria-hidden="true"
-                  className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
-                />
-              </div>
-              {label}
-            </Link>
+            <ElementCard href={href} imageUrl={imageUrl} label={label} />
           </SwiperSlide>
         ))}
       </Swiper>
