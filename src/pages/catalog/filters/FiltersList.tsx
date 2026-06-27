@@ -16,7 +16,7 @@ export function FiltersList({ items }: Readonly<FiltersListProps>) {
 
   return (
     <div className="space-y-5">
-      <FeaturedItemsFilter featured={filters.featured} />
+      <FeaturedItemsFilter />
       <PriceFilter key={`${filters.minPrice}-${filters.maxPrice}`} />
       <AvailabilityFilter />
       <ColorFilter items={items} />

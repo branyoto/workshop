@@ -22,7 +22,7 @@ export function FeaturedCategories() {
   const titleSearchParams = useMemo(() => {
     const params = new URLSearchParams();
     const featuredTags = featuredCategories.flatMap(({ id }) => categories.find(c => c.id === id)?.tags ?? []);
-    featuredTags.distinct().forEach(tag => params.append('tag', tag));
+    featuredTags.distinct().forEach(tag => params.append('tags', tag));
     return '?' + params.toString();
   }, [categories, featuredCategories]);
 

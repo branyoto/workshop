@@ -7,7 +7,7 @@ interface CategoryTreeProps {
   activeId: string | undefined;
   parentPath: string;
   depth: number;
-  hidden: boolean;
+  hidden?: boolean;
   onClose: () => void;
 }
 

@@ -1,6 +1,5 @@
-import { useParams, useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router';
 import { useMemo } from 'react';
-import { FEATURED_ITEMS_CATEGORY_ID } from '../utils';
 
 export interface Filters {
   minPrice: number | null;
@@ -11,7 +10,7 @@ export interface Filters {
   available: boolean;
 }
 
-function setOrDelete(key: string, newValue: string | number | boolean | null | undefined) {
+function setOrDelete(key: keyof Filters, newValue: string | number | boolean | null | undefined) {
   return (searchParams: URLSearchParams) => {
     if (newValue === null || !newValue) {
       searchParams.delete(key);
@@ -22,7 +21,7 @@ function setOrDelete(key: string, newValue: string | number | boolean | null | u
   };
 }
 
-function setOrDeleteMultiple(key: string, newValue: string) {
+function setOrDeleteMultiple(key: keyof Filters, newValue: string) {
   return (searchParams: URLSearchParams) => {
     const prevValues = searchParams.getAll(key);
     searchParams.delete(key);
@@ -34,18 +33,17 @@ function setOrDeleteMultiple(key: string, newValue: string) {
 
 export function useFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { categoryId } = useParams();
 
   const filters: Filters = useMemo(
     () => ({
       minPrice: searchParams.has('minPrice') ? Number(searchParams.get('minPrice')) : null,
       maxPrice: searchParams.has('maxPrice') ? Number(searchParams.get('maxPrice')) : null,
-      colors: searchParams.getAll('color'),
-      tags: searchParams.getAll('tag'),
-      featured: categoryId === FEATURED_ITEMS_CATEGORY_ID,
+      colors: searchParams.getAll('colors'),
+      tags: searchParams.getAll('tags'),
+      featured: searchParams.get('featured') === 'true',
       available: searchParams.get('available') === 'true',
     }),
-    [searchParams, categoryId],
+    [searchParams],
   );
 
   const activeCount = useMemo(
@@ -66,8 +64,9 @@ export function useFilters() {
       setMinPrice: (newValue: number | null) => setSearchParams(setOrDelete('minPrice', newValue)),
       setMaxPrice: (newValue: number | null) => setSearchParams(setOrDelete('maxPrice', newValue)),
       setAvailable: (newValue: boolean) => setSearchParams(setOrDelete('available', newValue)),
-      toggleColor: (color: string) => setSearchParams(setOrDeleteMultiple('color', color)),
-      toggleTag: (tag: string) => setSearchParams(setOrDeleteMultiple('tag', tag)),
+      setFeatured: (newValue: boolean) => setSearchParams(setOrDelete('featured', newValue)),
+      toggleColor: (color: string) => setSearchParams(setOrDeleteMultiple('colors', color)),
+      toggleTag: (tag: string) => setSearchParams(setOrDeleteMultiple('tags', tag)),
       clearAll: () => setSearchParams(new URLSearchParams()),
     }),
     [activeCount, filters, setSearchParams],

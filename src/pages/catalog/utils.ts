@@ -1,8 +1,6 @@
 import type { CategoryView, Item, LocalizedText } from '../../services/providers/cms/types';
 import type { LocalizeText } from '../../services/providers/cms/useLocalize';
 
-export const FEATURED_ITEMS_CATEGORY_ID = 'featured';
-
 function uniqueLocalized(values: string[], localizedTexts: Record<string, LocalizedText>, l: LocalizeText): string[] {
   const seen = new Set<string>();
   for (const value of values) {
@@ -38,7 +36,6 @@ export function resolveCategory(
   subId: string | undefined,
 ): ResolveResult {
   if (!categoryId) return { category: null, notFound: false };
-  if (categoryId === FEATURED_ITEMS_CATEGORY_ID) return { category: null, notFound: false };
   const root = categories.find(c => c.id === categoryId);
   if (root === undefined) return { category: null, notFound: true };
   if (subcategoryId === undefined) return { category: root, notFound: false };

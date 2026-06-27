@@ -1,22 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { ToggleButton } from '../../../../common/input/ToggleButton';
-import { useNavigate } from 'react-router';
-import { catalogUrl, categoryUrl } from '../../../../routes/routePaths';
-import { FEATURED_ITEMS_CATEGORY_ID } from '../../utils';
+import { useParams } from 'react-router';
+import { useFilters } from '../useFilters';
 
-export interface FeaturedItemsFilterProps {
-  featured: boolean;
-}
-
-export function FeaturedItemsFilter({ featured }: Readonly<FeaturedItemsFilterProps>) {
+export function FeaturedItemsFilter() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const { filters, setFeatured } = useFilters();
+  const { categoryId, subcategoryId, subId } = useParams();
 
-  return (
-    <ToggleButton
-      label={t('pages.catalog.filters.featured')}
-      active={featured}
-      onClick={() => navigate(featured ? catalogUrl() : categoryUrl(FEATURED_ITEMS_CATEGORY_ID))}
-    />
-  );
+  if (categoryId || subcategoryId || subId) return null;
+
+  return <ToggleButton label={t('pages.catalog.filters.featured')} active={filters.featured} onClick={() => setFeatured(!filters.featured)} />;
 }
