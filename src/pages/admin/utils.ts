@@ -1,10 +1,5 @@
 import type { Item, LocalizedText } from '../../services/providers/cms/types';
 
-export function updateItemPrice(price: string) {
-  const priceNumber = Number(price);
-  return { price: Number.isNaN(priceNumber) ? 0 : priceNumber };
-}
-
 function toggleValue(values: string[], value: string): string[] {
   return values.includes(value) ? values.filter(item => item !== value) : [...values, value];
 }

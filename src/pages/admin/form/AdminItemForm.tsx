@@ -3,7 +3,6 @@ import { getProductImageUrl } from '../../../utils/image';
 import { Checkbox } from '../../../common/input/Checkbox';
 import { TextArea } from '../../../common/input/TextArea';
 import { useAdminModification } from '../ModificationProvider/useAdminModification';
-import { updateItemPrice } from '../utils';
 import { TagSection } from './TagSection';
 import { ColorSection } from './ColorSection';
 
@@ -33,8 +32,8 @@ export function AdminItemForm() {
             type="number"
             min={0}
             step="0.01"
-            value={selectedItem.price}
-            onChange={value => editSelectedItem(updateItemPrice(value))}
+            value={Number.isNaN(selectedItem.price) ? '' : selectedItem.price}
+            onChange={price => editSelectedItem({ price: Number(price) })}
           />
           <TextField label="Titre FR" value={selectedItem.title.fr} onChange={fr => editSelectedItem({ title: { fr } })} />
           <TextField label="Titre EN" value={selectedItem.title.en} onChange={en => editSelectedItem({ title: { en } })} />
