@@ -10,7 +10,7 @@ export interface Filters {
   available: boolean;
 }
 
-function setOrDelete(key: keyof Filters, newValue: string | number | boolean | null | undefined) {
+export function setOrDelete(key: keyof Filters, newValue: string | number | boolean | null | undefined) {
   return (searchParams: URLSearchParams) => {
     if (newValue === null || !newValue) {
       searchParams.delete(key);
@@ -21,12 +21,21 @@ function setOrDelete(key: keyof Filters, newValue: string | number | boolean | n
   };
 }
 
-function setOrDeleteMultiple(key: keyof Filters, newValue: string) {
+export function setOrDeleteArray(key: keyof Filters, newValue: string) {
   return (searchParams: URLSearchParams) => {
     const prevValues = searchParams.getAll(key);
     searchParams.delete(key);
     const newValues = prevValues.includes(newValue) ? prevValues.filter(c => c !== newValue) : [...prevValues, newValue];
     newValues.forEach(t => searchParams.append(key, t));
+    return searchParams;
+  };
+}
+
+export function setOrDeleteMultiple(key: keyof Filters, values: string[]) {
+  return (searchParams: URLSearchParams) => {
+    for (const value of values) {
+      searchParams = setOrDeleteArray(key, value)(searchParams);
+    }
     return searchParams;
   };
 }
@@ -65,8 +74,9 @@ export function useFilters() {
       setMaxPrice: (newValue: number | null) => setSearchParams(setOrDelete('maxPrice', newValue)),
       setAvailable: (newValue: boolean) => setSearchParams(setOrDelete('available', newValue)),
       setFeatured: (newValue: boolean) => setSearchParams(setOrDelete('featured', newValue)),
-      toggleColor: (color: string) => setSearchParams(setOrDeleteMultiple('colors', color)),
-      toggleTag: (tag: string) => setSearchParams(setOrDeleteMultiple('tags', tag)),
+      toggleColor: (color: string) => setSearchParams(setOrDeleteArray('colors', color)),
+      setTags: (tags: string[]) => setSearchParams(setOrDeleteMultiple('tags', tags)),
+      toggleTag: (tag: string) => setSearchParams(setOrDeleteArray('tags', tag)),
       clearAll: () => setSearchParams(new URLSearchParams()),
     }),
     [activeCount, filters, setSearchParams],

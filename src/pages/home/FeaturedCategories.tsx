@@ -5,6 +5,7 @@ import { FeaturedElements } from './FeaturedElements';
 import { notNull } from '../../utils/commonFilter';
 import { catalogUrl, categoryUrl } from '../../routes/routePaths';
 import { getCategoryImageUrl } from '../../utils/image';
+import { setOrDeleteMultiple } from '../catalog/filters/useFilters';
 
 export function FeaturedCategories() {
   const l = useLocalize();
@@ -20,10 +21,8 @@ export function FeaturedCategories() {
   );
 
   const titleSearchParams = useMemo(() => {
-    const params = new URLSearchParams();
-    const featuredTags = featuredCategories.flatMap(({ id }) => categories.find(c => c.id === id)?.tags ?? []);
-    featuredTags.distinct().forEach(tag => params.append('tags', tag));
-    return '?' + params.toString();
+    const featuredTags = featuredCategories.flatMap(({ id }) => categories.find(c => c.id === id)?.tags ?? []).distinct();
+    return '?' + setOrDeleteMultiple('tags', featuredTags)(new URLSearchParams()).toString();
   }, [categories, featuredCategories]);
 
   return <FeaturedElements titleKey="pages.home.categories" titleHref={catalogUrl() + titleSearchParams} elements={featuredCategories} />;
