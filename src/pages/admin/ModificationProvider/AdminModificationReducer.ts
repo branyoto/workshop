@@ -66,6 +66,15 @@ function editCategory(cms: CmsContent, prevId: string, category?: CategoryView):
   return { ...cms, categories: [...cms.categories, category] };
 }
 
+function editLocalizedRecord(records: Record<string, LocalizedText>, prevKey: string, text?: EditLocalizedText): Record<string, LocalizedText> {
+  const nextRecords = { ...records };
+  delete nextRecords[prevKey];
+  if (text) {
+    nextRecords[text.id] = text.value;
+  }
+  return nextRecords;
+}
+
 function addCategoryToFeatured(cms: CmsContent, categoryId: string): CmsContent {
   const category = findCategory(cms.categories, categoryId);
   if (!category) {
@@ -125,6 +134,14 @@ export function adminModificationReducer(state: AdminModificationReducerState, a
       return { ...state, cms: editCategory(state.cms, action.categoryId) };
     case 'EDIT_CATEGORY':
       return { ...state, cms: editCategory(state.cms, action.prevCategoryId, action.category) };
+    case 'DELETE_COLOR':
+      return { ...state, cms: { ...state.cms, colors: editLocalizedRecord(state.cms.colors, action.colorKey) } };
+    case 'EDIT_COLOR':
+      return { ...state, cms: { ...state.cms, colors: editLocalizedRecord(state.cms.colors, action.prevColorKey, action.color) } };
+    case 'DELETE_TAG':
+      return { ...state, cms: { ...state.cms, tags: editLocalizedRecord(state.cms.tags, action.tagKey) } };
+    case 'EDIT_TAG':
+      return { ...state, cms: { ...state.cms, tags: editLocalizedRecord(state.cms.tags, action.prevTagKey, action.tag) } };
     case 'EDIT_SELECTED_ITEM':
       return editSelectedItem(state, action.action);
     case 'ADD_CATEGORY_TO_FEATURED':
