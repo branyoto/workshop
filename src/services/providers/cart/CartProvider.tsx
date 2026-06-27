@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useReducer } from 'react';
+import { type ReactNode, useCallback, useEffect, useMemo, useReducer } from 'react';
 import { CartContext, type CartContextValue, type CartItem } from './CartContext';
 
 const STORAGE_KEY = 'artisan_cart';
@@ -56,16 +56,20 @@ export function CartProvider({ children }: { readonly children: ReactNode }) {
     }
   }, []);
 
+  const addItem = useCallback((item: CartItem) => dispatch({ type: 'ADD_ITEM', item }), []);
+  const removeItem = useCallback((id: string) => dispatch({ type: 'REMOVE_ITEM', id }), []);
+  const clearCart = useCallback(() => dispatch({ type: 'CLEAR_CART' }), []);
+
   const value: CartContextValue = useMemo(
     () => ({
       items: state.items,
       count: state.items.length,
       total: state.items.reduce((sum, i) => sum + i.priceSnapshot, 0),
-      addItem: item => dispatch({ type: 'ADD_ITEM', item }),
-      removeItem: id => dispatch({ type: 'REMOVE_ITEM', id }),
-      clearCart: () => dispatch({ type: 'CLEAR_CART' }),
+      addItem,
+      removeItem,
+      clearCart,
     }),
-    [state, dispatch],
+    [state, addItem, removeItem, clearCart],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
