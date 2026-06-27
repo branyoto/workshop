@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { CatalogFilterChip } from '../../../../common/CatalogFilterChip';
 
 export interface ItemCharacteristicProps {
-  value: number | string | string[] | undefined;
+  value: number | string | { id: string; label: string }[] | undefined;
   itemKey: keyof ItemCharacteristics;
   filter?: string;
 }
@@ -17,7 +17,7 @@ export function ItemCharacteristic({ value, itemKey, filter }: Readonly<ItemChar
         {t(`pages.item.char.${itemKey}`)}
       </dt>
       <dd key={`dd-${itemKey}`} className="font-medium text-gray-900">
-        {typeof value === 'object' ? value.map(v => <CatalogFilterChip key={v} label={v} value={v} filter={filter} />) : value}
+        {typeof value === 'object' ? value.map(({ id, label }) => <CatalogFilterChip key={id} label={label} value={id} filter={filter} />) : value}
       </dd>
     </>
   );

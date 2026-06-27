@@ -22,7 +22,7 @@ export function ItemCharacteristics({ item }: Readonly<ItemCharacteristicsProps>
         <ItemCharacteristic value={item.characteristics?.dimension} itemKey="dimension" />
         <ItemCharacteristic value={item.characteristics?.material} itemKey="material" />
         <ItemCharacteristic value={item.characteristics?.weight} itemKey="weight" />
-        <ItemCharacteristic value={item.characteristics?.colors?.map(c => l(colors[c]))} itemKey="colors" filter="color" />
+        <ItemCharacteristic value={item.characteristics?.colors?.map(c => ({ id: c, label: l(colors[c]) }))} itemKey="colors" filter="colors" />
       </dl>
     </div>
   );
