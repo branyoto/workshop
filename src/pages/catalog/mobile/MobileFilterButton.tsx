@@ -15,7 +15,7 @@ export function MobileFilterButton({ onOpen }: Readonly<MobileFilterButtonProps>
 
   return (
     <div className="mb-4 flex items-center gap-2 lg:hidden">
-      <Button variant="ghost" className="gap-2 border border-neutral/50" onClick={onOpen}>
+      <Button variant="text" className="gap-2 border border-neutral/50" onClick={onOpen}>
         <SlidersHorizontal aria-hidden="true" className="size-4" strokeWidth={1.75} />
         {t('pages.catalog.filters.openFilters')}
         {activeCount > 0 && (

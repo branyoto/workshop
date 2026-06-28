@@ -21,7 +21,7 @@ export function CartItems() {
             <p className="text-sm text-gray-600">{formatPrice(item.priceSnapshot)}</p>
           </div>
           <Button
-            variant="ghost"
+            variant="text"
             className="shrink-0 px-2 py-1 text-xs text-red-600"
             onClick={() => removeItem(item.id)}
             aria-label={t('pages.cart.remove', { title: item.titleSnapshot })}

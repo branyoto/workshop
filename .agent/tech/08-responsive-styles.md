@@ -69,7 +69,7 @@
 - `button`
 - `button--primary`
 - `button--secondary`
-- `button--ghost`
+- `button--text`
 - `button--danger`
 - `icon-button`
 - `card`

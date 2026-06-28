@@ -27,7 +27,7 @@ export function Snackbar({ open, message, onClose, action, className }: Readonly
     >
       <span className="flex-1">{message}</span>
       {action}
-      <Button variant="ghost" className="px-2 py-1 text-white hover:bg-white/10" onClick={onClose} aria-label="Close notification">
+      <Button variant="text" className="px-2 py-1 text-white hover:bg-white/10" onClick={onClose} aria-label="Close notification">
         <X aria-hidden="true" className="size-4" strokeWidth={1.75} />
       </Button>
     </div>

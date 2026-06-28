@@ -74,7 +74,7 @@ export function Drawer({ open, onClose, side, title, children, footer, mobileFul
               {title}
             </h2>
           : <span />}
-          <Button ref={closeButtonRef} variant="ghost" className="px-2 py-1" onClick={onClose} aria-label="Close drawer">
+          <Button ref={closeButtonRef} variant="text" className="px-2 py-1" onClick={onClose} aria-label="Close drawer">
             <X aria-hidden="true" className="size-4" strokeWidth={1.75} />
           </Button>
         </header>

@@ -39,7 +39,7 @@ export function ElementCardLabel({ item }: Readonly<ElementCardLabelProps>) {
       <div className="mt-auto flex items-center justify-between gap-2">
         <span className="text-sm font-semibold text-gray-900">{formatPrice(item.price)}</span>
         {item.available && (
-          <Button variant={inCart ? 'ghost' : 'secondary'} className="px-2 py-1 text-xs" disabled={inCart} onClick={onClick}>
+          <Button variant={inCart ? 'text' : 'secondary'} className="px-2 py-1 text-xs" disabled={inCart} onClick={onClick}>
             {inCart ? t('pages.catalog.inCart') : t('pages.catalog.addToCart')}
           </Button>
         )}

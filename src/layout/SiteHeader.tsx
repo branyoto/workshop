@@ -16,12 +16,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
   return (
     <header className="border-b border-neutral/50 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <Button
-          variant="ghost"
-          className="min-h-[44px] min-w-[44px] px-2 py-2"
-          onClick={onOpenCategoryDrawer}
-          aria-label={t('header.openCategoryMenu')}
-        >
+        <Button variant="text" className="min-h-11 min-w-11 px-2 py-2" onClick={onOpenCategoryDrawer} aria-label={t('header.openCategoryMenu')}>
           <Menu aria-hidden="true" className="size-5" strokeWidth={1.75} />
         </Button>
 
@@ -34,7 +29,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
 
         <div className="flex items-center gap-2">
           <Button
-            variant="ghost"
+            variant="text"
             className="relative min-h-[44px] min-w-[44px] px-2 py-2"
             onClick={onOpenCartDrawer}
             aria-label={t('header.openCart')}

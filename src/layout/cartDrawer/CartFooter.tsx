@@ -28,7 +28,7 @@ export function CartFooter({ onClose }: Readonly<CartFooterProps>) {
       >
         {t('pages.cart.checkout')}
       </Link>
-      <Button variant="ghost" className="w-full text-xs" onClick={clearCart}>
+      <Button variant="text" className="w-full text-xs" onClick={clearCart}>
         {t('pages.cart.clear')}
       </Button>
     </div>
