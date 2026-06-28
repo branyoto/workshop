@@ -5,6 +5,7 @@ import { TextArea } from '../../../common/input/TextArea';
 import { useAdminModification } from '../ModificationProvider/useAdminModification';
 import { TagSection } from './TagSection';
 import { ColorSection } from './ColorSection';
+import { DecorativeImage } from '../../../common/DecorativeImage';
 
 export function AdminItemForm() {
   const { selectedItemId, cms, editSelectedItem } = useAdminModification();
@@ -24,7 +25,7 @@ export function AdminItemForm() {
   return (
     <form className="flex-3 space-y-6 rounded-lg border border-neutral/50 p-4 h-min" onSubmit={event => event.preventDefault()}>
       <div className="grid gap-4 md:grid-cols-[180px_minmax(0,1fr)]">
-        <img src={getProductImageUrl(selectedItem.id)} alt="" className="aspect-square w-full rounded-lg object-cover" />
+        <DecorativeImage src={getProductImageUrl(selectedItem.id)} />
         <div className="grid gap-4 md:grid-cols-2">
           <TextField label="Identifiant" value={selectedItem.id} onChange={id => editSelectedItem({ id })} />
           <TextField

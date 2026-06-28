@@ -2,6 +2,7 @@ import type { Item } from '../../../services/providers/cms/types';
 import clsx from 'clsx';
 import { getProductImageUrl } from '../../../utils/image';
 import { useAdminModification } from '../ModificationProvider/useAdminModification';
+import { DecorativeImage } from '../../../common/DecorativeImage';
 
 export interface AdminItemListContentProps {
   items: Item[];
@@ -20,7 +21,7 @@ export function AdminItemListContent({ items }: Readonly<AdminItemListContentPro
           )}
           onClick={() => selectItem(item.id)}
         >
-          <img src={getProductImageUrl(item.id)} alt="" className="aspect-square size-16 h-full rounded-md object-cover" loading="lazy" />
+          <DecorativeImage src={getProductImageUrl(item.id)} className="size-16" fullWidth={false} />
           <span className="min-w-0">
             <span className="block truncate text-sm font-medium text-gray-950">{item.title.fr}</span>
             <span className="block truncate text-xs text-gray-500">{item.id}</span>

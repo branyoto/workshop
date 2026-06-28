@@ -2,13 +2,14 @@ import { useTranslation } from 'react-i18next';
 import heroImg from '../../assets/hero.png';
 import { Link } from 'react-router';
 import { catalogUrl } from '../../routes/routePaths';
+import { DecorativeImage } from '../../common/DecorativeImage';
 
 export function Banner() {
   const { t } = useTranslation();
   return (
     <section aria-labelledby="hero-heading" className="-mx-4 -mt-8 overflow-hidden">
       <div className="relative flex min-h-90 items-center justify-center bg-primary/20">
-        <img src={heroImg} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <DecorativeImage src={heroImg} className="absolute inset-0 opacity-30" />
         <div className="relative z-10 flex flex-col items-center gap-4 px-4 py-12 text-center">
           <h1 id="hero-heading" className="text-4xl font-bold text-gray-900">
             {t('pages.home.tagline')}

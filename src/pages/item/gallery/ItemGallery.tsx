@@ -4,6 +4,7 @@ import { A11y, Navigation, Thumbs } from 'swiper/modules';
 import { useLocalize } from '../../../services/providers/cms/useLocalize';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
+import { Image } from '../../../common/Image';
 import { getProductImageUrl } from '../../../utils/image';
 
 export interface ItemGalleryProps {
@@ -30,12 +31,7 @@ export function ItemGallery({ item }: Readonly<ItemGalleryProps>) {
         {images.map((url, i) => (
           <SwiperSlide key={url}>
             <div className="aspect-square overflow-hidden bg-primary/10">
-              <img
-                src={url}
-                alt={i === 0 ? title : `${title} — ${i + 1}`}
-                className="h-full w-full object-cover select-none"
-                onError={() => setFailedImages(prev => new Set([...prev, url]))}
-              />
+              <Image src={url} alt={i === 0 ? title : `${title} — ${i + 1}`} onError={() => setFailedImages(prev => new Set([...prev, url]))} />
             </div>
           </SwiperSlide>
         ))}
@@ -45,12 +41,7 @@ export function ItemGallery({ item }: Readonly<ItemGalleryProps>) {
           {images.map((url, i) => (
             <SwiperSlide key={url}>
               <div className="aspect-square cursor-pointer overflow-hidden rounded-md border border-neutral/40 bg-primary/10">
-                <img
-                  src={url}
-                  alt={title + (i === 0 ? '' : ` — ${i + 1}`) + ' thumbnail'}
-                  aria-hidden="true"
-                  className="h-full w-full object-cover select-none"
-                />
+                <Image src={url} alt={title + (i === 0 ? '' : ` — ${i + 1}`) + ' thumbnail'} />
               </div>
             </SwiperSlide>
           ))}

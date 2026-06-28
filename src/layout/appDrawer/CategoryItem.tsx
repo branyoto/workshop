@@ -1,10 +1,10 @@
 import type { CategoryView } from '../../services/providers/cms/types';
-import { useState } from 'react';
 import { useLocalize } from '../../services/providers/cms/useLocalize';
 import { Link } from 'react-router';
 import clsx from 'clsx';
 import { getCategoryImageUrl } from '../../utils/image';
 import { CategoryTree } from './CategoryTree';
+import { DecorativeImage } from '../../common/DecorativeImage';
 
 export interface CategoryItemProps {
   category: CategoryView;
@@ -15,7 +15,6 @@ export interface CategoryItemProps {
 }
 
 export function CategoryItem({ category, parentPath, depth, activeId, onClose }: Readonly<CategoryItemProps>) {
-  const [imgHidden, setImgHidden] = useState(false);
   const l = useLocalize();
 
   const isActive = category.id === activeId;
@@ -32,15 +31,7 @@ export function CategoryItem({ category, parentPath, depth, activeId, onClose }:
           isActive ? 'bg-primary/60 font-medium text-gray-900' : 'text-gray-700 hover:bg-primary/20',
         )}
       >
-        {!imgHidden && (
-          <img
-            src={getCategoryImageUrl(category.id)}
-            alt=""
-            aria-hidden="true"
-            onError={() => setImgHidden(true)}
-            className="size-6 shrink-0 rounded object-cover"
-          />
-        )}
+        <DecorativeImage src={getCategoryImageUrl(category.id)} className="size-6 shrink-0" fullWidth={false} />
         {l(category.name)}
       </Link>
       {!!category.children?.length && (
