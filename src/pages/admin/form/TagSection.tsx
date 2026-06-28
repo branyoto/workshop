@@ -9,6 +9,7 @@ import type { Item } from '../../../services/providers/cms/types';
 import { useDisclosure } from '../../../utils/useDisclosure';
 import { EditLocalizedValueForm } from './EditLocalizedValueForm';
 import type { EditLocalizedText } from '../ModificationProvider/AdminModificationReducer';
+import { AnchoredPopover } from '../../../common/AnchoredPopover';
 
 export interface TagSectionProps {
   selectedItem: Item;
@@ -17,12 +18,13 @@ export interface TagSectionProps {
 export function TagSection({ selectedItem }: Readonly<TagSectionProps>) {
   const { cms, editSelectedItem, editTag } = useAdminModification();
   const l = useLocalize();
-  const { opened, close, toggle } = useDisclosure();
+  const { opened, close, setOpened } = useDisclosure();
 
   const tagOptions = useMemo(() => sortOptions(Object.entries(cms.tags), l), [cms.tags, l]);
 
   const handleAddTag = (localizedText: EditLocalizedText) => {
     editTag(localizedText.id, localizedText);
+    editSelectedItem(updateTags(localizedText.id));
     close();
   };
 
@@ -37,20 +39,9 @@ export function TagSection({ selectedItem }: Readonly<TagSectionProps>) {
           onChange={() => editSelectedItem(updateTags(tag))}
         />
       ))}
-      <div className="relative">
-        <button
-          type="button"
-          className="size-9 p-1.5 text-sm cursor-pointer rounded-full text-gray-700 hover:bg-neutral/20"
-          aria-expanded={opened}
-          aria-label="Ajouter un libellé"
-          onClick={toggle}
-        >
-          <PlusCircle />
-        </button>
-        {opened ?
-          <EditLocalizedValueForm close={close} onSubmit={handleAddTag} />
-        : null}
-      </div>
+      <AnchoredPopover open={opened} onOpenChange={setOpened} anchor={<PlusCircle className="size-9 p-1.5 text-gray-700" />}>
+        <EditLocalizedValueForm close={close} onSubmit={handleAddTag} />
+      </AnchoredPopover>
     </OptionGroup>
   );
 }
