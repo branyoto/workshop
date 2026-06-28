@@ -75,6 +75,35 @@ function editLocalizedRecord(records: Record<string, LocalizedText>, prevKey: st
   return nextRecords;
 }
 
+function replaceReference(references: string[] | undefined, prevKey: string, nextKey: string): string[] | undefined {
+  if (!references?.includes(prevKey) || prevKey === nextKey) {
+    return references;
+  }
+  return references.map(key => (key === prevKey ? nextKey : key)).distinct();
+}
+
+function editColor(cms: CmsContent, prevColorKey: string, color: EditLocalizedText): CmsContent {
+  return {
+    ...cms,
+    colors: editLocalizedRecord(cms.colors, prevColorKey, color),
+    items: cms.items.map(item => {
+      const colors = replaceReference(item.characteristics?.colors, prevColorKey, color.id) ?? item.characteristics?.colors;
+      return colors === item.characteristics?.colors ? item : { ...item, characteristics: { ...item.characteristics, colors } };
+    }),
+  };
+}
+
+function editTag(cms: CmsContent, prevTagKey: string, tag: EditLocalizedText): CmsContent {
+  return {
+    ...cms,
+    tags: editLocalizedRecord(cms.tags, prevTagKey, tag),
+    items: cms.items.map(item => {
+      const tags = replaceReference(item.tags, prevTagKey, tag.id) ?? item.tags;
+      return tags === item.tags ? item : { ...item, tags };
+    }),
+  };
+}
+
 function addCategoryToFeatured(cms: CmsContent, categoryId: string): CmsContent {
   const category = findCategory(cms.categories, categoryId);
   if (!category) {
@@ -137,11 +166,11 @@ export function adminModificationReducer(state: AdminModificationReducerState, a
     case 'DELETE_COLOR':
       return { ...state, cms: { ...state.cms, colors: editLocalizedRecord(state.cms.colors, action.colorKey) } };
     case 'EDIT_COLOR':
-      return { ...state, cms: { ...state.cms, colors: editLocalizedRecord(state.cms.colors, action.prevColorKey, action.color) } };
+      return { ...state, cms: editColor(state.cms, action.prevColorKey, action.color) };
     case 'DELETE_TAG':
       return { ...state, cms: { ...state.cms, tags: editLocalizedRecord(state.cms.tags, action.tagKey) } };
     case 'EDIT_TAG':
-      return { ...state, cms: { ...state.cms, tags: editLocalizedRecord(state.cms.tags, action.prevTagKey, action.tag) } };
+      return { ...state, cms: editTag(state.cms, action.prevTagKey, action.tag) };
     case 'EDIT_SELECTED_ITEM':
       return editSelectedItem(state, action.action);
     case 'ADD_CATEGORY_TO_FEATURED':
