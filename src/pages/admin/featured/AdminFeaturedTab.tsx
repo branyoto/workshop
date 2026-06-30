@@ -3,18 +3,20 @@ import { Button } from '../../../common/Button';
 import { useAdminModification } from '../ModificationProvider/useAdminModification';
 import { flattenCategories } from '../categories/categoryUtils';
 import { useState } from 'react';
+import { getCategoryImageUrl, getProductImageUrl } from '../../../utils/image';
 
 interface FeaturedListProps {
   title: string;
   featuredIds: string[];
   getLabel: (id: string) => string;
+  getImageUrl: (id: string) => string;
   nonFeaturedOptions: { id: string; label: string }[];
   onAdd: (id: string) => void;
   onRemove: (id: string) => void;
   onMove: (id: string, direction: 'up' | 'down') => void;
 }
 
-function FeaturedList({ title, featuredIds, getLabel, nonFeaturedOptions, onAdd, onRemove, onMove }: Readonly<FeaturedListProps>) {
+function FeaturedList({ title, featuredIds, getLabel, getImageUrl, nonFeaturedOptions, onAdd, onRemove, onMove }: Readonly<FeaturedListProps>) {
   const [selectedId, setSelectedId] = useState('');
 
   const handleAdd = () => {
@@ -27,14 +29,13 @@ function FeaturedList({ title, featuredIds, getLabel, nonFeaturedOptions, onAdd,
     <div className="rounded-lg border border-neutral/50 bg-white p-4 space-y-3">
       <h3 className="font-semibold text-gray-950">{title}</h3>
 
-      {featuredIds.length === 0 && (
-        <p className="text-sm text-gray-400">Aucun élément mis en avant.</p>
-      )}
+      {featuredIds.length === 0 && <p className="text-sm text-gray-400">Aucun élément mis en avant.</p>}
 
       <ol className="space-y-1">
         {featuredIds.map((id, index) => (
           <li key={id} className="flex items-center gap-2 rounded-md bg-neutral/10 px-3 py-2 text-sm">
             <span className="w-5 shrink-0 text-center text-xs font-bold text-gray-500">{index + 1}</span>
+            <img src={getImageUrl(id)} alt="" className="size-8 shrink-0 rounded object-cover" aria-hidden="true" />
             <span className="flex-1 truncate font-medium text-gray-900">{getLabel(id)}</span>
             <span className="text-xs text-gray-400">{id}</span>
             <div className="flex items-center gap-1">
@@ -93,8 +94,15 @@ function FeaturedList({ title, featuredIds, getLabel, nonFeaturedOptions, onAdd,
 }
 
 export function AdminFeaturedTab() {
-  const { cms, addItemToFeatured, removeItemFromFeatured, moveItemInFeatured, addCategoryToFeatured, removeCategoryFromFeatured, moveCategoryInFeatured } =
-    useAdminModification();
+  const {
+    cms,
+    addItemToFeatured,
+    removeItemFromFeatured,
+    moveItemInFeatured,
+    addCategoryToFeatured,
+    removeCategoryFromFeatured,
+    moveCategoryInFeatured,
+  } = useAdminModification();
 
   const allCategories = flattenCategories(cms.categories);
 
@@ -107,6 +115,7 @@ export function AdminFeaturedTab() {
         title="Produits à la une"
         featuredIds={cms.featuredItemIds}
         getLabel={id => cms.items.find(i => i.id === id)?.title.fr ?? id}
+        getImageUrl={id => getProductImageUrl(id, 1)}
         nonFeaturedOptions={nonFeaturedItems.map(i => ({ id: i.id, label: i.title.fr }))}
         onAdd={addItemToFeatured}
         onRemove={removeItemFromFeatured}
@@ -116,6 +125,7 @@ export function AdminFeaturedTab() {
         title="Catégories à la une"
         featuredIds={cms.featuredCategoryIds}
         getLabel={id => allCategories.find(c => c.id === id)?.name.fr ?? id}
+        getImageUrl={getCategoryImageUrl}
         nonFeaturedOptions={nonFeaturedCategories.map(c => ({ id: c.id, label: c.name.fr }))}
         onAdd={addCategoryToFeatured}
         onRemove={removeCategoryFromFeatured}

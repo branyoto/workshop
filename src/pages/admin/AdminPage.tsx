@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useSearchParams } from 'react-router';
 import { AdminItemList } from './list/AdminItemList';
 import { AdminItemForm } from './form/AdminItemForm';
 import { AdminHeader } from './AdminHeader';
@@ -10,6 +10,8 @@ import clsx from 'clsx';
 
 type AdminTab = 'items' | 'categories' | 'featured' | 'colorsAndTags';
 
+const VALID_TABS: AdminTab[] = ['items', 'categories', 'featured', 'colorsAndTags'];
+
 const TABS: { id: AdminTab; label: string }[] = [
   { id: 'items', label: 'Produits' },
   { id: 'categories', label: 'Catégories' },
@@ -18,7 +20,10 @@ const TABS: { id: AdminTab; label: string }[] = [
 ];
 
 export function AdminPage() {
-  const [activeTab, setActiveTab] = useState<AdminTab>('items');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get('tab') as AdminTab | null;
+  const activeTab: AdminTab = tabParam && VALID_TABS.includes(tabParam) ? tabParam : 'items';
+  const setActiveTab = (tab: AdminTab) => setSearchParams({ tab });
 
   return (
     <AdminModificationProvider>

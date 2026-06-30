@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { ChevronRight, PlusCircle, Trash2 } from 'lucide-react';
+import { ChevronRight, PlusCircle } from 'lucide-react';
 import clsx from 'clsx';
 import type { CategoryView } from '../../../services/providers/cms/types';
 import { useAdminModification } from '../ModificationProvider/useAdminModification';
 import { Button } from '../../../common/Button';
+import { getCategoryImageUrl } from '../../../utils/image';
 
 interface AdminCategoryNodeProps {
   category: CategoryView;
@@ -11,12 +12,9 @@ interface AdminCategoryNodeProps {
   depth: number;
   /** @stable */
   onSelect: (id: string) => void;
-  /** @stable */
-  onAddChild: (parentId: string | undefined) => void;
-  onDelete: (id: string) => void;
 }
 
-function AdminCategoryNode({ category, selectedId, depth, onSelect, onAddChild, onDelete }: Readonly<AdminCategoryNodeProps>) {
+function AdminCategoryNode({ category, selectedId, depth, onSelect }: Readonly<AdminCategoryNodeProps>) {
   const [expanded, setExpanded] = useState(true);
   const hasChildren = (category.children?.length ?? 0) > 0;
 
@@ -24,7 +22,7 @@ function AdminCategoryNode({ category, selectedId, depth, onSelect, onAddChild, 
     <div>
       <div
         className={clsx(
-          'group flex items-center gap-1 rounded-md px-2 py-1.5 text-sm',
+          'flex items-center gap-1 rounded-md px-2 py-1.5 text-sm',
           selectedId === category.id ? 'bg-secondary/50' : 'hover:bg-neutral/20',
         )}
         style={{ paddingLeft: `${depth * 16 + 8}px` }}
@@ -37,27 +35,15 @@ function AdminCategoryNode({ category, selectedId, depth, onSelect, onAddChild, 
         >
           {hasChildren && <ChevronRight className={clsx('size-4 text-gray-500 transition-transform', expanded && 'rotate-90')} />}
         </button>
+        <img
+          src={getCategoryImageUrl(category.id)}
+          alt=""
+          aria-hidden="true"
+          className="size-5 shrink-0 rounded object-cover"
+        />
         <button type="button" className="flex-1 truncate text-left font-medium text-gray-900" onClick={() => onSelect(category.id)}>
           {category.name.fr}
         </button>
-        <span className="hidden items-center gap-1 group-hover:flex">
-          <button
-            type="button"
-            className="rounded p-1 text-gray-500 hover:bg-neutral/30 hover:text-gray-900"
-            title="Ajouter un enfant"
-            onClick={() => onAddChild(category.id)}
-          >
-            <PlusCircle className="size-3.5" />
-          </button>
-          <button
-            type="button"
-            className="rounded p-1 text-gray-500 hover:bg-red-50 hover:text-red-600"
-            title="Supprimer"
-            onClick={() => onDelete(category.id)}
-          >
-            <Trash2 className="size-3.5" />
-          </button>
-        </span>
       </div>
       {expanded &&
         hasChildren &&
@@ -68,8 +54,6 @@ function AdminCategoryNode({ category, selectedId, depth, onSelect, onAddChild, 
             selectedId={selectedId}
             depth={depth + 1}
             onSelect={onSelect}
-            onAddChild={onAddChild}
-            onDelete={onDelete}
           />
         ))}
     </div>
@@ -81,17 +65,17 @@ export interface AdminCategoryTreeProps {
   /** @stable */
   onSelect: (id: string) => void;
   /** @stable */
-  onAddChild: (parentId: string | undefined) => void;
+  onAddRoot: () => void;
 }
 
-export function AdminCategoryTree({ selectedId, onSelect, onAddChild }: Readonly<AdminCategoryTreeProps>) {
-  const { cms, deleteCategory } = useAdminModification();
+export function AdminCategoryTree({ selectedId, onSelect, onAddRoot }: Readonly<AdminCategoryTreeProps>) {
+  const { cms } = useAdminModification();
 
   return (
     <aside className="flex-1 rounded-lg border border-neutral/50 bg-white">
       <div className="flex items-center justify-between border-b border-neutral/50 p-3">
         <span className="text-sm font-semibold text-gray-700">Catégories</span>
-        <Button variant="text" className="px-2 py-1 text-xs" onClick={() => onAddChild(undefined)}>
+        <Button variant="text" className="px-2 py-1 text-xs" onClick={onAddRoot}>
           <PlusCircle className="size-3.5" />
           Racine
         </Button>
@@ -104,11 +88,10 @@ export function AdminCategoryTree({ selectedId, onSelect, onAddChild }: Readonly
             selectedId={selectedId}
             depth={0}
             onSelect={onSelect}
-            onAddChild={onAddChild}
-            onDelete={deleteCategory}
           />
         ))}
       </div>
     </aside>
   );
 }
+

@@ -8,9 +8,10 @@ import { ColorSection } from './ColorSection';
 import { DecorativeImage } from '../../../common/DecorativeImage';
 import { updateTags } from '../utils';
 import type { EditLocalizedText } from '../ModificationProvider/AdminModificationReducer';
+import { Trash2 } from 'lucide-react';
 
 export function AdminItemForm() {
-  const { selectedItemId, cms, editSelectedItem, editTag } = useAdminModification();
+  const { selectedItemId, cms, editSelectedItem, editTag, deleteItem } = useAdminModification();
 
   const selectedItem = cms.items.find(item => item.id === selectedItemId);
 
@@ -32,9 +33,21 @@ export function AdminItemForm() {
 
   return (
     <form className="flex-3 space-y-6 rounded-lg border border-neutral/50 p-4 h-min" onSubmit={event => event.preventDefault()}>
+      <div className="flex items-center justify-between">
+        <span className="text-base font-semibold text-gray-950">{selectedItem.title.fr}</span>
+        <button
+          type="button"
+          className="rounded p-1.5 text-red-500 hover:bg-red-50"
+          onClick={() => deleteItem(selectedItem.id)}
+          aria-label="Supprimer le produit"
+          title="Supprimer"
+        >
+          <Trash2 className="size-4" />
+        </button>
+      </div>
       <div className="grid gap-4 md:grid-cols-[180px_minmax(0,1fr)]">
         <DecorativeImage src={getProductImageUrl(selectedItem.id)} />
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 items-start">
           <TextField label="Identifiant" value={selectedItem.id} onChange={id => editSelectedItem({ id })} />
           <TextField
             label="Prix"

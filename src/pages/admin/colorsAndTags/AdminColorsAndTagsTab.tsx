@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Check, Pencil, Trash2, X, PlusCircle } from 'lucide-react';
+import clsx from 'clsx';
 import { useAdminModification } from '../ModificationProvider/useAdminModification';
 import { TextField } from '../../../common/input/TextField';
 import { Button } from '../../../common/Button';
@@ -51,7 +52,7 @@ function EditableEntry({ entryKey, fr, en, onSave, onDelete }: Readonly<Editable
           >
             <Check className="size-4" />
           </button>
-          <button type="button" className="rounded p-1.5 text-gray-500 hover:bg-neutral/30" onClick={handleCancel} aria-label="Annuler">
+          <button type="button" className="rounded p-1.5 text-red-500 hover:bg-red-50" onClick={handleCancel} aria-label="Annuler">
             <X className="size-4" />
           </button>
         </div>
@@ -60,11 +61,11 @@ function EditableEntry({ entryKey, fr, en, onSave, onDelete }: Readonly<Editable
   }
 
   return (
-    <li className="group flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-neutral/10">
+    <li className="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-neutral/10">
       <span className="w-32 shrink-0 truncate font-mono text-xs text-gray-500">{entryKey}</span>
       <span className="flex-1 truncate font-medium text-gray-900">{fr}</span>
-      {en && <span className="truncate text-gray-500">{en}</span>}
-      <span className="hidden items-center gap-1 group-hover:flex">
+      <span className={clsx('flex-1 truncate font-medium', en ? 'text-gray-900' : 'italic text-gray-400')}>{en ?? '—'}</span>
+      <span className="flex items-center gap-1">
         <button
           type="button"
           className="rounded p-1 text-gray-400 hover:bg-neutral/30 hover:text-gray-700"
