@@ -16,3 +16,11 @@ Custom label vocabulary mapped to the five canonical triage roles. See `docs/age
 
 Single-context repo — one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
 
+### React code style
+
+Apply when writing or reviewing any React code. See `docs/agents/react-style.md`.
+
+### i18n
+
+Apply when writing, reviewing, or translating any user-visible text. See `docs/agents/i18n.md`.
+
