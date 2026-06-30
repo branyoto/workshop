@@ -29,7 +29,7 @@ export function AdminPage() {
     <AdminModificationProvider>
       <section className="space-y-6" aria-labelledby="admin-heading">
         <AdminHeader />
-        <div className="flex gap-1 border-b border-neutral/50">
+        <div className="flex gap-1 border-b border-bg-200">
           {TABS.map(tab => (
             <button
               key={tab.id}
@@ -37,7 +37,7 @@ export function AdminPage() {
               onClick={() => setActiveTab(tab.id)}
               className={clsx(
                 'px-4 py-2 text-sm font-medium transition-colors -mb-px border-b-2',
-                activeTab === tab.id ? 'border-accent text-accent' : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-neutral/50',
+                activeTab === tab.id ? 'border-accent-400 text-accent-500' : 'border-transparent text-primary-600 hover:text-primary-900 hover:border-bg-200',
               )}
             >
               {tab.label}

@@ -8,7 +8,7 @@ export interface CategoryBannerProps {
 
 export function CategoryBanner({ categoryId, alt }: Readonly<CategoryBannerProps>) {
   return (
-    <div className="mb-4 overflow-hidden rounded-xl bg-primary/10">
+    <div className="mb-4 overflow-hidden rounded-xl bg-bg-50">
       <Image src={getCategoryImageUrl(categoryId)} alt={alt} className="h-40" />
     </div>
   );

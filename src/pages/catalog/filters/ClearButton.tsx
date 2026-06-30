@@ -7,7 +7,7 @@ export function ClearButton() {
   const { t } = useTranslation();
 
   return (
-    <Button variant="text" className="px-2 py-0.5 text-xs text-accent" onClick={clearAll} disabled={!activeCount}>
+    <Button variant="text" className="px-2 py-0.5 text-xs text-accent-500" onClick={clearAll} disabled={!activeCount}>
       {t('pages.catalog.filters.clearAll')}
     </Button>
   );

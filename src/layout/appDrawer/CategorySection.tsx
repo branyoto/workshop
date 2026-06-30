@@ -31,11 +31,11 @@ export function CategorySection({ onClose }: Readonly<CategorySectionProps>) {
               aria-expanded={!folded}
               aria-controls={categoryTreeId}
               onClick={toggle}
-              className="rounded-md px-2 py-1 text-sm font-semibold text-gray-900 transition-colors hover:bg-primary/20"
+              className="rounded-md px-2 py-1 text-sm font-semibold text-primary-900 transition-colors hover:bg-bg-100"
             >
               <ChevronDown
                 aria-hidden="true"
-                className={clsx('size-4 text-gray-500 transition-transform duration-200 ease-out', folded && '-rotate-90')}
+                className={clsx('size-4 text-primary-500 transition-transform duration-200 ease-out', folded && '-rotate-90')}
                 strokeWidth={1.75}
               />
             </button>
@@ -45,7 +45,7 @@ export function CategorySection({ onClose }: Readonly<CategorySectionProps>) {
               aria-current={isActive ? 'page' : undefined}
               className={clsx(
                 'flex-1 block rounded-md px-2 py-1 text-sm font-medium transition-colors',
-                isActive ? 'bg-primary/60 text-gray-900' : 'text-gray-700 hover:bg-primary/20',
+                isActive ? 'bg-primary-200 text-primary-900' : 'text-primary-700 hover:bg-bg-100',
               )}
             >
               {t('pages.catalog.allItems')}

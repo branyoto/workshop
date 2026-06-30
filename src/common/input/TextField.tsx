@@ -23,11 +23,11 @@ export function TextField({
   ...props
 }: Readonly<TextFieldProps>) {
   return (
-    <label className={clsx('grid gap-1 text-sm font-medium text-gray-800', className)}>
+    <label className={clsx('grid gap-1 text-sm font-medium text-primary-800', className)}>
       {label}
       <input
         className={clsx(
-          'w-full rounded-md border border-neutral/60 bg-white text-sm font-normal text-gray-950 disabled:bg-gray-100 disabled:text-gray-500',
+          'w-full rounded-md border border-bg-300 bg-bg-50 text-sm font-normal text-primary-950 disabled:bg-bg-100 disabled:text-primary-500',
           inputClassname,
         )}
         type={type}

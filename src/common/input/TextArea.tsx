@@ -8,10 +8,10 @@ export interface TextAreaProps {
 
 export function TextArea({ label, value = '', onChange }: Readonly<TextAreaProps>) {
   return (
-    <label className="grid gap-1 text-sm font-medium text-gray-800">
+    <label className="grid gap-1 text-sm font-medium text-primary-800">
       {label}
       <textarea
-        className="min-h-32 w-full resize-y rounded-md border border-neutral/60 bg-white px-3 py-2 text-sm font-normal text-gray-950"
+        className="min-h-32 w-full resize-y rounded-md border border-bg-300 bg-bg-50 px-3 py-2 text-sm font-normal text-primary-950"
         value={value}
         onChange={ev => onChange(ev.target.value, ev)}
       />

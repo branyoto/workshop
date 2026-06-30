@@ -32,7 +32,7 @@ export function AddToCartButton({ item }: Readonly<AddToCartButtonProps>) {
         >
           {inCart ? t('pages.catalog.inCart') : t('pages.catalog.addToCart')}
         </Button>
-      : <div className="rounded-xl border border-neutral/40 p-3 text-center text-sm text-gray-500">{t('pages.item.soldOut')}</div>}
+      : <div className="rounded-xl border border-bg-200 p-3 text-center text-sm text-primary-500">{t('pages.item.soldOut')}</div>}
     </div>
   );
 }

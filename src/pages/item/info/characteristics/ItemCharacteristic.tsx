@@ -13,10 +13,10 @@ export function ItemCharacteristic({ value, itemKey, filter }: Readonly<ItemChar
   if (!value) return null;
   return (
     <>
-      <dt key={`dt-${itemKey}`} className="text-gray-500">
+      <dt key={`dt-${itemKey}`} className="text-primary-500">
         {t(`pages.item.char.${itemKey}`)}
       </dt>
-      <dd key={`dd-${itemKey}`} className="font-medium text-gray-900">
+      <dd key={`dd-${itemKey}`} className="font-medium text-primary-900">
         {typeof value === 'object' ? value.map(({ id, label }) => <CatalogFilterChip key={id} label={label} value={id} filter={filter} />) : value}
       </dd>
     </>

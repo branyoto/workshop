@@ -9,15 +9,15 @@ export function ContactSection() {
   const { contact } = useCms();
 
   return (
-    <section aria-labelledby="artist-heading" className="rounded-xl bg-primary/10 px-6 py-8">
-      <h2 id="artist-heading" className="mb-2 text-xl font-semibold text-gray-900">
+    <section aria-labelledby="artist-heading" className="rounded-xl bg-bg-50 px-6 py-8">
+      <h2 id="artist-heading" className="mb-2 text-xl font-semibold text-primary-900">
         {t('pages.home.artistTeaser')}
       </h2>
-      <p className="max-w-prose text-gray-700">
+      <p className="max-w-prose text-primary-700">
         {l(contact.bio).slice(0, 240)}
         {l(contact.bio).length > 240 ? '…' : ''}
       </p>
-      <Link to="/contact" className="mt-4 inline-flex items-center text-sm font-medium text-accent hover:underline">
+      <Link to="/contact" className="mt-4 inline-flex items-center text-sm font-medium text-accent-500 hover:underline">
         {t('pages.home.learnMore')} →
       </Link>
     </section>

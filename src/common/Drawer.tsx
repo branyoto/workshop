@@ -57,20 +57,20 @@ export function Drawer({ open, onClose, side, title, children, footer, mobileFul
 
   return (
     <div className={clsx('fixed inset-0 z-40 flex', sideClasses[side])}>
-      <button type="button" className="absolute inset-0 bg-black/40" aria-label="Close drawer" onClick={onClose} />
+      <button type="button" className="absolute inset-0 bg-bg-950/40" aria-label="Close drawer" onClick={onClose} />
       <aside
         ref={panelRef}
         aria-labelledby={title ? titleId : undefined}
         data-open={open}
         className={clsx(
-          'relative z-10 flex h-full flex-col bg-white shadow-xl transition-transform duration-200 ease-out',
+          'relative z-10 flex h-full flex-col bg-bg-50 shadow-xl transition-transform duration-200 ease-out',
           mobileFullScreen ? 'w-full sm:w-80 sm:max-w-[85vw]' : 'w-80 max-w-[85vw]',
           panelAnimation[side],
         )}
       >
-        <header className="flex items-center justify-between border-b border-neutral/50 px-4 py-3">
+        <header className="flex items-center justify-between border-b border-bg-200 px-4 py-3">
           {title ?
-            <h2 id={titleId} className="text-base font-semibold text-gray-900">
+            <h2 id={titleId} className="text-base font-semibold text-primary-900">
               {title}
             </h2>
           : <span />}
@@ -80,7 +80,7 @@ export function Drawer({ open, onClose, side, title, children, footer, mobileFul
         </header>
         <div className="flex-1 overflow-y-auto px-4 py-4">{children}</div>
         {footer ?
-          <footer className="border-t border-neutral/50 px-4 py-3">{footer}</footer>
+          <footer className="border-t border-bg-200 px-4 py-3">{footer}</footer>
         : null}
       </aside>
     </div>

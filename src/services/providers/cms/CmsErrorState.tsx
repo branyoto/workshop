@@ -10,7 +10,7 @@ export interface CmsErrorStateProps {
 export function CmsErrorState({ onRetry, isRetrying = false }: Readonly<CmsErrorStateProps>) {
   const { t } = useTranslation();
   return (
-    <div className="cms-state cms-state--error flex min-h-svh items-center justify-center bg-white px-4">
+    <div className="cms-state cms-state--error flex min-h-svh items-center justify-center bg-bg-50 px-4">
       <EmptyState
         title={t('pages.cms.error.title')}
         description={t('pages.cms.error.description')}

@@ -20,7 +20,7 @@ export function NumberInput<T extends number | string | null | undefined>({
   return (
     <input
       className={clsx(
-        'w-full rounded-md border border-neutral/60 bg-white px-2 py-1 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent',
+        'w-full rounded-md border border-bg-300 bg-bg-50 px-2 py-1 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400',
         className,
       )}
       type="number"

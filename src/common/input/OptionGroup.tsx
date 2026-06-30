@@ -7,8 +7,8 @@ export interface OptionGroupProps {
 
 export function OptionGroup({ title, children }: Readonly<OptionGroupProps>) {
   return (
-    <fieldset className="rounded-lg border border-neutral/50 p-4">
-      <legend className="px-1 text-sm font-semibold text-gray-950">{title}</legend>
+    <fieldset className="rounded-lg border border-bg-200 p-4">
+      <legend className="px-1 text-sm font-semibold text-primary-950">{title}</legend>
       <div className="flex flex-wrap gap-2">{children}</div>
     </fieldset>
   );

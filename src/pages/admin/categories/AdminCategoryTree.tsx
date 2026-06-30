@@ -23,7 +23,7 @@ function AdminCategoryNode({ category, selectedId, depth, onSelect }: Readonly<A
       <div
         className={clsx(
           'flex items-center gap-1 rounded-md px-2 py-1.5 text-sm',
-          selectedId === category.id ? 'bg-secondary/50' : 'hover:bg-neutral/20',
+          selectedId === category.id ? 'bg-secondary-100' : 'hover:bg-bg-100',
         )}
         style={{ paddingLeft: `${depth * 16 + 8}px` }}
       >
@@ -33,7 +33,7 @@ function AdminCategoryNode({ category, selectedId, depth, onSelect }: Readonly<A
           onClick={() => setExpanded(e => !e)}
           aria-label={expanded ? 'Replier' : 'Déplier'}
         >
-          {hasChildren && <ChevronRight className={clsx('size-4 text-gray-500 transition-transform', expanded && 'rotate-90')} />}
+          {hasChildren && <ChevronRight className={clsx('size-4 text-primary-500 transition-transform', expanded && 'rotate-90')} />}
         </button>
         <img
           src={getCategoryImageUrl(category.id)}
@@ -41,7 +41,7 @@ function AdminCategoryNode({ category, selectedId, depth, onSelect }: Readonly<A
           aria-hidden="true"
           className="size-5 shrink-0 rounded object-cover"
         />
-        <button type="button" className="flex-1 truncate text-left font-medium text-gray-900" onClick={() => onSelect(category.id)}>
+        <button type="button" className="flex-1 truncate text-left font-medium text-primary-900" onClick={() => onSelect(category.id)}>
           {category.name.fr}
         </button>
       </div>
@@ -72,9 +72,9 @@ export function AdminCategoryTree({ selectedId, onSelect, onAddRoot }: Readonly<
   const { cms } = useAdminModification();
 
   return (
-    <aside className="flex-1 rounded-lg border border-neutral/50 bg-white">
-      <div className="flex items-center justify-between border-b border-neutral/50 p-3">
-        <span className="text-sm font-semibold text-gray-700">Catégories</span>
+    <aside className="flex-1 rounded-lg border border-bg-200 bg-bg-50">
+      <div className="flex items-center justify-between border-b border-bg-200 p-3">
+        <span className="text-sm font-semibold text-primary-700">Catégories</span>
         <Button variant="text" className="px-2 py-1 text-xs" onClick={onAddRoot}>
           <PlusCircle className="size-3.5" />
           Racine

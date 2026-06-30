@@ -17,10 +17,10 @@ export function CategoryHeader({ category }: Readonly<CategoryHeaderProps>) {
   return (
     <>
       {category && <CategoryBanner categoryId={category.id} alt={heading} />}
-      <h1 id="catalog-heading" className="text-3xl font-semibold text-gray-900">
+      <h1 id="catalog-heading" className="text-3xl font-semibold text-primary-900">
         {category ? l(category.name) : t('pages.catalog.heading')}
       </h1>
-      {category?.description && <p className="mt-1 text-sm text-gray-600">{l(category.description)}</p>}
+      {category?.description && <p className="mt-1 text-sm text-primary-600">{l(category.description)}</p>}
     </>
   );
 }

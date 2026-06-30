@@ -25,10 +25,10 @@ export function FeaturedElements({ titleKey, titleHref, elements }: Readonly<Fea
   if (!elements.length) return null;
   return (
     <section aria-labelledby={titleKey}>
-      <h2 id={titleKey} className="mb-4 text-xl font-semibold text-gray-900">
+      <h2 id={titleKey} className="mb-4 text-xl font-semibold text-primary-900">
         <Link
           to={titleHref}
-          className="group inline-flex items-center gap-2 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+          className="group inline-flex items-center gap-2 hover:text-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2"
         >
           {t(titleKey)}
           <ArrowRight

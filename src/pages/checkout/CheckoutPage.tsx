@@ -22,13 +22,13 @@ interface FieldProps {
 function Field({ label, error, id, required, children }: Readonly<FieldProps>) {
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium text-gray-900">
+      <label htmlFor={id} className="text-sm font-medium text-primary-900">
         {label}
-        {required && <span className="ml-0.5 text-red-500">*</span>}
+        {required && <span className="ml-0.5 text-primary-600">*</span>}
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="text-xs text-red-600" role="alert">
+        <p id={`${id}-error`} className="text-xs text-primary-700" role="alert">
           {error}
         </p>
       )}
@@ -66,7 +66,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
           action={
             <Link
               to={catalogUrl()}
-              className="inline-flex items-center justify-center rounded-lg bg-secondary px-4 py-2 text-sm font-medium text-gray-900 hover:bg-secondary/80"
+              className="inline-flex items-center justify-center rounded-lg bg-secondary-300 px-4 py-2 text-sm font-medium text-primary-900 hover:bg-secondary-400"
             >
               {t('pages.cart.empty.browseCatalog')}
             </Link>
@@ -78,7 +78,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
 
   return (
     <section aria-labelledby="checkout-heading">
-      <h1 id="checkout-heading" className="text-3xl font-semibold text-gray-900">
+      <h1 id="checkout-heading" className="text-3xl font-semibold text-primary-900">
         {t('pages.checkout.heading')}
       </h1>
       <div className="mt-6 flex flex-col gap-8 lg:flex-row">
@@ -110,7 +110,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   autoComplete="name"
                   data-testid="checkout-name"
                   aria-describedby={field.state.meta.errors[0] ? 'name-error' : undefined}
-                  className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                  className="rounded-lg border border-bg-200 px-3 py-2 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
                 />
               </Field>
             )}
@@ -132,7 +132,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   autoComplete="email"
                   data-testid="checkout-email"
                   aria-describedby={field.state.meta.errors[0] ? 'email-error' : undefined}
-                  className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                  className="rounded-lg border border-bg-200 px-3 py-2 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
                 />
               </Field>
             )}
@@ -154,7 +154,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   autoComplete="tel"
                   data-testid="checkout-phone"
                   aria-describedby={field.state.meta.errors[0] ? 'phone-error' : undefined}
-                  className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                  className="rounded-lg border border-bg-200 px-3 py-2 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
                 />
               </Field>
             )}
@@ -190,7 +190,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   onChange={e => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
                   rows={3}
-                  className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                  className="rounded-lg border border-bg-200 px-3 py-2 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
                 />
               </Field>
             )}
@@ -203,7 +203,7 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
 
         {/* Order summary */}
         <aside className="w-full lg:w-80">
-          <div className="rounded-xl border border-neutral/40 p-4">
+          <div className="rounded-xl border border-bg-200 p-4">
             <h2 className="mb-3 text-base font-semibold">{t('pages.checkout.summary.title')}</h2>
             <ul className="flex flex-col gap-3">
               {items.map(item => (
@@ -211,17 +211,17 @@ export function CheckoutPage({ onSubmit, submitting = false }: Readonly<Checkout
                   <DecorativeImage src={getProductImageUrl(item.id)} className="size-12" fullWidth={false} />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{item.titleSnapshot}</p>
-                    <p className="text-sm text-gray-600">{formatPrice(item.priceSnapshot)}</p>
+                    <p className="text-sm text-primary-600">{formatPrice(item.priceSnapshot)}</p>
                   </div>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 border-t border-neutral/40 pt-3">
+            <div className="mt-4 border-t border-bg-200 pt-3">
               <div className="flex items-center justify-between text-sm font-semibold">
                 <span>{t('pages.checkout.summary.total')}</span>
                 <span>{formatPrice(total)}</span>
               </div>
-              <p className="mt-2 text-xs text-gray-500">{t('pages.checkout.summary.deliveryNote')}</p>
+              <p className="mt-2 text-xs text-primary-500">{t('pages.checkout.summary.deliveryNote')}</p>
             </div>
           </div>
         </aside>

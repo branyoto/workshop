@@ -32,7 +32,7 @@ export function AdminCategoriesTab() {
         <AdminCategoryForm key="new" defaultParentId={undefined} onClose={handleClose} />
       : selectedCategoryId ?
         <AdminCategoryForm key={selectedCategoryId} prevId={selectedCategoryId} onClose={handleClose} onIdChange={handleIdChange} />
-      : <div className="flex-3 flex items-center justify-center rounded-lg border border-neutral/50 p-4 h-120 text-2xl font-bold text-gray-400">
+      : <div className="flex-3 flex items-center justify-center rounded-lg border border-bg-200 p-4 h-120 text-2xl font-bold text-primary-400">
           Sélectionner une catégorie
         </div>
       }

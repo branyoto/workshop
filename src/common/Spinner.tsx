@@ -8,9 +8,9 @@ export interface SpinnerProps {
 export function Spinner({ label, className }: Readonly<SpinnerProps>) {
   return (
     <output className={clsx('spinner flex flex-col items-center gap-3', className)}>
-      <div className="h-8 w-8 animate-spin rounded-full border-4 border-neutral border-t-accent" aria-hidden="true" />
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-bg-200 border-t-accent-400" aria-hidden="true" />
       {label ?
-        <p className="text-sm text-gray-600">{label}</p>
+        <p className="text-sm text-primary-600">{label}</p>
       : null}
     </output>
   );

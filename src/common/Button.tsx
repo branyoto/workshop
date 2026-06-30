@@ -9,10 +9,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-accent text-white hover:bg-accent/90 focus-visible:ring-accent/50',
-  secondary: 'bg-secondary text-gray-900 hover:bg-secondary/80 focus-visible:ring-secondary/50',
-  text: 'bg-transparent text-gray-900 hover:bg-secondary-100/50 focus-visible:ring-secondary-100/50',
-  danger: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500/50',
+  primary: 'bg-primary-500 text-primary-50 hover:bg-primary-600 focus-visible:ring-primary-500/50',
+  secondary: 'bg-secondary-300 text-primary-900 hover:bg-secondary-400 focus-visible:ring-secondary-300/50',
+  text: 'bg-transparent text-primary-900 hover:bg-bg-200/50 focus-visible:ring-bg-100/50',
+  danger: 'bg-primary-700 text-primary-50 hover:bg-primary-800 focus-visible:ring-primary-600/50',
 };
 
 export const Button = forwardRef<HTMLButtonElement, Readonly<ButtonProps>>(function Button(

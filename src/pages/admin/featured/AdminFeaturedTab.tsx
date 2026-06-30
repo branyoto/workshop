@@ -26,22 +26,22 @@ function FeaturedList({ title, featuredIds, getLabel, getImageUrl, nonFeaturedOp
   };
 
   return (
-    <div className="rounded-lg border border-neutral/50 bg-white p-4 space-y-3">
-      <h3 className="font-semibold text-gray-950">{title}</h3>
+    <div className="rounded-lg border border-bg-200 bg-bg-50 p-4 space-y-3">
+      <h3 className="font-semibold text-primary-950">{title}</h3>
 
-      {featuredIds.length === 0 && <p className="text-sm text-gray-400">Aucun élément mis en avant.</p>}
+      {featuredIds.length === 0 && <p className="text-sm text-primary-400">Aucun élément mis en avant.</p>}
 
       <ol className="space-y-1">
         {featuredIds.map((id, index) => (
-          <li key={id} className="flex items-center gap-2 rounded-md bg-neutral/10 px-3 py-2 text-sm">
-            <span className="w-5 shrink-0 text-center text-xs font-bold text-gray-500">{index + 1}</span>
+          <li key={id} className="flex items-center gap-2 rounded-md bg-bg-50 px-3 py-2 text-sm">
+            <span className="w-5 shrink-0 text-center text-xs font-bold text-primary-500">{index + 1}</span>
             <img src={getImageUrl(id)} alt="" className="size-8 shrink-0 rounded object-cover" aria-hidden="true" />
-            <span className="flex-1 truncate font-medium text-gray-900">{getLabel(id)}</span>
-            <span className="text-xs text-gray-400">{id}</span>
+            <span className="flex-1 truncate font-medium text-primary-900">{getLabel(id)}</span>
+            <span className="text-xs text-primary-400">{id}</span>
             <div className="flex items-center gap-1">
               <button
                 type="button"
-                className="rounded p-1 text-gray-400 hover:bg-neutral/30 hover:text-gray-700 disabled:opacity-30"
+                className="rounded p-1 text-primary-400 hover:bg-bg-200 hover:text-primary-700 disabled:opacity-30"
                 disabled={index === 0}
                 onClick={() => onMove(id, 'up')}
                 aria-label="Monter"
@@ -50,7 +50,7 @@ function FeaturedList({ title, featuredIds, getLabel, getImageUrl, nonFeaturedOp
               </button>
               <button
                 type="button"
-                className="rounded p-1 text-gray-400 hover:bg-neutral/30 hover:text-gray-700 disabled:opacity-30"
+                className="rounded p-1 text-primary-400 hover:bg-bg-200 hover:text-primary-700 disabled:opacity-30"
                 disabled={index === featuredIds.length - 1}
                 onClick={() => onMove(id, 'down')}
                 aria-label="Descendre"
@@ -59,7 +59,7 @@ function FeaturedList({ title, featuredIds, getLabel, getImageUrl, nonFeaturedOp
               </button>
               <button
                 type="button"
-                className="rounded p-1 text-gray-400 hover:bg-red-50 hover:text-red-600"
+                className="rounded p-1 text-primary-400 hover:bg-primary-50 hover:text-primary-700"
                 onClick={() => onRemove(id)}
                 aria-label="Retirer"
               >
@@ -73,7 +73,7 @@ function FeaturedList({ title, featuredIds, getLabel, getImageUrl, nonFeaturedOp
       {nonFeaturedOptions.length > 0 && (
         <div className="flex gap-2 pt-1">
           <select
-            className="flex-1 rounded-md border border-neutral/60 bg-white px-3 py-2 text-sm text-gray-950"
+            className="flex-1 rounded-md border border-bg-300 bg-bg-50 px-3 py-2 text-sm text-primary-950"
             value={selectedId}
             onChange={e => setSelectedId(e.target.value)}
           >

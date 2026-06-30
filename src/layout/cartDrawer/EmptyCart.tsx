@@ -15,7 +15,7 @@ export function EmptyCart({ onClose }: Readonly<EmptyCartProps>) {
       <Link
         to={catalogUrl()}
         onClick={onClose}
-        className="inline-flex items-center justify-center rounded-lg bg-secondary px-4 py-2 text-sm font-medium text-gray-900 transition-colors hover:bg-secondary/80"
+        className="inline-flex items-center justify-center rounded-lg bg-secondary-300 px-4 py-2 text-sm font-medium text-primary-900 transition-colors hover:bg-secondary-400"
       >
         {t('pages.cart.empty.browseCatalog')}
       </Link>

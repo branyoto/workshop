@@ -39,7 +39,7 @@ export function ColorSection({ selectedItem }: Readonly<ColorSectionProps>) {
           onChange={() => editSelectedItem(updateColors(color))}
         />
       ))}
-      <AnchoredPopover open={opened} onOpenChange={setOpened} anchor={<PlusCircle className="size-9 p-1.5 text-gray-700" />}>
+      <AnchoredPopover open={opened} onOpenChange={setOpened} anchor={<PlusCircle className="size-9 p-1.5 text-primary-700" />}>
         <EditLocalizedValueForm close={close} onSubmit={handleAddColor} />
       </AnchoredPopover>
     </OptionGroup>

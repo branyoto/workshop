@@ -7,7 +7,7 @@ export function AdminHeader() {
 
   return (
     <div className="flex flex-col gap-4 pb-5 md:flex-row md:items-end md:justify-between">
-      <h1 id="admin-heading" className="text-3xl font-semibold text-gray-950">
+      <h1 id="admin-heading" className="text-3xl font-semibold text-primary-950">
         Editeur de produits
       </h1>
       <div className="flex flex-wrap gap-2">

@@ -47,7 +47,7 @@ export function AnchoredPopover({ anchor, children, open, onOpenChange }: Readon
   return (
     <>
       <span ref={setReference} className="inline-flex" {...getReferenceProps()}>
-        <button type="button" className="cursor-pointer rounded-xl hover:bg-neutral/20" aria-expanded={open} aria-label="Ajouter un libellé">
+        <button type="button" className="cursor-pointer rounded-xl hover:bg-bg-100" aria-expanded={open} aria-label="Ajouter un libellé">
           {anchor}
         </button>
       </span>

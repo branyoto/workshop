@@ -14,15 +14,15 @@ export function CartItems() {
   return (
     <ul className="flex flex-col gap-3">
       {items.map(item => (
-        <li key={item.id} data-testid="cart-item" className="flex items-center gap-3 rounded-lg border border-neutral/40 p-2">
+        <li key={item.id} data-testid="cart-item" className="flex items-center gap-3 rounded-lg border border-bg-200 p-2">
           <DecorativeImage src={getProductImageUrl(item.id)} className="size-14" fullWidth={false} />
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-medium">{item.titleSnapshot}</p>
-            <p className="text-sm text-gray-600">{formatPrice(item.priceSnapshot)}</p>
+            <p className="text-sm text-primary-600">{formatPrice(item.priceSnapshot)}</p>
           </div>
           <Button
             variant="text"
-            className="shrink-0 px-2 py-1 text-xs text-red-600"
+            className="shrink-0 px-2 py-1 text-xs text-primary-700"
             onClick={() => removeItem(item.id)}
             aria-label={t('pages.cart.remove', { title: item.titleSnapshot })}
           >

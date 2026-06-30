@@ -47,7 +47,7 @@ export function CheckoutRoute() {
         message={t('pages.checkout.error.message')}
         onClose={() => setErrorOpen(false)}
         action={
-          <Button variant="text" className="px-2 py-1 text-xs text-white" onClick={() => setErrorOpen(false)}>
+          <Button variant="text" className="px-2 py-1 text-xs text-primary-50" onClick={() => setErrorOpen(false)}>
             {t('common.retry')}
           </Button>
         }

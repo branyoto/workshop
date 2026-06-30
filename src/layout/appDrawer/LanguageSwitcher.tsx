@@ -19,7 +19,7 @@ export function LanguageSwitcher({ className }: Readonly<{ className?: string }>
           onClick={() => switchLanguage(lang)}
           className={clsx(
             'rounded-md px-2 py-1 text-xs font-medium uppercase transition-colors',
-            current === lang ? 'bg-primary/60 text-gray-900' : 'text-gray-600 hover:bg-neutral/20',
+            current === lang ? 'bg-primary-200 text-primary-900' : 'text-primary-600 hover:bg-bg-100',
           )}
           aria-pressed={current === lang}
         >

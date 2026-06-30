@@ -15,17 +15,17 @@ export function Breadcrumbs() {
           {breadcrumbs.map((crumb, i, { length }) => (
             <li key={crumb.label} className="flex items-center gap-1">
               {i > 0 && (
-                <span aria-hidden="true" className="text-gray-400">
+                <span aria-hidden="true" className="text-primary-400">
                   /
                 </span>
               )}
               {crumb.href === undefined || i === length - 1 ?
-                <span aria-current="page" className="font-medium text-gray-900">
+                <span aria-current="page" className="font-medium text-primary-900">
                   {crumb.label}
                 </span>
               : <Link
                   to={crumb.href}
-                  className="rounded text-gray-600 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1"
+                  className="rounded text-primary-600 hover:text-accent-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-1"
                 >
                   {crumb.label}
                 </Link>

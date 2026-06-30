@@ -92,16 +92,16 @@ export function AdminCategoryForm({ prevId, defaultParentId, onClose, onIdChange
 
   // ── render ────────────────────────────────────────────────────────────────
   return (
-    <div className="flex-3 space-y-4 rounded-lg border border-neutral/50 p-4 h-min">
+    <div className="flex-3 space-y-4 rounded-lg border border-bg-200 p-4 h-min">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-base font-semibold text-gray-950">
+        <h2 className="text-base font-semibold text-primary-950">
           {category ? 'Modifier la catégorie' : 'Nouvelle catégorie'}
         </h2>
         {category && (
           <button
             type="button"
-            className="rounded p-1.5 text-red-500 hover:bg-red-50"
+            className="rounded p-1.5 text-primary-600 hover:bg-primary-50"
             onClick={handleDelete}
             aria-label="Supprimer la catégorie"
             title="Supprimer"
@@ -122,10 +122,10 @@ export function AdminCategoryForm({ prevId, defaultParentId, onClose, onIdChange
             onBlur={handleIdBlur}
             autoFocus={!category}
           />
-          <label className="grid gap-1 text-sm font-medium text-gray-800">
+          <label className="grid gap-1 text-sm font-medium text-primary-800">
             Parent
             <select
-              className="w-full rounded-md border border-neutral/60 bg-white px-3 py-2 text-sm font-normal text-gray-950"
+              className="w-full rounded-md border border-bg-300 bg-bg-50 px-3 py-2 text-sm font-normal text-primary-950"
               value={(category ? savedParentId : parentDraft) ?? ''}
               onChange={e => handleParentChange(e.target.value || undefined)}
             >

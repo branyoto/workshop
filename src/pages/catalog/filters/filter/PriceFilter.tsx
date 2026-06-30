@@ -31,7 +31,7 @@ export function PriceFilter() {
           onBlur={commitMin}
           onKeyDown={e => e.key === 'Enter' && commitMin()}
         />
-        <span className="shrink-0 text-xs text-gray-400">–</span>
+        <span className="shrink-0 text-xs text-primary-400">–</span>
         <NumberInput
           min={minInput ?? '0'}
           value={maxInput}

@@ -14,7 +14,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
   const { t } = useTranslation();
   const { count } = useCart();
   return (
-    <header className="border-b border-bg-100 bg-secondary-50">
+    <header className="border-b border-bg-200 bg-bg-100">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <Button variant="text" className="min-h-11 min-w-11 px-2 py-2" onClick={onOpenCategoryDrawer} aria-label={t('header.openCategoryMenu')}>
           <Menu aria-hidden="true" className="size-5" strokeWidth={1.75} />
@@ -38,7 +38,7 @@ export function SiteHeader({ onOpenCategoryDrawer, onOpenCartDrawer }: Readonly<
             <ShoppingBag aria-hidden="true" className="size-5" strokeWidth={1.75} />
             {count > 0 && (
               <span
-                className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent-300 text-[10px] font-bold text-white"
+                className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent-300 text-[10px] font-bold text-primary-50"
                 aria-hidden="true"
               >
                 {count > 9 ? '9+' : count}

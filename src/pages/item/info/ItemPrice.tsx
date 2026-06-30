@@ -8,5 +8,5 @@ export interface ItemPriceProps {
 export function ItemPrice({ item }: Readonly<ItemPriceProps>) {
   const formatPrice = useFormatPrice();
 
-  return <span className="text-xl font-bold block text-gray-900">{formatPrice(item.price)}</span>;
+  return <span className="text-xl font-bold block text-primary-900">{formatPrice(item.price)}</span>;
 }

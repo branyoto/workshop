@@ -17,8 +17,8 @@ export function ItemCharacteristics({ item }: Readonly<ItemCharacteristicsProps>
   if (!item.characteristics || !Object.keys(item.characteristics).length) return null;
 
   return (
-    <div className="rounded-xl border border-neutral/40 p-4">
-      <h3 className="mb-2 text-sm font-semibold text-gray-900">{t('pages.item.characteristics')}</h3>
+    <div className="rounded-xl border border-bg-200 p-4">
+      <h3 className="mb-2 text-sm font-semibold text-primary-900">{t('pages.item.characteristics')}</h3>
       <dl className="grid grid-cols-2 gap-2 text-sm">
         {excludeArrayCharacs(item).map(([key, value]) => (
           <ItemCharacteristic key={key} value={value} itemKey={key} />

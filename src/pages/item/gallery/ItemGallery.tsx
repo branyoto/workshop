@@ -30,7 +30,7 @@ export function ItemGallery({ item }: Readonly<ItemGalleryProps>) {
       >
         {images.map((url, i) => (
           <SwiperSlide key={url}>
-            <div className="aspect-square overflow-hidden bg-primary/10">
+            <div className="aspect-square overflow-hidden bg-bg-50">
               <Image src={url} alt={i === 0 ? title : `${title} — ${i + 1}`} onError={() => setFailedImages(prev => new Set([...prev, url]))} />
             </div>
           </SwiperSlide>
@@ -40,7 +40,7 @@ export function ItemGallery({ item }: Readonly<ItemGalleryProps>) {
         <Swiper modules={[Thumbs, A11y]} onSwiper={setThumbsSwiper} slidesPerView={6} spaceBetween={8} watchSlidesProgress className="thumbs-swiper">
           {images.map((url, i) => (
             <SwiperSlide key={url}>
-              <div className="aspect-square cursor-pointer overflow-hidden rounded-md border border-neutral/40 bg-primary/10">
+              <div className="aspect-square cursor-pointer overflow-hidden rounded-md border border-bg-200 bg-bg-50">
                 <Image src={url} alt={title + (i === 0 ? '' : ` — ${i + 1}`) + ' thumbnail'} />
               </div>
             </SwiperSlide>

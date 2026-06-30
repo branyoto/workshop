@@ -7,10 +7,10 @@ export function NotFoundPage() {
   const { t } = useTranslation();
   return (
     <section aria-labelledby="not-found-heading" className="text-center">
-      <h1 id="not-found-heading" className="text-3xl font-semibold text-gray-900">
+      <h1 id="not-found-heading" className="text-3xl font-semibold text-primary-900">
         {t('pages.notFound.title')}
       </h1>
-      <p className="mt-2 text-gray-600">{t('pages.notFound.description')}</p>
+      <p className="mt-2 text-primary-600">{t('pages.notFound.description')}</p>
       <div className="mt-6">
         <Link to={homeUrl()}>
           <Button>{t('pages.notFound.back')}</Button>

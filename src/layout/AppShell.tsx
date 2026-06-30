@@ -10,7 +10,7 @@ export function AppShell() {
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
 
   return (
-    <div className="flex min-h-svh flex-col bg-white">
+    <div className="flex min-h-svh flex-col bg-bg-50">
       <SiteHeader onOpenCategoryDrawer={() => setCategoryDrawerOpen(true)} onOpenCartDrawer={() => setCartDrawerOpen(true)} />
       <main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
         <Outlet />

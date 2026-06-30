@@ -17,9 +17,9 @@ export function AdminItemList() {
   }, [cms, query]);
 
   return (
-    <aside className="relative flex-1 rounded-lg border border-neutral/50 bg-white">
-      <div className="flex items-center gap-2 border-b border-neutral/50 p-3">
-        <Search className="size-4 text-sm text-gray-600" aria-hidden="true" />
+    <aside className="relative flex-1 rounded-lg border border-bg-200 bg-bg-50">
+      <div className="flex items-center gap-2 border-b border-bg-200 p-3">
+        <Search className="size-4 text-sm text-primary-600" aria-hidden="true" />
         <TextField value={query} onChange={setQuery} className="flex-1" inputClassname="border-0 outline-none" placeholder="Search item" />
       </div>
       <AdminItemListContent items={filteredItems} />

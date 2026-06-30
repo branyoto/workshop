@@ -27,10 +27,10 @@ export function EditLocalizedValueForm({ close, onSubmit }: Readonly<EditLocaliz
   );
 
   return (
-    <form className="grid w-72 gap-3 rounded-lg border border-neutral/50 bg-white p-4 shadow-lg" onSubmit={handleSubmit}>
+    <form className="grid w-72 gap-3 rounded-lg border border-bg-200 bg-bg-50 p-4 shadow-lg" onSubmit={handleSubmit}>
       <div className="flex items-center justify-between gap-2">
-        <p className="text-sm font-semibold text-gray-950">Nouveau libellé</p>
-        <button type="button" className="rounded-full p-1 text-gray-600 hover:bg-neutral/20" aria-label="Fermer" onClick={close}>
+        <p className="text-sm font-semibold text-primary-950">Nouveau libellé</p>
+        <button type="button" className="rounded-full p-1 text-primary-600 hover:bg-bg-100" aria-label="Fermer" onClick={close}>
           <X className="size-4" />
         </button>
       </div>

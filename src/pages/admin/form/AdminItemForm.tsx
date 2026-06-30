@@ -18,7 +18,7 @@ export function AdminItemForm() {
   if (!selectedItem)
     return (
       <form
-        className="flex-3 flex justify-center items-center rounded-lg text-2xl font-bold border border-neutral/50 p-4 h-120"
+        className="flex-3 flex justify-center items-center rounded-lg text-2xl font-bold border border-bg-200 p-4 h-120"
         onSubmit={event => event.preventDefault()}
       >
         Pas de produit sélectionné
@@ -32,12 +32,12 @@ export function AdminItemForm() {
   const onToggle = (tag: string) => editSelectedItem(updateTags(tag));
 
   return (
-    <form className="flex-3 space-y-6 rounded-lg border border-neutral/50 p-4 h-min" onSubmit={event => event.preventDefault()}>
+    <form className="flex-3 space-y-6 rounded-lg border border-bg-200 p-4 h-min" onSubmit={event => event.preventDefault()}>
       <div className="flex items-center justify-between">
-        <span className="text-base font-semibold text-gray-950">{selectedItem.title.fr}</span>
+        <span className="text-base font-semibold text-primary-950">{selectedItem.title.fr}</span>
         <button
           type="button"
-          className="rounded p-1.5 text-red-500 hover:bg-red-50"
+          className="rounded p-1.5 text-primary-600 hover:bg-primary-50"
           onClick={() => deleteItem(selectedItem.id)}
           aria-label="Supprimer le produit"
           title="Supprimer"

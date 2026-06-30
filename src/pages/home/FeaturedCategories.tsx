@@ -29,5 +29,5 @@ export function FeaturedCategories() {
 }
 
 function FeaturedCategoryLabel({ label }: Readonly<{ label: string }>) {
-  return <span className="text-sm font-medium text-gray-900">{label}</span>;
+  return <span className="text-sm font-medium text-primary-900">{label}</span>;
 }

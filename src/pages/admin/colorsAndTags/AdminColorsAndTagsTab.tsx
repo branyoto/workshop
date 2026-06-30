@@ -38,21 +38,21 @@ function EditableEntry({ entryKey, fr, en, onSave, onDelete }: Readonly<Editable
 
   if (editing) {
     return (
-      <li className="grid grid-cols-[1fr_1fr_1fr_auto] gap-2 items-end rounded-md bg-neutral/10 p-2">
+      <li className="grid grid-cols-[1fr_1fr_1fr_auto] gap-2 items-end rounded-md bg-bg-50 p-2">
         <TextField label="Clé" value={editKey} onChange={setEditKey} autoFocus />
         <TextField label="FR" value={editFr} onChange={setEditFr} />
         <TextField label="EN" value={editEn} onChange={setEditEn} />
         <div className="flex gap-1 pb-1">
           <button
             type="button"
-            className="rounded p-1.5 text-green-600 hover:bg-green-50 disabled:opacity-40"
+            className="rounded p-1.5 text-secondary-600 hover:bg-secondary-50 disabled:opacity-40"
             disabled={!editKey.trim() || !editFr.trim()}
             onClick={handleSave}
             aria-label="Confirmer"
           >
             <Check className="size-4" />
           </button>
-          <button type="button" className="rounded p-1.5 text-red-500 hover:bg-red-50" onClick={handleCancel} aria-label="Annuler">
+          <button type="button" className="rounded p-1.5 text-primary-600 hover:bg-primary-50" onClick={handleCancel} aria-label="Annuler">
             <X className="size-4" />
           </button>
         </div>
@@ -61,14 +61,14 @@ function EditableEntry({ entryKey, fr, en, onSave, onDelete }: Readonly<Editable
   }
 
   return (
-    <li className="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-neutral/10">
-      <span className="w-32 shrink-0 truncate font-mono text-xs text-gray-500">{entryKey}</span>
-      <span className="flex-1 truncate font-medium text-gray-900">{fr}</span>
-      <span className={clsx('flex-1 truncate font-medium', en ? 'text-gray-900' : 'italic text-gray-400')}>{en ?? '—'}</span>
+    <li className="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-bg-50">
+      <span className="w-32 shrink-0 truncate font-mono text-xs text-primary-500">{entryKey}</span>
+      <span className="flex-1 truncate font-medium text-primary-900">{fr}</span>
+      <span className={clsx('flex-1 truncate font-medium', en ? 'text-primary-900' : 'italic text-primary-400')}>{en ?? '—'}</span>
       <span className="flex items-center gap-1">
         <button
           type="button"
-          className="rounded p-1 text-gray-400 hover:bg-neutral/30 hover:text-gray-700"
+          className="rounded p-1 text-primary-400 hover:bg-bg-200 hover:text-primary-700"
           onClick={() => setEditing(true)}
           aria-label="Modifier"
         >
@@ -76,7 +76,7 @@ function EditableEntry({ entryKey, fr, en, onSave, onDelete }: Readonly<Editable
         </button>
         <button
           type="button"
-          className="rounded p-1 text-gray-400 hover:bg-red-50 hover:text-red-600"
+          className="rounded p-1 text-primary-400 hover:bg-primary-50 hover:text-primary-700"
           onClick={() => onDelete(entryKey)}
           aria-label="Supprimer"
         >
@@ -100,9 +100,9 @@ function GlossarySection({ title, entries, onSave, onDelete, onAdd }: Readonly<G
   const sortedEntries = [...entries].sort((a, b) => a[1].fr.localeCompare(b[1].fr));
 
   return (
-    <div className="rounded-lg border border-neutral/50 bg-white p-4 space-y-3">
+    <div className="rounded-lg border border-bg-200 bg-bg-50 p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-gray-950">{title}</h3>
+        <h3 className="font-semibold text-primary-950">{title}</h3>
         <AnchoredPopover
           open={opened}
           onOpenChange={setOpened}
@@ -122,7 +122,7 @@ function GlossarySection({ title, entries, onSave, onDelete, onAdd }: Readonly<G
           />
         </AnchoredPopover>
       </div>
-      {sortedEntries.length === 0 && <p className="text-sm text-gray-400">Aucune entrée.</p>}
+      {sortedEntries.length === 0 && <p className="text-sm text-primary-400">Aucune entrée.</p>}
       <ul className="space-y-1">
         {sortedEntries.map(([key, value]) => (
           <EditableEntry key={key} entryKey={key} fr={value.fr} en={value.en} onSave={onSave} onDelete={onDelete} />

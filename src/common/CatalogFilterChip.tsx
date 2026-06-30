@@ -11,7 +11,7 @@ export function CatalogFilterChip({ label, value, filter }: Readonly<CatalogFilt
   return (
     <Link
       to={filter && value ? `${catalogUrl()}?${filter}=${encodeURIComponent(value)}` : catalogUrl()}
-      className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent hover:bg-accent/20"
+      className="inline-flex items-center rounded-full border border-accent-200 bg-accent-50 px-3 py-1 text-xs font-medium text-accent-500 hover:bg-accent-100"
     >
       {label}
     </Link>

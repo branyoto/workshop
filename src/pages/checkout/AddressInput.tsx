@@ -77,7 +77,7 @@ export function AddressInput({
       required={required}
       aria-describedby={ariaDescribedBy}
       rows={3}
-      className="w-full rounded-lg border border-neutral/50 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+      className="w-full rounded-lg border border-bg-200 bg-bg-50 px-3 py-2 text-sm text-primary-900 placeholder-primary-400 focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
     />
   );
 }

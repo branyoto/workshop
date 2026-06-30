@@ -23,13 +23,13 @@ interface FieldProps {
 function Field({ label, error, id, required, children }: Readonly<FieldProps>) {
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={id} className="text-sm font-medium text-gray-900">
+      <label htmlFor={id} className="text-sm font-medium text-primary-900">
         {label}
-        {required && <span className="ml-0.5 text-red-500">*</span>}
+        {required && <span className="ml-0.5 text-primary-600">*</span>}
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} className="text-xs text-red-600" role="alert">
+        <p id={`${id}-error`} className="text-xs text-primary-700" role="alert">
           {error}
         </p>
       )}
@@ -77,7 +77,7 @@ export function ContactPage() {
 
   return (
     <section aria-labelledby="contact-heading">
-      <h1 id="contact-heading" className="text-3xl font-semibold text-gray-900">
+      <h1 id="contact-heading" className="text-3xl font-semibold text-primary-900">
         {t('pages.contact.heading')}
       </h1>
 
@@ -87,29 +87,29 @@ export function ContactPage() {
           {/* Bio */}
           {contact.bio && (
             <div>
-              <h2 className="mb-2 text-lg font-semibold text-gray-900">{t('pages.contact.bio')}</h2>
-              <p className="text-gray-700">{l(contact.bio)}</p>
-              {contact.categoriesOverview && <p className="mt-2 text-sm text-gray-600">{l(contact.categoriesOverview)}</p>}
+              <h2 className="mb-2 text-lg font-semibold text-primary-900">{t('pages.contact.bio')}</h2>
+              <p className="text-primary-700">{l(contact.bio)}</p>
+              {contact.categoriesOverview && <p className="mt-2 text-sm text-primary-600">{l(contact.categoriesOverview)}</p>}
             </div>
           )}
 
           {/* Markets */}
           <div>
-            <h2 className="mb-2 text-lg font-semibold text-gray-900">{t('pages.contact.markets')}</h2>
+            <h2 className="mb-2 text-lg font-semibold text-primary-900">{t('pages.contact.markets')}</h2>
             {futureMarkets.length === 0 ?
-              <p className="text-sm text-gray-500">{t('pages.contact.noMarkets')}</p>
+              <p className="text-sm text-primary-500">{t('pages.contact.noMarkets')}</p>
             : <ul className="flex flex-col gap-3">
                 {futureMarkets.map(market => {
                   const dateStr = new Intl.DateTimeFormat(t('pages.contact.locale'), { year: 'numeric', month: 'long', day: 'numeric' }).format(
                     new Date(market.date),
                   );
                   return (
-                    <li key={market.date} className="rounded-lg border border-neutral/40 p-3">
-                      <p className="text-sm font-semibold text-gray-900">{dateStr}</p>
-                      <p className="text-sm text-gray-700">{l(market.location)}</p>
-                      {market.description && <p className="mt-1 text-xs text-gray-500">{l(market.description)}</p>}
+                    <li key={market.date} className="rounded-lg border border-bg-200 p-3">
+                      <p className="text-sm font-semibold text-primary-900">{dateStr}</p>
+                      <p className="text-sm text-primary-700">{l(market.location)}</p>
+                      {market.description && <p className="mt-1 text-xs text-primary-500">{l(market.description)}</p>}
                       {market.url && (
-                        <a href={market.url} target="_blank" rel="noreferrer" className="mt-1 text-xs text-accent hover:underline">
+                        <a href={market.url} target="_blank" rel="noreferrer" className="mt-1 text-xs text-accent-500 hover:underline">
                           {t('pages.contact.marketLink')} →
                         </a>
                       )}
@@ -122,13 +122,13 @@ export function ContactPage() {
 
           {/* Social + email */}
           <div>
-            <h2 className="mb-2 text-lg font-semibold text-gray-900">{t('pages.contact.social')}</h2>
+            <h2 className="mb-2 text-lg font-semibold text-primary-900">{t('pages.contact.social')}</h2>
             <ul className="flex flex-col gap-1">
               {settings.artistEmail && (
                 <li>
                   <a
                     href={`mailto:${settings.artistEmail}`}
-                    className="text-sm text-accent hover:underline"
+                    className="text-sm text-accent-500 hover:underline"
                     aria-label={t('pages.contact.emailLabel')}
                   >
                     ✉ {settings.artistEmail}
@@ -142,7 +142,7 @@ export function ContactPage() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={link.type}
-                    className="text-sm capitalize text-gray-700 hover:text-accent hover:underline"
+                    className="text-sm capitalize text-primary-700 hover:text-accent-500 hover:underline"
                   >
                     {link.type}
                   </a>
@@ -154,14 +154,14 @@ export function ContactPage() {
           {/* Map */}
           {(settings.mapUrl || settings.address) && (
             <div>
-              <h2 className="mb-2 text-lg font-semibold text-gray-900">{t('pages.contact.location')}</h2>
-              {settings.address && <p className="text-sm text-gray-700">{l(settings.address)}</p>}
+              <h2 className="mb-2 text-lg font-semibold text-primary-900">{t('pages.contact.location')}</h2>
+              {settings.address && <p className="text-sm text-primary-700">{l(settings.address)}</p>}
               {settings.mapUrl && (
                 <a
                   href={settings.mapUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-1 inline-flex items-center text-sm text-accent hover:underline"
+                  className="mt-1 inline-flex items-center text-sm text-accent-500 hover:underline"
                 >
                   {t('pages.contact.viewMap')} →
                 </a>
@@ -172,11 +172,11 @@ export function ContactPage() {
 
         {/* Right: contact form */}
         <div className="lg:w-1/2">
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">{t('pages.contact.formTitle')}</h2>
+          <h2 className="mb-4 text-lg font-semibold text-primary-900">{t('pages.contact.formTitle')}</h2>
           {success ?
-            <div data-testid="contact-success" className="rounded-xl bg-secondary/50 px-6 py-8 text-center">
-              <p className="text-lg font-semibold text-gray-900">✅ {t('pages.contact.successTitle')}</p>
-              <p className="mt-1 text-sm text-gray-600">{t('pages.contact.successMessage')}</p>
+            <div data-testid="contact-success" className="rounded-xl bg-secondary-100 px-6 py-8 text-center">
+              <p className="text-lg font-semibold text-primary-900">✅ {t('pages.contact.successTitle')}</p>
+              <p className="mt-1 text-sm text-primary-600">{t('pages.contact.successMessage')}</p>
             </div>
           : <form
               className="flex flex-col gap-4"
@@ -203,7 +203,7 @@ export function ContactPage() {
                       onBlur={field.handleBlur}
                       required
                       autoComplete="name"
-                      className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                      className="rounded-lg border border-bg-200 px-3 py-2 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
                     />
                   </Field>
                 )}
@@ -224,7 +224,7 @@ export function ContactPage() {
                       onBlur={field.handleBlur}
                       required
                       autoComplete="email"
-                      className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                      className="rounded-lg border border-bg-200 px-3 py-2 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
                     />
                   </Field>
                 )}
@@ -244,7 +244,7 @@ export function ContactPage() {
                       onBlur={field.handleBlur}
                       required
                       rows={5}
-                      className="rounded-lg border border-neutral/50 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                      className="rounded-lg border border-bg-200 px-3 py-2 text-sm focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400"
                     />
                   </Field>
                 )}
@@ -262,7 +262,7 @@ export function ContactPage() {
         message={t('pages.checkout.error.message')}
         onClose={() => setErrorOpen(false)}
         action={
-          <Button variant="text" className="px-2 py-1 text-xs text-white" onClick={() => setErrorOpen(false)}>
+          <Button variant="text" className="px-2 py-1 text-xs text-primary-50" onClick={() => setErrorOpen(false)}>
             {t('common.retry')}
           </Button>
         }

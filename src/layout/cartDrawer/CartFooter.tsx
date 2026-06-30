@@ -24,7 +24,7 @@ export function CartFooter({ onClose }: Readonly<CartFooterProps>) {
         to={checkoutUrl()}
         onClick={onClose}
         data-testid="cart-checkout-link"
-        className="inline-flex w-full items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent/90"
+        className="inline-flex w-full items-center justify-center rounded-lg bg-primary-500 px-4 py-2 text-sm font-medium text-primary-50 transition-colors hover:bg-primary-600"
       >
         {t('pages.cart.checkout')}
       </Link>

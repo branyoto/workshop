@@ -1,11 +1,13 @@
 @import 'tailwindcss';
 
 @theme {
+  /* Old color palette */
   --color-primary: #f7c7db;
   --color-secondary: #c5ebc3;
   --color-accent: #5cbbec;
   --color-neutral: #d7c0d0;
 
+  /* New color palette */
   --color-primary-50: #F5F0F2;
   --color-primary-100: #E2D5DA;
   --color-primary-200: #CFBAC3;

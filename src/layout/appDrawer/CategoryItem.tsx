@@ -28,7 +28,7 @@ export function CategoryItem({ category, parentPath, depth, activeId, onClose }:
         aria-current={isActive ? 'page' : undefined}
         className={clsx(
           'flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors',
-          isActive ? 'bg-primary/60 font-medium text-gray-900' : 'text-gray-700 hover:bg-primary/20',
+          isActive ? 'bg-primary-200 font-medium text-primary-900' : 'text-primary-700 hover:bg-bg-100',
         )}
       >
         <DecorativeImage src={getCategoryImageUrl(category.id)} className="size-6 shrink-0" fullWidth={false} />

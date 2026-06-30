@@ -33,7 +33,7 @@ export function TagSection({ selectedTags, onToggle, onAdd }: Readonly<TagSectio
       {tagOptions.map(([tag, label]) => (
         <CheckboxPill key={tag} label={l(label)} value={tag} checked={selectedTags.includes(tag)} onChange={() => onToggle(tag)} />
       ))}
-      <AnchoredPopover open={opened} onOpenChange={setOpened} anchor={<PlusCircle className="size-9 p-1.5 text-gray-700" />}>
+      <AnchoredPopover open={opened} onOpenChange={setOpened} anchor={<PlusCircle className="size-9 p-1.5 text-primary-700" />}>
         <EditLocalizedValueForm close={close} onSubmit={handleAddTag} />
       </AnchoredPopover>
     </OptionGroup>

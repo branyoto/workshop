@@ -21,13 +21,13 @@ export function Snackbar({ open, message, onClose, action, className }: Readonly
       role="status"
       aria-live="polite"
       className={clsx(
-        'fixed bottom-4 left-1/2 z-50 flex max-w-md -translate-x-1/2 items-center gap-3 rounded-lg bg-gray-900 px-4 py-3 text-sm text-white shadow-lg',
+        'fixed bottom-4 left-1/2 z-50 flex max-w-md -translate-x-1/2 items-center gap-3 rounded-lg bg-bg-900 px-4 py-3 text-sm text-primary-50 shadow-lg',
         className,
       )}
     >
       <span className="flex-1">{message}</span>
       {action}
-      <Button variant="text" className="px-2 py-1 text-white hover:bg-white/10" onClick={onClose} aria-label="Close notification">
+      <Button variant="text" className="px-2 py-1 text-primary-50 hover:bg-bg-50/10" onClick={onClose} aria-label="Close notification">
         <X aria-hidden="true" className="size-4" strokeWidth={1.75} />
       </Button>
     </div>
