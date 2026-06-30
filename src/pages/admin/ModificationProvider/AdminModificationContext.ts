@@ -8,6 +8,7 @@ export interface AdminModificationContextValue extends AdminModificationReducerS
   selectItem: (itemId: string) => void;
   editCategory: (prevCategoryId: string, category: CategoryView) => void;
   deleteCategory: (categoryId: string) => void;
+  saveCategory: (prevId: string, data: Omit<CategoryView, 'children'>, parentId?: string) => void;
   editSelectedItem: (action: EditStateAction<Item>) => void;
   editItem: (prevItemId: string, updater: SetStateAction<Item>) => void;
   deleteItem: (itemId: string) => void;
@@ -19,8 +20,10 @@ export interface AdminModificationContextValue extends AdminModificationReducerS
   deleteTag: (tagKey: string) => void;
   addCategoryToFeatured: (categoryId: string) => void;
   removeCategoryFromFeatured: (categoryId: string) => void;
+  moveCategoryInFeatured: (categoryId: string, direction: 'up' | 'down') => void;
   addItemToFeatured: (itemId: string) => void;
   removeItemFromFeatured: (itemId: string) => void;
+  moveItemInFeatured: (itemId: string, direction: 'up' | 'down') => void;
   hydrate: (cmsContent: SetStateAction<CmsContent>) => void;
   copy: Noop;
   download: Noop;

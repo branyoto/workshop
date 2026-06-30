@@ -21,6 +21,11 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
     [dispatch],
   );
   const deleteCategory = useCallback((categoryId: string) => dispatch({ type: 'DELETE_CATEGORY', categoryId }), [dispatch]);
+  const saveCategory = useCallback(
+    (prevId: string, data: Omit<CategoryView, 'children'>, parentId: string | undefined) =>
+      dispatch({ type: 'SAVE_CATEGORY', prevId, data, parentId }),
+    [dispatch],
+  );
   const editItem = useCallback(
     (prevItemId: string, updater: SetStateAction<Item>) => dispatch({ type: 'EDIT_ITEM', prevItemId, updater }),
     [dispatch],
@@ -41,8 +46,16 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
   const deleteTag = useCallback((tagKey: string) => dispatch({ type: 'DELETE_TAG', tagKey }), [dispatch]);
   const addCategoryToFeatured = useCallback((categoryId: string) => dispatch({ type: 'ADD_CATEGORY_TO_FEATURED', categoryId }), [dispatch]);
   const removeCategoryFromFeatured = useCallback((categoryId: string) => dispatch({ type: 'REMOVE_CATEGORY_FROM_FEATURED', categoryId }), [dispatch]);
+  const moveCategoryInFeatured = useCallback(
+    (categoryId: string, direction: 'up' | 'down') => dispatch({ type: 'MOVE_CATEGORY_IN_FEATURED', categoryId, direction }),
+    [dispatch],
+  );
   const addItemToFeatured = useCallback((itemId: string) => dispatch({ type: 'ADD_ITEM_TO_FEATURED', itemId }), [dispatch]);
   const removeItemFromFeatured = useCallback((itemId: string) => dispatch({ type: 'REMOVE_ITEM_FROM_FEATURED', itemId }), [dispatch]);
+  const moveItemInFeatured = useCallback(
+    (itemId: string, direction: 'up' | 'down') => dispatch({ type: 'MOVE_ITEM_IN_FEATURED', itemId, direction }),
+    [dispatch],
+  );
   const hydrate = useCallback((updater: SetStateAction<CmsContent>) => dispatch({ type: 'HYDRATE', updater }), [dispatch]);
   const copy = useCallback(() => dispatch({ type: 'COPY' }), [dispatch]);
   const download = useCallback(() => dispatch({ type: 'DOWNLOAD' }), [dispatch]);
@@ -55,6 +68,7 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
       selectItem,
       editCategory,
       deleteCategory,
+      saveCategory,
       editItem,
       editSelectedItem,
       deleteItem,
@@ -66,8 +80,10 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
       deleteTag,
       addCategoryToFeatured,
       removeCategoryFromFeatured,
+      moveCategoryInFeatured,
       addItemToFeatured,
       removeItemFromFeatured,
+      moveItemInFeatured,
       hydrate,
       copy,
       download,
@@ -79,6 +95,7 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
       selectItem,
       editCategory,
       deleteCategory,
+      saveCategory,
       editItem,
       editSelectedItem,
       deleteItem,
@@ -90,8 +107,10 @@ export function AdminModificationProvider({ children }: Readonly<PropsWithChildr
       deleteTag,
       addCategoryToFeatured,
       removeCategoryFromFeatured,
+      moveCategoryInFeatured,
       addItemToFeatured,
       removeItemFromFeatured,
+      moveItemInFeatured,
       hydrate,
       copy,
       download,

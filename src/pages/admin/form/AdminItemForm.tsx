@@ -6,9 +6,11 @@ import { useAdminModification } from '../ModificationProvider/useAdminModificati
 import { TagSection } from './TagSection';
 import { ColorSection } from './ColorSection';
 import { DecorativeImage } from '../../../common/DecorativeImage';
+import { updateTags } from '../utils';
+import type { EditLocalizedText } from '../ModificationProvider/AdminModificationReducer';
 
 export function AdminItemForm() {
-  const { selectedItemId, cms, editSelectedItem } = useAdminModification();
+  const { selectedItemId, cms, editSelectedItem, editTag } = useAdminModification();
 
   const selectedItem = cms.items.find(item => item.id === selectedItemId);
 
@@ -21,6 +23,12 @@ export function AdminItemForm() {
         Pas de produit sélectionné
       </form>
     );
+
+  const onAdd = (localizedText: EditLocalizedText) => {
+    editTag(localizedText.id, localizedText);
+    editSelectedItem(updateTags(localizedText.id));
+  };
+  const onToggle = (tag: string) => editSelectedItem(updateTags(tag));
 
   return (
     <form className="flex-3 space-y-6 rounded-lg border border-neutral/50 p-4 h-min" onSubmit={event => event.preventDefault()}>
@@ -62,7 +70,7 @@ export function AdminItemForm() {
           onChange={weight => editSelectedItem({ characteristics: { weight } })}
         />
       </div>
-      <TagSection selectedItem={selectedItem} />
+      <TagSection selectedTags={selectedItem.tags} onAdd={onAdd} onToggle={onToggle} />
       <ColorSection selectedItem={selectedItem} />
     </form>
   );
